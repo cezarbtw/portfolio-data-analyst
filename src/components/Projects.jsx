@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FolderGit2, ExternalLink, ArrowRight, Sparkles, CheckCircle2, BarChart2 } from 'lucide-react';
+import { FolderGit2, ExternalLink, ArrowRight, Sparkles, CheckCircle2, BarChart2, Database, Cpu } from 'lucide-react';
 import { GithubIcon } from './Icons';
 import CaseStudyModal from './CaseStudyModal';
 import { dataAnalystData } from '../data/portfolioData';
@@ -11,23 +11,23 @@ export default function Projects() {
   const filterOptions = [
     { id: 'all', label: 'Todos os Projetos' },
     { id: 'featured', label: 'Em Destaque' },
+    { id: 'tcmgo', label: 'TCM-GO (Auditoria, NER & ETL)' },
     { id: 'powerbi', label: 'Power BI & BI' },
-    { id: 'tcmgo', label: 'Governança & TCM-GO' },
-    { id: 'ai', label: 'Machine Learning & IA' },
+    { id: 'ai', label: 'Machine Learning & Telemetria' },
   ];
 
   const filteredProjects = dataAnalystData.projects.filter((proj) => {
     if (selectedFilter === 'featured') return proj.featured;
-    if (selectedFilter === 'powerbi') return proj.tags.includes('Power BI') || proj.tags.includes('Data Viz');
     if (selectedFilter === 'tcmgo') return proj.id.includes('tcmgo');
-    if (selectedFilter === 'ai') return proj.tags.some(t => ['Python', 'YOLOv8', 'NLP'].includes(t));
+    if (selectedFilter === 'powerbi') return proj.tags.includes('Power BI') || proj.tags.includes('Data Viz');
+    if (selectedFilter === 'ai') return proj.tags.some(t => ['Python', 'YOLOv8', 'NLP', 'PyTorch'].includes(t));
     return true;
   });
 
   return (
     <section id="projects" className="py-16 border-t border-slate-800/80 bg-slate-950">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-
+        
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
@@ -36,10 +36,10 @@ export default function Projects() {
               <span>Portfólio de Dados & BI</span>
             </div>
             <h2 className="mt-3 text-3xl font-extrabold text-white sm:text-4xl tracking-tight">
-              Dashboards, Pipelines ETL & Machine Learning
+              Dashboards, Automações de IA & Pipelines ETL
             </h2>
             <p className="mt-2 text-sm text-slate-400 max-w-xl">
-              Projetos de alta relevância envolvendo relatórios executivos no Power BI, higienização de bases públicas e modelos preditivos de inteligência artificial.
+              Projetos de alta relevância com relatórios no Power BI, automações de validação de APIs de IA no tribunal, SQL avançado e modelos preditivos.
             </p>
           </div>
 
@@ -49,10 +49,11 @@ export default function Projects() {
               <button
                 key={filter.id}
                 onClick={() => setSelectedFilter(filter.id)}
-                className={`rounded-lg px-3 py-1.5 text-xs font-semibold transition-all ${selectedFilter === filter.id
+                className={`rounded-lg px-3 py-1.5 text-xs font-semibold transition-all ${
+                  selectedFilter === filter.id
                     ? 'bg-emerald-600 text-white shadow'
                     : 'text-slate-400 hover:text-slate-200'
-                  }`}
+                }`}
               >
                 {filter.label}
               </button>
@@ -64,30 +65,37 @@ export default function Projects() {
         <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredProjects.map((project) => {
             const isPowerBi = project.id === 'power-bi-report';
+            const isNerAutomation = project.id === 'tcmgo-ner-automation';
 
             return (
               <div
                 key={project.id}
-                className={`group relative flex flex-col justify-between rounded-2xl border bg-slate-900/60 p-6 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl ${isPowerBi
+                className={`group relative flex flex-col justify-between rounded-2xl border bg-slate-900/60 p-6 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl ${
+                  isPowerBi
                     ? 'border-amber-500/50 hover:border-amber-500/90 bg-gradient-to-b from-amber-950/25 via-slate-900/70 to-slate-900/90 shadow-amber-500/5'
+                    : isNerAutomation
+                    ? 'border-cyan-500/50 hover:border-cyan-500/90 bg-gradient-to-b from-cyan-950/25 via-slate-900/70 to-slate-900/90'
                     : project.featured
-                      ? 'border-emerald-500/40 hover:border-emerald-500/80 bg-gradient-to-b from-emerald-950/20 to-slate-900/60'
-                      : 'border-slate-800/80 hover:border-slate-700'
-                  }`}
+                    ? 'border-emerald-500/40 hover:border-emerald-500/80 bg-gradient-to-b from-emerald-950/20 to-slate-900/60'
+                    : 'border-slate-800/80 hover:border-slate-700'
+                }`}
               >
                 <div>
                   <div className="flex items-center justify-between gap-2 mb-3">
-                    <span className={`text-[11px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full ${isPowerBi
+                    <span className={`text-[11px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full ${
+                      isPowerBi
                         ? 'bg-amber-500/10 text-amber-300 border border-amber-500/20'
+                        : isNerAutomation
+                        ? 'bg-cyan-500/10 text-cyan-300 border border-cyan-500/20'
                         : 'bg-emerald-500/10 text-emerald-300 border border-emerald-500/20'
-                      }`}>
+                    }`}>
                       {project.category}
                     </span>
 
                     {project.featured && (
                       <span className="flex items-center gap-1 text-[10px] font-mono text-amber-400 bg-amber-500/10 border border-amber-500/20 px-2 py-0.5 rounded-full">
                         <Sparkles className="h-3 w-3" />
-                        {isPowerBi ? 'Power BI' : 'Destaque'}
+                        {isPowerBi ? 'Power BI' : isNerAutomation ? 'Automação' : 'Destaque'}
                       </span>
                     )}
                   </div>
@@ -103,7 +111,9 @@ export default function Projects() {
                   {/* Metrics Pill */}
                   {project.metrics && (
                     <div className="mt-4 rounded-xl border border-slate-800/80 bg-slate-950/60 p-2.5 flex items-center gap-2 text-xs text-slate-300">
-                      <CheckCircle2 className={`h-3.5 w-3.5 shrink-0 ${isPowerBi ? 'text-amber-400' : 'text-emerald-400'}`} />
+                      <CheckCircle2 className={`h-3.5 w-3.5 shrink-0 ${
+                        isPowerBi ? 'text-amber-400' : isNerAutomation ? 'text-cyan-400' : 'text-emerald-400'
+                      }`} />
                       <span className="font-mono text-[11px] truncate">{project.metrics}</span>
                     </div>
                   )}
@@ -113,10 +123,13 @@ export default function Projects() {
                     {project.tags.map((tag, tIdx) => (
                       <span
                         key={tIdx}
-                        className={`rounded-md px-2 py-1 text-[10px] font-mono ${tag === 'Power BI' || tag === 'DAX'
+                        className={`rounded-md px-2 py-1 text-[10px] font-mono ${
+                          tag === 'Power BI' || tag === 'DAX'
                             ? 'bg-amber-500/10 text-amber-300 border border-amber-500/20'
+                            : tag === 'SQL Avançado' || tag === 'API de NER'
+                            ? 'bg-cyan-500/10 text-cyan-300 border border-cyan-500/20'
                             : 'bg-slate-800/80 text-slate-300'
-                          }`}
+                        }`}
                       >
                         {tag}
                       </span>
@@ -152,10 +165,11 @@ export default function Projects() {
                         href={project.demo}
                         target="_blank"
                         rel="noreferrer"
-                        className={`flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-semibold text-white transition-all hover:scale-105 ${isPowerBi
+                        className={`flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-semibold text-white transition-all hover:scale-105 ${
+                          isPowerBi
                             ? 'bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-500 hover:to-amber-400 shadow-md shadow-amber-600/20'
                             : 'bg-emerald-600 hover:bg-emerald-500'
-                          }`}
+                        }`}
                         title={isPowerBi ? 'Abrir Relatório no Power BI' : 'Abrir Demonstração / Portal'}
                       >
                         {isPowerBi ? <BarChart2 className="h-3.5 w-3.5" /> : null}

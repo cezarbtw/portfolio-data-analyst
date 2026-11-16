@@ -15,53 +15,52 @@ export const personalInfo = {
 
 export const dataAnalystData = {
   role: "Analista de Dados & BI",
-  badge: "Power BI • Pipelines ETL • SQL Avançado • Python • Machine Learning",
+  badge: "Power BI • Pipelines ETL • SQL Avançado • Automação de APIs • Machine Learning",
   accentColor: "emerald",
   gradientText: "from-emerald-400 via-teal-300 to-cyan-400",
-  tagline: "Analista de Dados especializado em pipelines ETL, relatórios executivos no Power BI e análise estatística de dados complexos.",
-  headline: "Analista de Dados & BI focado em ETL robusto, Power BI, SQL e inteligência para tomada de decisão.",
+  tagline: "Analista de Dados especializado em pipelines ETL, consultas SQL analíticas complexas, automação de validação de APIs de IA e relatórios executivos no Power BI.",
+  headline: "Analista de Dados & BI focado em SQL avançado, ETL, Power BI e automação de auditoria de dados.",
   bio: [
-    "Sou Analista de Dados com sólida experiência na concepção e sustentação de esteiras de ETL, modelagem dimensional e relacional, criação de dashboards interativos no Power BI (DAX) e análise estatística de dados com Python (Pandas, NumPy, Matplotlib, PyTorch).",
-    "No TCM-GO (Tribunal de Contas dos Municípios de Goiás), atuo como Analista de Dados no projeto do Novo Portal do Cidadão, desenvolvendo pipelines ETL para ingestão, higienização e consolidação de bases de dados orçamentárias de políticas ambientais dos 246 municípios goianos, além de construir os relatórios e gráficos analíticos no Power BI para a aba 'Meio Ambiente'.",
-    "Também desenvolvi o Cripto EmotionLens, liderando a modelagem e análise estatística de telemetria temporal de microexpressões faciais (séries temporais segundo a segundo, histogramas de dispersão afetiva e benchmarks de latência criptográfica de 0.22ms), além de projetos com Machine Learning e Visão Computacional (YOLOv8)."
+    "Sou Analista de Dados com sólida experiência na concepção e sustentação de esteiras de ETL, modelagem dimensional e relacional, criação de dashboards interativos no Power BI (DAX) e desenvolvimento de scripts analíticos em Python e SQL para auditoria e governança de dados.",
+    "No TCM-GO (Tribunal de Contas dos Municípios de Goiás), atuo como Analista de Dados desenvolvendo pipelines ETL em Python e SQL para saneamento e agregação de dados orçamentários dos 246 municípios goianos, com elaboração dos gráficos no Power BI para a aba 'Meio Ambiente' do Novo Portal do Cidadão.",
+    "Também sou o autor de rotinas automatizadas de testes e validação da API de NER (Named Entity Recognition) do TCM-GO, processando extratos bancários e contábeis em paralelo e reconciliando os payloads JSON da IA contra consultas SQL complexas em bases de altíssimo volume (ORCAFI, COLARE e Data Warehouse)."
   ],
   stats: [
-    { label: "Atuação TCM-GO", value: "246 Municípios", hint: "ETL & Gráficos Power BI no Portal do Cidadão" },
-    { label: "Relatórios Power BI", value: "Cloud / DAX", hint: "Dashboards interativos com filtros cruzados" },
-    { label: "Linguagens Analíticas", value: "Python & SQL", hint: "Pandas, NumPy, PostgreSQL & MySQL" },
-    { label: "Modelos de IA & Telemetria", value: "YOLOv8 & PyTorch", hint: "Extração quantitativa de métricas e mAP" }
+    { label: "Atuação TCM-GO", value: "246 Municípios", hint: "ETL, SQL e gráficos Power BI no Portal do Cidadão" },
+    { label: "Power BI & BI", value: "Cloud / DAX", hint: "Modelagem dimensional Star Schema & KPIs" },
+    { label: "Consultas & DW", value: "SQL Avançado", hint: "Joins cross-database, CTEs & nolock em big data" },
+    { label: "Validação de IA", value: "API de NER", hint: "Automação paralela Python JSON x SQL" }
   ],
   skills: {
     categories: [
       {
-        name: "Engenharia de Dados & ETL",
+        name: "SQL Avançado & Bancos de Dados",
         skills: [
-          { name: "Python (Pandas & NumPy)", level: "Avançado", badge: "Core" },
-          { name: "Pipelines ETL / ELT", level: "Avançado", badge: "Core" },
-          { name: "Data Cleaning & Wrangling", level: "Avançado", badge: "Quality" },
-          { name: "Automação de Rotinas de Dados", level: "Avançado", badge: "Productivity" },
-          { name: "Consumo & Ingestão de APIs", level: "Avançado", badge: "Ingestion" },
-          { name: "Auditoria & Governança de Dados", level: "Intermediário/Avançado", badge: "Audit" }
+          { name: "SQL para Auditoria (Cross-DB)", level: "Avançado", badge: "Core" },
+          { name: "Otimização de Queries (with nolock)", level: "Avançado", badge: "Performance" },
+          { name: "Modelagem Relacional & DW", level: "Avançado", badge: "Modeling" },
+          { name: "MySQL, PostgreSQL & SQL Server", level: "Avançado", badge: "Databases" },
+          { name: "Subqueries & Window Functions", level: "Avançado", badge: "Analytics" }
         ]
       },
       {
-        name: "Power BI & Business Intelligence",
+        name: "Engenharia de Dados, ETL & Automação",
+        skills: [
+          { name: "Python (Pandas, NumPy, Requests)", level: "Avançado", badge: "Core" },
+          { name: "Automação de Testes de APIs (NER)", level: "Avançado", badge: "Quality" },
+          { name: "Pipelines ETL & Data Wrangling", level: "Avançado", badge: "Pipelines" },
+          { name: "Processamento Concorrente/Paralelo", level: "Avançado", badge: "Speed" },
+          { name: "Reconciliação JSON x SQL", level: "Avançado", badge: "Data Match" }
+        ]
+      },
+      {
+        name: "Power BI & Machine Learning",
         skills: [
           { name: "Power BI (Desktop & Service)", level: "Avançado", badge: "BI Core" },
-          { name: "Modelagem DAX (Medidas & Filtros)", level: "Avançado", badge: "Analytics" },
-          { name: "Modelagem Dimensional (Star Schema)", level: "Avançado", badge: "Modeling" },
-          { name: "Storytelling & Design de Dashboards", level: "Avançado", badge: "Data Viz" },
-          { name: "Power Query (Linguagem M)", level: "Intermediário/Avançado", badge: "Transformation" }
-        ]
-      },
-      {
-        name: "Bancos de Dados & Machine Learning",
-        skills: [
-          { name: "SQL Avançado (CTEs & Joins)", level: "Avançado", badge: "Queries" },
-          { name: "MySQL & PostgreSQL", level: "Avançado", badge: "Databases" },
-          { name: "Visão Computacional & Métricas (YOLOv8)", level: "Avançado", badge: "AI/ML" },
-          { name: "Análise de Séries Temporais", level: "Avançado", badge: "Statistics" },
-          { name: "Estatística Descritiva & EDA", level: "Avançado", badge: "Exploratory" }
+          { name: "Modelagem DAX (Medidas & Filtros)", level: "Avançado", badge: "DAX" },
+          { name: "Modelagem Dimensional (Star Schema)", level: "Avançado", badge: "Architecture" },
+          { name: "Visão Computacional (YOLOv8 & OpenCV)", level: "Avançado", badge: "AI/ML" },
+          { name: "Análise de Séries Temporais", level: "Avançado", badge: "Statistics" }
         ]
       }
     ]
@@ -82,6 +81,23 @@ export const dataAnalystData = {
         solution: "Concepção de um painel interativo no Power BI conectado a bases de dados modeladas, utilizando fórmulas DAX para KPIs de variação temporal, segmentação de dados e layout moderno focado em ergonomia visual.",
         techStackDetails: "Modelagem em esquema estrela (Star Schema), criação de medidas DAX (medidas rápidas, acumulados e proporções), formatação condicional inteligente e publicação no Power BI Service.",
         results: "Geração de relatórios com atualização contínua, permitindo análises aprofundadas com capacidade de drill-down em poucos cliques."
+      }
+    },
+    {
+      id: "tcmgo-ner-automation",
+      title: "Automação de Validação da API de NER & Auditoria SQL",
+      category: "Automação de Dados & Validação de IA",
+      description: "Construção de suíte de testes e validação automatizada em Python para a API de Reconhecimento de Entidades Nomeadas (NER) utilizada no TCM-GO. Execução paralela sobre milhares de extratos bancários e relatórios contábeis, com reconciliação automatizada de payloads JSON contra consultas SQL em bases ORCAFI, COLARE e Data Warehouse.",
+      tags: ["Python", "SQL Avançado", "API de NER", "Automação de Testes", "Data Quality", "Processamento Paralelo", "Auditoria"],
+      featured: true,
+      metrics: "Milhares de extratos validados | Reconciliação JSON x SQL | Processamento multithread | Relatórios automáticos de divergência",
+      github: null,
+      demo: null,
+      caseStudy: {
+        problem: "A equipe de auditoria do tribunal precisava validar a acurácia das entidades extraídas pela API de NER em documentos fiscais e extratos bancários públicos, tarefa inviável de ser executada manualmente devido ao volume massivo de envios municipais.",
+        solution: "Desenvolvimento de rotinas em Python com processamento concorrente para consumir a API de NER, extrair os dados oficiais do banco relacional via consultas SQL otimizadas (com 'nolock' e joins dimensionais) e cruzar campos-chave (bancos, agências, contas, CPFs e valores) gerando relatórios de divergência em CSV e JSON.",
+        techStackDetails: "Python, bibliotecas Requests, Pandas, re (regex), manipulação estruturada de JSON, queries SQL complexas integrando múltiplas bases do tribunal (COLARE_ETL, ORCAFI, DW e integrarfb) e geração de logs detalhados de auditoria.",
+        results: "Redução drástica no tempo de homologação da API de inteligência artificial do tribunal, com detecção automática de inconsistências cadastrais e garantia de conformidade fiscal."
       }
     },
     {
@@ -151,36 +167,19 @@ export const dataAnalystData = {
         techStackDetails: "MySQL 8.0, índices B-Tree, modelagem entidade-relacionamento e scripts SQL analíticos.",
         results: "Redução no tempo de extração de relatórios e identificação de horários ociosos para maximizar a capacidade de atendimento."
       }
-    },
-    {
-      id: "chatbot-analytics",
-      title: "Análise de Dados de Consultas Ambientais (ChatBot)",
-      category: "NLP & Análise Textual",
-      description: "Estruturação de dados conversacionais e categorização de frequência de demandas populares relacionadas a meio ambiente e sustentabilidade.",
-      tags: ["Python", "NLP", "Text Mining", "Análise de Frequência", "Clustering"],
-      featured: false,
-      metrics: "Classificação de tópicos | Identificação de termos críticos | Relatórios de engajamento",
-      github: "https://github.com/cezarbtw/ChatBot-Meio-Ambiente",
-      demo: null,
-      caseStudy: {
-        problem: "Identificar as maiores dúvidas e gargalos de informação da população em relação às leis e políticas ambientais municipais.",
-        solution: "Tratamento de corpus de texto, remoção de stopwords, tokenização e contagem de frequência de termos para mapear tópicos prioritários.",
-        techStackDetails: "Python, bibliotecas de manipulação textual e estruturação tabular de dados conversacionais.",
-        results: "Geração de insights para aprimoramento contínuo das respostas e identificação de prioridades públicas."
-      }
     }
   ],
   experiences: [
     {
-      role: "Analista de Dados & Engenheiro de ETL",
+      role: "Analista de Dados & Automação de Auditoria",
       company: "TCM-GO (Tribunal de Contas dos Municípios de Goiás)",
-      period: "Projeto Portal do Cidadão",
+      period: "Projeto Portal do Cidadão & Auditoria de IA",
       type: "Setor Público / Governança & Auditoria",
-      description: "Atuação como Analista de Dados no Tribunal de Contas dos Municípios de Goiás: desenvolvimento de rotinas de ETL e criação de relatórios e gráficos analíticos no Power BI para a aba 'Meio Ambiente' do Novo Portal do Cidadão.",
+      description: "Atuação como Analista de Dados no TCM-GO: desenvolvimento de rotinas de ETL e criação de relatórios/gráficos no Power BI para o Portal do Cidadão, além de automação de testes da API de NER com reconciliação JSON x SQL.",
       achievements: [
-        "Construção de pipelines de ETL em Python (Pandas) e SQL para ingestão e higienização de dados dos 246 municípios goianos.",
-        "Desenvolvimento de relatórios e gráficos analíticos no Power BI para acompanhamento de políticas públicas e conformidade ambiental.",
-        "Garantia de consistência, integridade e conformidade de dados fiscais consumidos pela sociedade e por auditores do tribunal."
+        "Criação e execução de scripts SQL complexos em bases de altíssimo volume (ORCAFI, COLARE_ETL, DW) para auditoria contábil e de folha de pagamento.",
+        "Desenvolvimento de suíte de testes em Python para validação concorrente da API de IA (NER) em extratos bancários municipais.",
+        "Construção de pipelines ETL e relatórios analíticos no Power BI para acompanhamento de políticas públicas ambientais dos 246 municípios."
       ]
     },
     {
