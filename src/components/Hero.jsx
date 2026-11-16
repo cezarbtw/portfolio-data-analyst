@@ -11,13 +11,13 @@ export default function Hero() {
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-gradient-to-tr from-emerald-600/15 via-teal-500/10 to-cyan-500/10 blur-[130px] pointer-events-none -z-10"></div>
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-
+        
         {/* Hero Main Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-
+          
           {/* Left Column: Headlines & CTA */}
           <div className="lg:col-span-6 space-y-6">
-
+            
             <div className="inline-flex items-center gap-2 rounded-full border border-slate-800 bg-slate-900/90 px-3.5 py-1 text-xs font-medium text-slate-300 shadow-sm">
               <Sparkles className="h-3.5 w-3.5 text-emerald-400" />
               <span>{dataAnalystData.badge}</span>
@@ -38,8 +38,8 @@ export default function Hero() {
             <div className="rounded-xl border border-slate-800/90 bg-slate-900/60 p-3.5 text-xs text-slate-300 flex items-start gap-3">
               <CheckCircle className="h-4 w-4 shrink-0 mt-0.5 text-emerald-400" />
               <div>
-                <strong className="text-white">Destaques em Dados & BI:</strong>{' '}
-                Desenvolvi pipelines de ETL saneando bases ambientais dos 246 municípios de Goiás no Novo Portal do Cidadão (TCM-GO) e crio dashboards analíticos interativos no Power BI com DAX e modelagem dimensional.
+                <strong className="text-white">Experiência Profissional (TCM-GO):</strong>{' '}
+                Atuação como Analista de Dados desenvolvendo pipelines ETL e relatórios/gráficos no <strong className="text-amber-400">Power BI</strong> para a aba 'Meio Ambiente' do Novo Portal do Cidadão, analisando e consolidando indicadores fiscais dos 246 municípios de Goiás.
               </div>
             </div>
 
@@ -49,7 +49,7 @@ export default function Hero() {
                 href={personalInfo.powerBiReportUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold text-white shadow-lg transition-all hover:scale-105 active:scale-95 bg-gradient-to-r from-emerald-600 to-teal-600 shadow-emerald-600/25"
+                className="flex items-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold text-white shadow-lg transition-all hover:scale-105 active:scale-95 bg-gradient-to-r from-amber-600 via-amber-500 to-yellow-500 shadow-amber-600/25"
               >
                 <BarChart3 className="h-4 w-4" />
                 <span>Abrir Relatório Power BI</span>
@@ -104,7 +104,7 @@ export default function Hero() {
               key={idx}
               className="rounded-2xl border border-slate-800/80 bg-slate-900/40 p-4 transition-all hover:border-slate-700 hover:bg-slate-900/60"
             >
-              <div className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+              <div className="text-xl sm:text-2xl font-extrabold text-white tracking-tight">
                 {stat.value}
               </div>
               <div className="mt-1 text-xs font-semibold text-slate-300">

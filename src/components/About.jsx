@@ -6,7 +6,7 @@ export default function About() {
   return (
     <section id="about" className="py-16 border-t border-slate-800/80 bg-slate-950">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-
+        
         {/* Section Header */}
         <div className="max-w-2xl">
           <div className="inline-flex items-center gap-2 rounded-full border border-slate-800 bg-slate-900 px-3 py-1 text-xs font-semibold text-slate-400">
@@ -14,13 +14,13 @@ export default function About() {
             <span>Sobre Mim & Perfil Profissional</span>
           </div>
           <h2 className="mt-3 text-3xl font-extrabold text-white sm:text-4xl tracking-tight">
-            Transformando dados dispersos em decisões estratégicas de alto impacto.
+            Transformando dados dispersos em decisões estratégicas com Power BI, ETL e Python.
           </h2>
         </div>
 
         {/* Grid Content */}
         <div className="mt-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-
+          
           {/* Bio text */}
           <div className="lg:col-span-7 space-y-4 text-slate-300 text-sm sm:text-base leading-relaxed">
             {dataAnalystData.bio.map((paragraph, idx) => (
@@ -44,16 +44,16 @@ export default function About() {
               </div>
               <div className="flex items-center gap-2 rounded-lg bg-slate-900/80 p-3 border border-slate-800 text-slate-300">
                 <CheckCircle2 className="h-4 w-4 text-emerald-400 shrink-0" />
-                <span>Foco: BI, ETL, SQL & Estatística</span>
+                <span>Foco: Power BI, ETL, SQL & Estatística</span>
               </div>
             </div>
           </div>
 
           {/* Highlight Cards on the Right */}
           <div className="lg:col-span-5 space-y-4">
-
+            
             {/* Power BI Spotlight */}
-            <div className="relative overflow-hidden rounded-2xl border border-emerald-500/20 bg-gradient-to-br from-slate-900 to-slate-950 p-6 shadow-xl">
+            <div className="relative overflow-hidden rounded-2xl border border-amber-500/30 bg-gradient-to-br from-slate-900 to-slate-950 p-6 shadow-xl">
               <div className="flex items-center gap-3 mb-3">
                 <div className="p-2.5 rounded-xl bg-amber-500/10 text-amber-400 border border-amber-500/20">
                   <BarChart3 className="h-5 w-5" />
@@ -83,34 +83,34 @@ export default function About() {
             </div>
 
             {/* TCM-GO Spotlight */}
-            <div className="relative overflow-hidden rounded-2xl border border-slate-800 bg-slate-900/60 p-5">
+            <div className="relative overflow-hidden rounded-2xl border border-emerald-500/20 bg-slate-900/60 p-5">
               <div className="flex items-center gap-3 mb-2">
                 <div className="p-2 rounded-lg bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
                   <Building2 className="h-4 w-4" />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-white text-sm">Pipelines ETL no TCM-GO</h4>
+                  <h4 className="font-semibold text-white text-sm">TCM-GO: ETL & Gráficos Power BI</h4>
                   <span className="text-[11px] text-slate-400">Tribunal de Contas dos Municípios (Goiás)</span>
                 </div>
               </div>
               <p className="text-xs text-slate-400 leading-relaxed">
-                Desenvolvimento e sustentação de esteiras ETL para processar e higienizar bases orçamentárias de políticas ambientais dos 246 municípios de Goiás para o Novo Portal do Cidadão.
+                Desenvolvimento e sustentação de esteiras ETL para processar dados de políticas ambientais dos 246 municípios de Goiás, criando os relatórios e gráficos analíticos no Power BI para a aba 'Meio Ambiente' do Novo Portal do Cidadão.
               </p>
             </div>
 
-            {/* AI / Machine Learning Spotlight */}
+            {/* Cripto EmotionLens Telemetria */}
             <div className="rounded-2xl border border-slate-800 bg-slate-900/60 p-5">
               <div className="flex items-center gap-3 mb-2">
                 <div className="p-2 rounded-lg bg-teal-500/10 text-teal-400 border border-teal-500/20">
                   <BrainCircuit className="h-4 w-4" />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-white text-sm">Machine Learning & Visão Computacional</h4>
-                  <span className="text-[11px] text-slate-400">YOLOv8 & Métricas de Avaliação</span>
+                  <h4 className="font-semibold text-white text-sm">Cripto EmotionLens: Telemetria & IA</h4>
+                  <span className="text-[11px] text-slate-400">Séries Temporais Afetivas & Benchmarks</span>
                 </div>
               </div>
               <p className="text-xs text-slate-400 leading-relaxed">
-                Extração de métricas quantitativas e dados estruturados a partir de imagens de inspeção com avaliação estatística rigorosa (mAP50-95, Precision e Recall).
+                Modelagem estatística de séries temporais de microexpressões faciais em tempo real, com filtros de atenuação de ruído (média móvel) e benchmarks de latência criptográfica (0.22ms).
               </p>
             </div>
 
