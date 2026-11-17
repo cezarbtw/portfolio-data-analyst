@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { Mail, MessageSquare, Copy, Check, Send, BarChart3, ExternalLink } from 'lucide-react';
+import { Mail, MessageSquare, Copy, Check, Send, BarChart3, ExternalLink, Phone } from 'lucide-react';
 import { personalInfo } from '../data/portfolioData';
 import { GithubIcon, LinkedinIcon } from './Icons';
 import confetti from 'canvas-confetti';
 
 export default function Contact() {
   const [copiedEmail, setCopiedEmail] = useState(false);
+  const [copiedPhone, setCopiedPhone] = useState(false);
   const [customMessage, setCustomMessage] = useState(
     `Olá ${personalInfo.shortName}! Vi seu portfólio de Analista de Dados & BI e gostaria de conversar sobre uma oportunidade.`
   );
@@ -14,6 +15,12 @@ export default function Contact() {
     navigator.clipboard.writeText(personalInfo.email);
     setCopiedEmail(true);
     setTimeout(() => setCopiedEmail(false), 2000);
+  };
+
+  const handleCopyPhone = () => {
+    navigator.clipboard.writeText(personalInfo.phone);
+    setCopiedPhone(true);
+    setTimeout(() => setCopiedPhone(false), 2000);
   };
 
   const handleSendWhatsApp = (e) => {
@@ -89,6 +96,40 @@ export default function Contact() {
                   </a>
                 </div>
               </div>
+
+              {/* Phone / WhatsApp Card */}
+              {personalInfo.phone && (
+                <div className="flex items-center justify-between rounded-xl border border-slate-800 bg-slate-900/60 p-4 transition-all hover:border-slate-700">
+                  <div className="flex items-center gap-3">
+                    <div className="p-2.5 rounded-lg bg-slate-800 text-teal-400">
+                      <Phone className="h-4 w-4" />
+                    </div>
+                    <div>
+                      <div className="text-xs text-slate-400">Telefone / WhatsApp</div>
+                      <div className="text-sm font-mono font-medium text-white select-all">{personalInfo.phone}</div>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-2">
+                    <button
+                      onClick={handleCopyPhone}
+                      className="p-2 rounded-lg border border-slate-700 bg-slate-800 text-slate-300 hover:text-white transition-colors"
+                      title="Copiar telefone"
+                    >
+                      {copiedPhone ? <Check className="h-4 w-4 text-emerald-400" /> : <Copy className="h-4 w-4" />}
+                    </button>
+                    <a
+                      href={`https://wa.me/${personalInfo.whatsapp}`}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="p-2 rounded-lg bg-teal-600 text-white hover:bg-teal-500 transition-colors"
+                      title="Chamar no WhatsApp"
+                    >
+                      <MessageSquare className="h-4 w-4" />
+                    </a>
+                  </div>
+                </div>
+              )}
 
               {/* Power BI Spotlight link */}
               <a
