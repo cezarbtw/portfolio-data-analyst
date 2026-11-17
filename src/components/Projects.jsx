@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FolderGit2, ExternalLink, ArrowRight, Sparkles, CheckCircle2, BarChart2, Database, Cpu } from 'lucide-react';
+import { FolderGit2, ExternalLink, ArrowRight, Sparkles, CheckCircle2, BarChart2, Database, Cpu, Eye, Image as ImageIcon } from 'lucide-react';
 import { GithubIcon } from './Icons';
 import CaseStudyModal from './CaseStudyModal';
 import { dataAnalystData } from '../data/portfolioData';
@@ -104,6 +104,31 @@ export default function Projects() {
                     {project.title}
                   </h3>
 
+                  {/* Dashboard Cover Image Thumbnail */}
+                  {project.coverImage && (
+                    <div
+                      onClick={() => setActiveModalProject(project)}
+                      className="relative my-3 overflow-hidden rounded-xl border border-slate-800 bg-slate-950 aspect-[16/10] cursor-pointer group/thumb"
+                    >
+                      <img
+                        src={project.coverImage}
+                        alt={project.title}
+                        className="w-full h-full object-cover object-top transition-transform duration-500 group-hover/thumb:scale-105"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+                      <div className="absolute bottom-2 left-2 right-2 flex items-center justify-between">
+                        <span className="inline-flex items-center gap-1.5 rounded-lg bg-slate-900/90 border border-slate-700/80 px-2 py-1 text-[11px] font-semibold text-white shadow-md backdrop-blur-sm">
+                          <Eye className="h-3 w-3 text-amber-400" />
+                          <span>{project.images?.length > 1 ? `${project.images.length} Telas Power BI` : 'Ver Dashboard'}</span>
+                        </span>
+                        <span className="rounded-md bg-amber-500/90 px-2 py-0.5 text-[10px] font-mono font-bold text-slate-950 shadow">
+                          Power BI
+                        </span>
+                      </div>
+                    </div>
+                  )}
+
                   <p className="mt-3 text-xs sm:text-sm text-slate-300 leading-relaxed line-clamp-3">
                     {project.description}
                   </p>
@@ -143,7 +168,7 @@ export default function Projects() {
                     onClick={() => setActiveModalProject(project)}
                     className="flex items-center gap-1.5 text-xs font-semibold text-emerald-400 hover:text-emerald-300 transition-colors"
                   >
-                    <span>Estudo de Caso</span>
+                    <span>{project.images?.length ? 'Ver Telas & Estudo' : 'Estudo de Caso'}</span>
                     <ArrowRight className="h-3.5 w-3.5" />
                   </button>
 

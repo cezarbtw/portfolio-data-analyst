@@ -68,19 +68,27 @@ export const dataAnalystData = {
   projects: [
     {
       id: "power-bi-report",
-      title: "Dashboard & Relatório Interativo no Power BI Cloud",
+      title: "Dashboard Comercial & Funil de Vendas no Power BI",
       category: "Business Intelligence & Analytics",
-      description: "Relatório executivo analítico desenvolvido e publicado no Microsoft Power BI Service. Apresenta modelagem dimensional de dados (Star Schema), métricas calculadas em DAX, filtros dinâmicos cruzados, indicadores de desempenho e storytelling orientado à tomada de decisão estratégica.",
-      tags: ["Power BI", "DAX", "Data Modeling", "Business Intelligence", "KPIs", "Storytelling"],
+      description: "Dashboard analítico executivo desenvolvido no Microsoft Power BI para monitoramento de KPIs comerciais e estratégicos: CAC (R$ 612), Ticket Médio (R$ 14,96 Mil), Taxa de Conversão (8%), Evolução do Funil de Vendas (Leads, Oportunidades, Propostas e Clientes) e Performance de Faturamento e Aquisição por Canal.",
+      tags: ["Power BI", "DAX", "Funil de Vendas", "CAC & LTV", "KPIs Executivos", "Storytelling"],
       featured: true,
-      metrics: "Relatório Oficial Power BI Cloud | Filtros dinâmicos cruzados | Métricas DAX calculadas",
+      coverImage: "/dashboards/dashboard-comercial-funil.png",
+      images: [
+        {
+          url: "/dashboards/dashboard-comercial-funil.png",
+          title: "Dashboard Comercial, CAC & Funil de Vendas",
+          description: "Visão executiva com cartões de KPIs (CAC, Ticket Médio, Conversão, Leads, Clientes, Receita), funil de conversão com percentual de passagem e análises cruzadas por canal de aquisição."
+        }
+      ],
+      metrics: "Receita R$ 374 Mil | CAC R$ 612 | Ticket Médio R$ 14,96 Mil | Conversão 8% | 5 Canais Analisados",
       github: null,
       demo: "https://app.powerbi.com/groups/me/reports/100b5f1f-85d5-4f2d-b082-837165f1cb32/1e83521174a2c02425b5?experience=power-bi",
       caseStudy: {
-        problem: "Apresentar indicadores densos e volumosos de forma visual e executiva, permitindo que tomadores de decisão identifiquem tendências, correlações e discrepâncias em poucos cliques.",
-        solution: "Concepção de um painel interativo no Power BI conectado a bases de dados modeladas, utilizando fórmulas DAX para KPIs de variação temporal, segmentação de dados e layout moderno focado em ergonomia visual.",
-        techStackDetails: "Modelagem em esquema estrela (Star Schema), criação de medidas DAX (medidas rápidas, acumulados e proporções), formatação condicional inteligente e publicação no Power BI Service.",
-        results: "Geração de relatórios com atualização contínua, permitindo análises aprofundadas com capacidade de drill-down em poucos cliques."
+        problem: "A equipe comercial e a diretoria necessitavam de visibilidade clara do ciclo de vendas, gargalos de conversão no funil e retorno financeiro por canal de captação de leads para otimização de orçamento.",
+        solution: "Desenvolvimento de relatório executivo no Power BI com funil de conversão dinâmico, cálculos de CAC por canal, distribuição de clientes e cruzamento de faturamento por canal de mídia (Google Ads, Facebook Ads, Indicação, LinkedIn e Orgânico).",
+        techStackDetails: "Power BI Desktop, modelagem Star Schema, medidas em DAX (CAC, taxa de conversão, ticket médio ponderado, faturamento acumulado), filtros dinâmicos cruzados e layout focado em UX executiva.",
+        results: "Identificação precisa de canais mais rentáveis (Indicação com menor CAC e alto faturamento), além de diagnóstico de gargalos entre proposta e fechamento no funil."
       }
     },
     {
@@ -102,12 +110,40 @@ export const dataAnalystData = {
     },
     {
       id: "tcmgo-etl",
-      title: "TCM-GO: Pipelines ETL & Gráficos no Power BI (Portal do Cidadão)",
+      title: "TCM-GO: Painéis Power BI & Pipelines ETL (Portal do Cidadão)",
       category: "Engenharia de Dados & Governança Pública",
-      description: "Atuação como Analista de Dados no Tribunal de Contas dos Municípios de Goiás: desenvolvimento e sustentação de esteiras ETL para extração, saneamento e consolidação de dados orçamentários de políticas ambientais dos 246 municípios goianos, com elaboração dos gráficos e relatórios no Power BI para a aba 'Meio Ambiente' do Novo Portal do Cidadão.",
-      tags: ["Power BI", "Python", "SQL", "Pandas", "ETL Pipelines", "Data Wrangling", "Auditoria Pública"],
+      description: "Atuação como Analista de Dados no Tribunal de Contas dos Municípios de Goiás: desenvolvimento e sustentação de esteiras ETL para extração, saneamento e consolidação de dados orçamentários de políticas ambientais dos 246 municípios goianos, com elaboração dos gráficos e relatórios completos no Power BI para a aba 'Meio Ambiente' do Novo Portal do Cidadão (Águas, Esgoto, Resíduos Sólidos, Águas Pluviais e Gestão Municipal).",
+      tags: ["Power BI", "Python", "SQL", "Pandas", "ETL Pipelines", "Saneamento Básico", "Auditoria Pública"],
       featured: true,
-      metrics: "246 Municípios analisados | Gráficos Power BI no Portal | Milhões de dados fiscais saneados",
+      coverImage: "/dashboards/tcmgo-meio-ambiente-aguas.png",
+      images: [
+        {
+          url: "/dashboards/tcmgo-meio-ambiente-aguas.png",
+          title: "Dimensão Ambiental: Águas",
+          description: "Mapeamento dos 246 municípios: Consumo médio per capita (L/hab/dia), atendimento da rede de água, reparos e paralisações comparados à Média Goiana."
+        },
+        {
+          url: "/dashboards/tcmgo-meio-ambiente-esgoto.png",
+          title: "Dimensão Ambiental: Esgotamento Sanitário",
+          description: "Indicadores de atendimento da rede, reparos e reclamações de extravasamentos e percentual oficial de esgoto tratado (2023 vs 2024)."
+        },
+        {
+          url: "/dashboards/tcmgo-meio-ambiente-residuos.png",
+          title: "Dimensão Ambiental: Resíduos Sólidos",
+          description: "Cobertura de coleta seletiva e indiferenciada, disposição em aterro controlado, cooperativas e dados de catadores formais e informais."
+        },
+        {
+          url: "/dashboards/tcmgo-meio-ambiente-aguas-pluviais.png",
+          title: "Dimensão Ambiental: Águas Pluviais & Prevenção",
+          description: "Cobertura de drenagem pluvial, mapeamento de áreas de risco, ocorrências de inundações, pessoas desabrigadas e sistemas de alerta."
+        },
+        {
+          url: "/dashboards/tcmgo-meio-ambiente-gestao-municipal.png",
+          title: "Governança & Gestão Municipal",
+          description: "Auditoria de conformidade: Política Municipal de Saneamento, PMGIRS, Plano Diretor Urbano, EVTEF, Lei de Zoneamento, Ouvidoria e Conselhos."
+        }
+      ],
+      metrics: "246 Municípios analisados | 5 Painéis Power BI Oficiais | Relatórios ODS ONU | Milhões de dados fiscais saneados",
       github: null,
       demo: "https://portalcidadao.tcmgo.tc.br/new-portal-cidadao/",
       caseStudy: {

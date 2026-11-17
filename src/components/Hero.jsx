@@ -46,13 +46,22 @@ export default function Hero() {
             {/* CTA Buttons */}
             <div className="flex flex-wrap items-center gap-3 pt-2">
               <a
-                href={personalInfo.powerBiReportUrl}
-                target="_blank"
-                rel="noreferrer"
+                href="#projects"
                 className="flex items-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold text-white shadow-lg transition-all hover:scale-105 active:scale-95 bg-gradient-to-r from-amber-600 via-amber-500 to-yellow-500 shadow-amber-600/25"
               >
                 <BarChart3 className="h-4 w-4" />
-                <span>Abrir Relatório Power BI</span>
+                <span>Ver Dashboards no Portfólio</span>
+                <ArrowRight className="h-4 w-4" />
+              </a>
+
+              <a
+                href={personalInfo.powerBiReportUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center gap-2 rounded-xl border border-slate-800 bg-slate-900/80 px-4 py-3 text-sm font-semibold text-slate-300 hover:text-white hover:border-slate-700 transition-all hover:scale-105 active:scale-95"
+                title="Abrir no Power BI Service Oficial"
+              >
+                <span>Power BI Cloud</span>
                 <ExternalLink className="h-3.5 w-3.5" />
               </a>
 
