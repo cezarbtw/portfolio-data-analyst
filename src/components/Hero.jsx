@@ -1,131 +1,63 @@
 import React from 'react';
-import { ArrowRight, Sparkles, BarChart3, CheckCircle, ExternalLink } from 'lucide-react';
-import { personalInfo, dataAnalystData } from '../data/portfolioData';
-import { GithubIcon, LinkedinIcon } from './Icons';
-import InteractiveDataHero from './InteractiveDataHero';
+import { personalInfo, bioData } from '../data/portfolioData';
 
 export default function Hero() {
   return (
-    <section id="hero" className="relative pt-8 pb-16 lg:pt-14 lg:pb-24 overflow-hidden">
-      {/* Background Glow Orbs */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-gradient-to-tr from-emerald-600/15 via-teal-500/10 to-cyan-500/10 blur-[130px] pointer-events-none -z-10"></div>
+    <section id="top" className="pt-16 pb-12 sm:pt-24 sm:pb-16 border-b border-[#E5E3DD] dark:border-[#282826]">
+      <div className="mx-auto max-w-[720px] px-6">
+        <h1 className="text-3xl sm:text-4xl md:text-[44px] font-serif font-medium tracking-normal text-[#1C1C1A] dark:text-[#EAE8E3] leading-[1.2]">
+          {personalInfo.name}
+        </h1>
 
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        
-        {/* Hero Main Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          
-          {/* Left Column: Headlines & CTA */}
-          <div className="lg:col-span-6 space-y-6">
-            
-            <div className="inline-flex items-center gap-2 rounded-full border border-slate-800 bg-slate-900/90 px-3.5 py-1 text-xs font-medium text-slate-300 shadow-sm">
-              <Sparkles className="h-3.5 w-3.5 text-emerald-400" />
-              <span>{dataAnalystData.badge}</span>
-            </div>
+        <p className="mt-2 text-base font-mono text-[#6B6B66] dark:text-[#96948E]">
+          {personalInfo.role} · Goiás, Brasil
+        </p>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-5xl font-extrabold tracking-tight text-white leading-[1.15]">
-              Olá, sou {personalInfo.shortName}.{' '}
-              <span className={`bg-gradient-to-r ${dataAnalystData.gradientText} bg-clip-text text-transparent block mt-2`}>
-                {dataAnalystData.headline}
-              </span>
-            </h1>
-
-            <p className="text-base sm:text-lg text-slate-400 leading-relaxed max-w-xl">
-              {dataAnalystData.tagline}
-            </p>
-
-            {/* Quick Proof Badge: TCM-GO & Power BI */}
-            <div className="rounded-xl border border-slate-800/90 bg-slate-900/60 p-3.5 text-xs text-slate-300 flex items-start gap-3">
-              <CheckCircle className="h-4 w-4 shrink-0 mt-0.5 text-emerald-400" />
-              <div>
-                <strong className="text-white">Experiência Profissional (TCM-GO):</strong>{' '}
-                Atuação como Analista de Dados desenvolvendo pipelines ETL e relatórios/gráficos no <strong className="text-amber-400">Power BI</strong> para a aba 'Meio Ambiente' do Novo Portal do Cidadão, analisando e consolidando indicadores fiscais dos 246 municípios de Goiás.
-              </div>
-            </div>
-
-            {/* CTA Buttons */}
-            <div className="flex flex-wrap items-center gap-3 pt-2">
-              <a
-                href="#projects"
-                className="flex items-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold text-white shadow-lg transition-all hover:scale-105 active:scale-95 bg-gradient-to-r from-amber-600 via-amber-500 to-yellow-500 shadow-amber-600/25"
-              >
-                <BarChart3 className="h-4 w-4" />
-                <span>Ver Dashboards no Portfólio</span>
-                <ArrowRight className="h-4 w-4" />
-              </a>
-
-              <a
-                href={personalInfo.powerBiReportUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center gap-2 rounded-xl border border-slate-800 bg-slate-900/80 px-4 py-3 text-sm font-semibold text-slate-300 hover:text-white hover:border-slate-700 transition-all hover:scale-105 active:scale-95"
-                title="Abrir no Power BI Service Oficial"
-              >
-                <span>Power BI Cloud</span>
-                <ExternalLink className="h-3.5 w-3.5" />
-              </a>
-
-              <a
-                href="#projects"
-                className="flex items-center gap-2 rounded-xl border border-slate-800 bg-slate-900/80 px-4 py-3 text-sm font-semibold text-slate-300 hover:text-white hover:border-slate-700 transition-all hover:scale-105 active:scale-95"
-              >
-                <span>Ver Projetos & ETL</span>
-                <ArrowRight className="h-4 w-4" />
-              </a>
-
-              <a
-                href={personalInfo.github}
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center gap-2 rounded-xl border border-slate-800 bg-slate-900/80 px-4 py-3 text-sm font-semibold text-slate-300 hover:text-white hover:border-slate-700 transition-all hover:scale-105 active:scale-95"
-              >
-                <GithubIcon className="h-4 w-4" />
-                <span>GitHub</span>
-              </a>
-
-              <a
-                href={personalInfo.linkedin}
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center gap-2 rounded-xl border border-slate-800 bg-slate-900/80 px-4 py-3 text-sm font-semibold text-slate-300 hover:text-white hover:border-slate-700 transition-all hover:scale-105 active:scale-95"
-              >
-                <LinkedinIcon className="h-4 w-4 text-sky-400" />
-                <span>LinkedIn</span>
-              </a>
-            </div>
-
-          </div>
-
-          {/* Right Column: Interactive Data & BI Dashboard Sandbox */}
-          <div className="lg:col-span-6">
-            <div className="relative">
-              <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-emerald-600/30 to-teal-600/30 blur-xl opacity-50"></div>
-              <InteractiveDataHero />
-            </div>
-          </div>
-
-        </div>
-
-        {/* Stats Strip */}
-        <div className="mt-14 grid grid-cols-2 lg:grid-cols-4 gap-4">
-          {dataAnalystData.stats.map((stat, idx) => (
-            <div
-              key={idx}
-              className="rounded-2xl border border-slate-800/80 bg-slate-900/40 p-4 transition-all hover:border-slate-700 hover:bg-slate-900/60"
-            >
-              <div className="text-xl sm:text-2xl font-extrabold text-white tracking-tight">
-                {stat.value}
-              </div>
-              <div className="mt-1 text-xs font-semibold text-slate-300">
-                {stat.label}
-              </div>
-              <div className="mt-0.5 text-[11px] text-slate-500 font-mono">
-                {stat.hint}
-              </div>
-            </div>
+        <div className="mt-8 space-y-4 text-[17px] leading-[1.65] text-[#1C1C1A] dark:text-[#EAE8E3]">
+          {bioData.intro.map((paragraph, idx) => (
+            <p key={idx}>{paragraph}</p>
           ))}
         </div>
 
+        <div className="mt-8 pt-6 border-t border-[#E5E3DD] dark:border-[#282826] flex flex-wrap items-center gap-x-6 gap-y-2 text-sm">
+          <a
+            href={`mailto:${personalInfo.email}`}
+            className="text-[#1F4E5F] dark:text-[#6EA3B4] hover:underline underline-offset-4 font-medium"
+          >
+            {personalInfo.email}
+          </a>
+
+          <a
+            href={personalInfo.linkedin}
+            target="_blank"
+            rel="noreferrer"
+            className="text-[#1F4E5F] dark:text-[#6EA3B4] hover:underline underline-offset-4 font-medium inline-flex items-center gap-1"
+          >
+            <span>LinkedIn</span>
+            <span aria-hidden="true">↗</span>
+          </a>
+
+          <a
+            href={personalInfo.github}
+            target="_blank"
+            rel="noreferrer"
+            className="text-[#1F4E5F] dark:text-[#6EA3B4] hover:underline underline-offset-4 font-medium inline-flex items-center gap-1"
+          >
+            <span>GitHub</span>
+            <span aria-hidden="true">↗</span>
+          </a>
+
+          <a
+            href={personalInfo.powerBiReportUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="text-[#1F4E5F] dark:text-[#6EA3B4] hover:underline underline-offset-4 font-medium inline-flex items-center gap-1"
+            title="Relatório no Power BI Service (requer autenticação institucional Microsoft)"
+          >
+            <span>Power BI Service</span>
+            <span aria-hidden="true">↗</span>
+          </a>
+        </div>
       </div>
     </section>
   );

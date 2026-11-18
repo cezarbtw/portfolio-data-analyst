@@ -1,74 +1,29 @@
 import React from 'react';
-import { Layers, Database, BarChart3, Cpu } from 'lucide-react';
-import { dataAnalystData } from '../data/portfolioData';
+import { skillsData } from '../data/portfolioData';
 
 export default function Skills() {
   return (
-    <section id="skills" className="py-16 border-t border-slate-800/80 bg-slate-950/60">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        
-        {/* Section Header */}
-        <div>
-          <div className="inline-flex items-center gap-2 rounded-full border border-slate-800 bg-slate-900 px-3 py-1 text-xs font-semibold text-slate-400">
-            <Layers className="h-3.5 w-3.5 text-emerald-400" />
-            <span>Competências Técnicas</span>
-          </div>
-          <h2 className="mt-3 text-3xl font-extrabold text-white sm:text-4xl tracking-tight">
-            Stack Analítica & Ferramentas de Dados
-          </h2>
-          <p className="mt-2 text-sm text-slate-400 max-w-xl">
-            Domínio de esteiras ETL, consultas analíticas complexas, modelagem relacional, Power BI e algoritmos de Machine Learning.
-          </p>
-        </div>
+    <section id="competencias" className="py-16 sm:py-20 border-b border-[#E5E3DD] dark:border-[#282826]">
+      <div className="mx-auto max-w-[720px] px-6">
+        <h2 className="text-2xl sm:text-3xl font-serif font-medium text-[#1C1C1A] dark:text-[#EAE8E3]">
+          Competências Técnicas
+        </h2>
+        <p className="mt-2 text-base text-[#6B6B66] dark:text-[#96948E]">
+          Ferramentas e metodologias aplicadas no ciclo de análise e engenharia de dados.
+        </p>
 
-        {/* Categories Grid */}
-        <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
-          {dataAnalystData.skills.categories.map((category, catIdx) => (
-            <div
-              key={catIdx}
-              className="rounded-2xl border border-slate-800/90 bg-slate-900/40 p-6 backdrop-blur-sm transition-all duration-300 hover:border-slate-700 hover:bg-slate-900/70"
-            >
-              <div className="flex items-center gap-2.5 mb-5 border-b border-slate-800 pb-3">
-                {catIdx === 0 ? (
-                  <Database className="h-5 w-5 text-emerald-400" />
-                ) : catIdx === 1 ? (
-                  <Database className="h-5 w-5 text-cyan-400" />
-                ) : (
-                  <BarChart3 className="h-5 w-5 text-amber-400" />
-                )}
-                <h3 className="font-bold text-white text-base">
-                  {category.name}
-                </h3>
-              </div>
-
-              <div className="space-y-3">
-                {category.skills.map((skill, sIdx) => (
-                  <div
-                    key={sIdx}
-                    className="flex items-center justify-between rounded-xl border border-slate-800/60 bg-slate-950/60 px-3.5 py-2.5 transition-all hover:border-slate-700"
-                  >
-                    <div className="flex items-center gap-2">
-                      <div className="h-1.5 w-1.5 rounded-full bg-emerald-400"></div>
-                      <span className="text-xs sm:text-sm font-medium text-slate-200">
-                        {skill.name}
-                      </span>
-                    </div>
-
-                    <div className="flex items-center gap-2">
-                      <span className="font-mono text-[10px] text-slate-400 rounded bg-slate-800/80 px-2 py-0.5">
-                        {skill.level}
-                      </span>
-                      <span className="text-[9px] font-semibold uppercase tracking-wider px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-300 border border-emerald-500/20">
-                        {skill.badge}
-                      </span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+        <div className="mt-8 space-y-4 text-[16px] leading-[1.65]">
+          {skillsData.map((skill, idx) => (
+            <p key={idx} className="text-[#1C1C1A] dark:text-[#EAE8E3]">
+              <strong className="font-medium text-[#1C1C1A] dark:text-[#EAE8E3]">
+                {skill.category}:
+              </strong>{' '}
+              <span className="text-[#6B6B66] dark:text-[#96948E] font-mono text-sm">
+                {skill.items}
+              </span>
+            </p>
           ))}
         </div>
-
       </div>
     </section>
   );

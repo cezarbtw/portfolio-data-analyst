@@ -1,232 +1,87 @@
-import React, { useState } from 'react';
-import { Mail, MessageSquare, Copy, Check, Send, BarChart3, ExternalLink, Phone } from 'lucide-react';
+import React from 'react';
 import { personalInfo } from '../data/portfolioData';
-import { GithubIcon, LinkedinIcon } from './Icons';
-import confetti from 'canvas-confetti';
 
 export default function Contact() {
-  const [copiedEmail, setCopiedEmail] = useState(false);
-  const [copiedPhone, setCopiedPhone] = useState(false);
-  const [customMessage, setCustomMessage] = useState(
-    `Olá ${personalInfo.shortName}! Vi seu portfólio de Analista de Dados & BI e gostaria de conversar sobre uma oportunidade.`
-  );
-
-  const handleCopyEmail = () => {
-    navigator.clipboard.writeText(personalInfo.email);
-    setCopiedEmail(true);
-    setTimeout(() => setCopiedEmail(false), 2000);
-  };
-
-  const handleCopyPhone = () => {
-    navigator.clipboard.writeText(personalInfo.phone);
-    setCopiedPhone(true);
-    setTimeout(() => setCopiedPhone(false), 2000);
-  };
-
-  const handleSendWhatsApp = (e) => {
-    e.preventDefault();
-    try {
-      confetti({
-        particleCount: 70,
-        spread: 70,
-        origin: { y: 0.7 }
-      });
-    } catch (err) {}
-    
-    const encoded = encodeURIComponent(customMessage);
-    window.open(`https://wa.me/${personalInfo.whatsapp}?text=${encoded}`, '_blank');
-  };
-
   return (
-    <section id="contact" className="py-20 border-t border-slate-800/80 bg-slate-950 relative overflow-hidden">
-      {/* Background glow */}
-      <div className="absolute bottom-0 right-1/4 w-[500px] h-[300px] bg-gradient-to-tr from-emerald-600/10 via-teal-600/10 to-cyan-500/10 blur-[140px] pointer-events-none"></div>
+    <section id="contato" className="py-16 sm:py-20">
+      <div className="mx-auto max-w-[720px] px-6">
+        <h2 className="text-2xl sm:text-3xl font-serif font-medium text-[#1C1C1A] dark:text-[#EAE8E3]">
+          Contato
+        </h2>
+        <p className="mt-2 text-base text-[#6B6B66] dark:text-[#96948E]">
+          Disponível para atuação profissional em análise de dados, Business Intelligence e engenharia de analytics.
+        </p>
 
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative">
-        
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          
-          {/* Left Column: Direct Links & Info */}
-          <div className="lg:col-span-6 space-y-6">
-            <div className="inline-flex items-center gap-2 rounded-full border border-slate-800 bg-slate-900 px-3 py-1 text-xs font-semibold text-slate-400">
-              <Mail className="h-3.5 w-3.5 text-emerald-400" />
-              <span>Vamos Conversar?</span>
-            </div>
+        <div className="mt-8 space-y-3 text-[16px]">
+          <p>
+            <span className="text-[#6B6B66] dark:text-[#96948E] w-24 inline-block font-mono text-xs uppercase">
+              E-mail
+            </span>
+            <a
+              href={`mailto:${personalInfo.email}`}
+              className="text-[#1F4E5F] dark:text-[#6EA3B4] hover:underline underline-offset-4 font-medium"
+            >
+              {personalInfo.email}
+            </a>
+          </p>
 
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-              Pronto para transformar seus dados em inteligência como{' '}
-              <span className="bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400 bg-clip-text text-transparent">
-                Analista de Dados & BI
-              </span>
-              .
-            </h2>
+          <p>
+            <span className="text-[#6B6B66] dark:text-[#96948E] w-24 inline-block font-mono text-xs uppercase">
+              Telefone
+            </span>
+            <a
+              href={`tel:+5562982801501`}
+              className="text-[#1F4E5F] dark:text-[#6EA3B4] hover:underline underline-offset-4 font-medium"
+            >
+              {personalInfo.phone}
+            </a>
+          </p>
 
-            <p className="text-sm sm:text-base text-slate-400 leading-relaxed max-w-lg">
-              Estou disponível para contratação imediata (CLT / PJ, remoto ou híbrido). Vamos agendar um bate-papo técnico sobre dados e negócios?
-            </p>
+          <p>
+            <span className="text-[#6B6B66] dark:text-[#96948E] w-24 inline-block font-mono text-xs uppercase">
+              WhatsApp
+            </span>
+            <a
+              href={`https://wa.me/${personalInfo.whatsapp}`}
+              target="_blank"
+              rel="noreferrer"
+              className="text-[#1F4E5F] dark:text-[#6EA3B4] hover:underline underline-offset-4 font-medium inline-flex items-center gap-1"
+            >
+              <span>Iniciar conversa no WhatsApp</span>
+              <span aria-hidden="true">↗</span>
+            </a>
+          </p>
 
-            <div className="space-y-3 pt-2">
-              
-              {/* Email Card */}
-              <div className="flex items-center justify-between rounded-xl border border-slate-800 bg-slate-900/60 p-4 transition-all hover:border-slate-700">
-                <div className="flex items-center gap-3">
-                  <div className="p-2.5 rounded-lg bg-slate-800 text-emerald-400">
-                    <Mail className="h-4 w-4" />
-                  </div>
-                  <div>
-                    <div className="text-xs text-slate-400">E-mail Profissional</div>
-                    <div className="text-sm font-mono font-medium text-white select-all">{personalInfo.email}</div>
-                  </div>
-                </div>
+          <p>
+            <span className="text-[#6B6B66] dark:text-[#96948E] w-24 inline-block font-mono text-xs uppercase">
+              LinkedIn
+            </span>
+            <a
+              href={personalInfo.linkedin}
+              target="_blank"
+              rel="noreferrer"
+              className="text-[#1F4E5F] dark:text-[#6EA3B4] hover:underline underline-offset-4 font-medium inline-flex items-center gap-1"
+            >
+              <span>linkedin.com/in/cezarinaciol</span>
+              <span aria-hidden="true">↗</span>
+            </a>
+          </p>
 
-                <div className="flex items-center gap-2">
-                  <button
-                    onClick={handleCopyEmail}
-                    className="p-2 rounded-lg border border-slate-700 bg-slate-800 text-slate-300 hover:text-white transition-colors"
-                    title="Copiar e-mail"
-                  >
-                    {copiedEmail ? <Check className="h-4 w-4 text-emerald-400" /> : <Copy className="h-4 w-4" />}
-                  </button>
-                  <a
-                    href={`mailto:${personalInfo.email}`}
-                    className="p-2 rounded-lg bg-emerald-600 text-white hover:bg-emerald-500 transition-colors"
-                    title="Abrir no app de e-mail"
-                  >
-                    <Send className="h-4 w-4" />
-                  </a>
-                </div>
-              </div>
-
-              {/* Phone / WhatsApp Card */}
-              {personalInfo.phone && (
-                <div className="flex items-center justify-between rounded-xl border border-slate-800 bg-slate-900/60 p-4 transition-all hover:border-slate-700">
-                  <div className="flex items-center gap-3">
-                    <div className="p-2.5 rounded-lg bg-slate-800 text-teal-400">
-                      <Phone className="h-4 w-4" />
-                    </div>
-                    <div>
-                      <div className="text-xs text-slate-400">Telefone / WhatsApp</div>
-                      <div className="text-sm font-mono font-medium text-white select-all">{personalInfo.phone}</div>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-2">
-                    <button
-                      onClick={handleCopyPhone}
-                      className="p-2 rounded-lg border border-slate-700 bg-slate-800 text-slate-300 hover:text-white transition-colors"
-                      title="Copiar telefone"
-                    >
-                      {copiedPhone ? <Check className="h-4 w-4 text-emerald-400" /> : <Copy className="h-4 w-4" />}
-                    </button>
-                    <a
-                      href={`https://wa.me/${personalInfo.whatsapp}`}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="p-2 rounded-lg bg-teal-600 text-white hover:bg-teal-500 transition-colors"
-                      title="Chamar no WhatsApp"
-                    >
-                      <MessageSquare className="h-4 w-4" />
-                    </a>
-                  </div>
-                </div>
-              )}
-
-              {/* Power BI Spotlight link */}
-              <a
-                href={personalInfo.powerBiReportUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center justify-between rounded-xl border border-amber-500/30 bg-amber-950/20 p-4 transition-all hover:border-amber-500/60 group"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="p-2.5 rounded-lg bg-amber-500/10 text-amber-400 border border-amber-500/20 group-hover:scale-105 transition-transform">
-                    <BarChart3 className="h-4 w-4" />
-                  </div>
-                  <div>
-                    <div className="text-xs text-amber-300 font-semibold">Dashboard Oficial no Power BI Cloud</div>
-                    <div className="text-xs text-slate-400">Acessar relatório interativo ao vivo</div>
-                  </div>
-                </div>
-                <ExternalLink className="h-4 w-4 text-amber-400" />
-              </a>
-
-              {/* LinkedIn & GitHub Links */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <a
-                  href={personalInfo.linkedin}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="flex items-center gap-3 rounded-xl border border-slate-800 bg-slate-900/60 p-4 transition-all hover:border-slate-700 group"
-                >
-                  <div className="p-2.5 rounded-lg bg-sky-500/10 text-sky-400 border border-sky-500/20 group-hover:scale-105 transition-transform">
-                    <LinkedinIcon className="h-4 w-4" />
-                  </div>
-                  <div>
-                    <div className="text-xs text-slate-400">Conectar no</div>
-                    <div className="text-sm font-semibold text-white">LinkedIn</div>
-                  </div>
-                </a>
-
-                <a
-                  href={personalInfo.github}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="flex items-center gap-3 rounded-xl border border-slate-800 bg-slate-900/60 p-4 transition-all hover:border-slate-700 group"
-                >
-                  <div className="p-2.5 rounded-lg bg-slate-800 text-white group-hover:scale-105 transition-transform">
-                    <GithubIcon className="h-4 w-4" />
-                  </div>
-                  <div>
-                    <div className="text-xs text-slate-400">Ver Código no</div>
-                    <div className="text-sm font-semibold text-white">GitHub ({personalInfo.githubUsername})</div>
-                  </div>
-                </a>
-              </div>
-
-            </div>
-          </div>
-
-          {/* Right Column: Quick WhatsApp Launcher */}
-          <div className="lg:col-span-6">
-            <div className="rounded-2xl border border-slate-800 bg-slate-900/90 p-6 sm:p-8 shadow-2xl backdrop-blur-md">
-              <div className="flex items-center gap-2 mb-2">
-                <MessageSquare className="h-5 w-5 text-emerald-400" />
-                <h3 className="text-lg font-bold text-white">Contato Rápido no WhatsApp</h3>
-              </div>
-              <p className="text-xs text-slate-400 mb-5">
-                Envie uma mensagem direta personalizada para batermos um papo sem burocracia.
-              </p>
-
-              <form onSubmit={handleSendWhatsApp} className="space-y-4">
-                <div>
-                  <label className="block text-xs font-medium text-slate-300 mb-1.5">
-                    Mensagem Personalizada:
-                  </label>
-                  <textarea
-                    rows={4}
-                    value={customMessage}
-                    onChange={(e) => setCustomMessage(e.target.value)}
-                    className="w-full rounded-xl border border-slate-800 bg-slate-950 p-3.5 text-xs sm:text-sm text-slate-200 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500 font-sans resize-none"
-                  ></textarea>
-                </div>
-
-                <button
-                  type="submit"
-                  className="w-full flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 py-3.5 text-sm font-semibold text-white shadow-lg shadow-emerald-600/20 transition-all hover:scale-[1.02] active:scale-[0.98]"
-                >
-                  <MessageSquare className="h-4 w-4" />
-                  <span>Enviar pelo WhatsApp Agora</span>
-                </button>
-
-                <p className="text-[11px] text-center text-slate-500">
-                  Ao clicar, o WhatsApp Web ou App será aberto com esta mensagem preenchida.
-                </p>
-              </form>
-            </div>
-          </div>
-
+          <p>
+            <span className="text-[#6B6B66] dark:text-[#96948E] w-24 inline-block font-mono text-xs uppercase">
+              GitHub
+            </span>
+            <a
+              href={personalInfo.github}
+              target="_blank"
+              rel="noreferrer"
+              className="text-[#1F4E5F] dark:text-[#6EA3B4] hover:underline underline-offset-4 font-medium inline-flex items-center gap-1"
+            >
+              <span>github.com/{personalInfo.githubUsername}</span>
+              <span aria-hidden="true">↗</span>
+            </a>
+          </p>
         </div>
-
       </div>
     </section>
   );

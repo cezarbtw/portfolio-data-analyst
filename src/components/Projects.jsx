@@ -1,224 +1,174 @@
 import React, { useState } from 'react';
-import { FolderGit2, ExternalLink, ArrowRight, Sparkles, CheckCircle2, BarChart2, Database, Cpu, Eye, Image as ImageIcon } from 'lucide-react';
-import { GithubIcon } from './Icons';
-import CaseStudyModal from './CaseStudyModal';
-import { dataAnalystData } from '../data/portfolioData';
+import { projectsData } from '../data/portfolioData';
 
-export default function Projects() {
-  const [selectedFilter, setSelectedFilter] = useState('all');
-  const [activeModalProject, setActiveModalProject] = useState(null);
+function ProjectBlock({ project, isLast }) {
+  const [activeImageIndex, setActiveImageIndex] = useState(0);
+  const [showCaseStudy, setShowCaseStudy] = useState(false);
 
-  const filterOptions = [
-    { id: 'all', label: 'Todos os Projetos' },
-    { id: 'featured', label: 'Em Destaque' },
-    { id: 'tcmgo', label: 'TCM-GO (Auditoria, NER & ETL)' },
-    { id: 'powerbi', label: 'Power BI & BI' },
-    { id: 'ai', label: 'Machine Learning & Telemetria' },
-  ];
-
-  const filteredProjects = dataAnalystData.projects.filter((proj) => {
-    if (selectedFilter === 'featured') return proj.featured;
-    if (selectedFilter === 'tcmgo') return proj.id.includes('tcmgo');
-    if (selectedFilter === 'powerbi') return proj.tags.includes('Power BI') || proj.tags.includes('Data Viz');
-    if (selectedFilter === 'ai') return proj.tags.some(t => ['Python', 'YOLOv8', 'NLP', 'PyTorch'].includes(t));
-    return true;
-  });
+  const hasMultipleImages = project.images && project.images.length > 1;
+  const currentImage = project.images && project.images.length > 0 ? project.images[activeImageIndex] : null;
 
   return (
-    <section id="projects" className="py-16 border-t border-slate-800/80 bg-slate-950">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        
-        {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
-          <div>
-            <div className="inline-flex items-center gap-2 rounded-full border border-slate-800 bg-slate-900 px-3 py-1 text-xs font-semibold text-slate-400">
-              <FolderGit2 className="h-3.5 w-3.5 text-emerald-400" />
-              <span>Portfólio de Dados & BI</span>
-            </div>
-            <h2 className="mt-3 text-3xl font-extrabold text-white sm:text-4xl tracking-tight">
-              Dashboards, Automações de IA & Pipelines ETL
-            </h2>
-            <p className="mt-2 text-sm text-slate-400 max-w-xl">
-              Projetos de alta relevância com relatórios no Power BI, automações de validação de APIs de IA no tribunal, SQL avançado e modelos preditivos.
-            </p>
-          </div>
+    <article className={`py-12 sm:py-16 ${!isLast ? 'border-b border-[#E5E3DD] dark:border-[#282826]' : ''}`}>
+      {/* Text Container: ~720px */}
+      <div className="mx-auto max-w-[720px] px-6">
+        <header>
+          <p className="text-xs font-mono uppercase tracking-wider text-[#6B6B66] dark:text-[#96948E]">
+            {project.context}
+          </p>
+          <h3 className="mt-1 text-2xl sm:text-[26px] font-serif font-medium text-[#1C1C1A] dark:text-[#EAE8E3] leading-snug">
+            {project.title}
+          </h3>
+        </header>
 
-          {/* Filter Pills */}
-          <div className="flex flex-wrap items-center gap-2 rounded-xl bg-slate-900 p-1 border border-slate-800">
-            {filterOptions.map((filter) => (
-              <button
-                key={filter.id}
-                onClick={() => setSelectedFilter(filter.id)}
-                className={`rounded-lg px-3 py-1.5 text-xs font-semibold transition-all ${
-                  selectedFilter === filter.id
-                    ? 'bg-emerald-600 text-white shadow'
-                    : 'text-slate-400 hover:text-slate-200'
-                }`}
-              >
-                {filter.label}
-              </button>
-            ))}
-          </div>
-        </div>
+        <p className="mt-4 text-[17px] leading-[1.65] text-[#1C1C1A] dark:text-[#EAE8E3]">
+          {project.summary}
+        </p>
 
-        {/* Projects Grid */}
-        <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredProjects.map((project) => {
-            const isPowerBi = project.id === 'power-bi-report';
-            const isNerAutomation = project.id === 'tcmgo-ner-automation';
-
-            return (
-              <div
-                key={project.id}
-                className={`group relative flex flex-col justify-between rounded-2xl border bg-slate-900/60 p-6 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl ${
-                  isPowerBi
-                    ? 'border-amber-500/50 hover:border-amber-500/90 bg-gradient-to-b from-amber-950/25 via-slate-900/70 to-slate-900/90 shadow-amber-500/5'
-                    : isNerAutomation
-                    ? 'border-cyan-500/50 hover:border-cyan-500/90 bg-gradient-to-b from-cyan-950/25 via-slate-900/70 to-slate-900/90'
-                    : project.featured
-                    ? 'border-emerald-500/40 hover:border-emerald-500/80 bg-gradient-to-b from-emerald-950/20 to-slate-900/60'
-                    : 'border-slate-800/80 hover:border-slate-700'
-                }`}
-              >
-                <div>
-                  <div className="flex items-center justify-between gap-2 mb-3">
-                    <span className={`text-[11px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full ${
-                      isPowerBi
-                        ? 'bg-amber-500/10 text-amber-300 border border-amber-500/20'
-                        : isNerAutomation
-                        ? 'bg-cyan-500/10 text-cyan-300 border border-cyan-500/20'
-                        : 'bg-emerald-500/10 text-emerald-300 border border-emerald-500/20'
-                    }`}>
-                      {project.category}
-                    </span>
-
-                    {project.featured && (
-                      <span className="flex items-center gap-1 text-[10px] font-mono text-amber-400 bg-amber-500/10 border border-amber-500/20 px-2 py-0.5 rounded-full">
-                        <Sparkles className="h-3 w-3" />
-                        {isPowerBi ? 'Power BI' : isNerAutomation ? 'Automação' : 'Destaque'}
-                      </span>
-                    )}
-                  </div>
-
-                  <h3 className="text-xl font-bold text-white group-hover:text-slate-100 transition-colors">
-                    {project.title}
-                  </h3>
-
-                  {/* Dashboard Cover Image Thumbnail */}
-                  {project.coverImage && (
-                    <div
-                      onClick={() => setActiveModalProject(project)}
-                      className="relative my-3 overflow-hidden rounded-xl border border-slate-800 bg-slate-950 aspect-[16/10] cursor-pointer group/thumb"
-                    >
-                      <img
-                        src={project.coverImage}
-                        alt={project.title}
-                        className="w-full h-full object-cover object-top transition-transform duration-500 group-hover/thumb:scale-105"
-                        loading="lazy"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
-                      <div className="absolute bottom-2 left-2 right-2 flex items-center justify-between">
-                        <span className="inline-flex items-center gap-1.5 rounded-lg bg-slate-900/90 border border-slate-700/80 px-2 py-1 text-[11px] font-semibold text-white shadow-md backdrop-blur-sm">
-                          <Eye className="h-3 w-3 text-amber-400" />
-                          <span>{project.images?.length > 1 ? `${project.images.length} Telas Power BI` : 'Ver Dashboard'}</span>
-                        </span>
-                        <span className="rounded-md bg-amber-500/90 px-2 py-0.5 text-[10px] font-mono font-bold text-slate-950 shadow">
-                          Power BI
-                        </span>
-                      </div>
-                    </div>
-                  )}
-
-                  <p className="mt-3 text-xs sm:text-sm text-slate-300 leading-relaxed line-clamp-3">
-                    {project.description}
-                  </p>
-
-                  {/* Metrics Pill */}
-                  {project.metrics && (
-                    <div className="mt-4 rounded-xl border border-slate-800/80 bg-slate-950/60 p-2.5 flex items-center gap-2 text-xs text-slate-300">
-                      <CheckCircle2 className={`h-3.5 w-3.5 shrink-0 ${
-                        isPowerBi ? 'text-amber-400' : isNerAutomation ? 'text-cyan-400' : 'text-emerald-400'
-                      }`} />
-                      <span className="font-mono text-[11px] truncate">{project.metrics}</span>
-                    </div>
-                  )}
-
-                  {/* Tags */}
-                  <div className="mt-4 flex flex-wrap gap-1.5">
-                    {project.tags.map((tag, tIdx) => (
-                      <span
-                        key={tIdx}
-                        className={`rounded-md px-2 py-1 text-[10px] font-mono ${
-                          tag === 'Power BI' || tag === 'DAX'
-                            ? 'bg-amber-500/10 text-amber-300 border border-amber-500/20'
-                            : tag === 'SQL Avançado' || tag === 'API de NER'
-                            ? 'bg-cyan-500/10 text-cyan-300 border border-cyan-500/20'
-                            : 'bg-slate-800/80 text-slate-300'
-                        }`}
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Action Buttons */}
-                <div className="mt-6 pt-4 border-t border-slate-800/80 flex items-center justify-between gap-2">
-                  <button
-                    onClick={() => setActiveModalProject(project)}
-                    className="flex items-center gap-1.5 text-xs font-semibold text-emerald-400 hover:text-emerald-300 transition-colors"
-                  >
-                    <span>{project.images?.length ? 'Ver Telas & Estudo' : 'Estudo de Caso'}</span>
-                    <ArrowRight className="h-3.5 w-3.5" />
-                  </button>
-
-                  <div className="flex items-center gap-2">
-                    {project.github && (
-                      <a
-                        href={project.github}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="p-1.5 rounded-lg border border-slate-800 bg-slate-900 text-slate-400 hover:text-white transition-colors"
-                        title="Ver Repositório no GitHub"
-                      >
-                        <GithubIcon className="h-4 w-4" />
-                      </a>
-                    )}
-
-                    {project.demo && (
-                      <a
-                        href={project.demo}
-                        target="_blank"
-                        rel="noreferrer"
-                        className={`flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-semibold text-white transition-all hover:scale-105 ${
-                          isPowerBi
-                            ? 'bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-500 hover:to-amber-400 shadow-md shadow-amber-600/20'
-                            : 'bg-emerald-600 hover:bg-emerald-500'
-                        }`}
-                        title={isPowerBi ? 'Abrir Relatório no Power BI' : 'Abrir Demonstração / Portal'}
-                      >
-                        {isPowerBi ? <BarChart2 className="h-3.5 w-3.5" /> : null}
-                        <span>{isPowerBi ? 'Abrir Power BI' : 'Abrir Portal'}</span>
-                        <ExternalLink className="h-3 w-3" />
-                      </a>
-                    )}
-                  </div>
-                </div>
-
-              </div>
-            );
-          })}
-        </div>
-
+        <p className="mt-3 text-sm font-mono text-[#6B6B66] dark:text-[#96948E]">
+          <span className="font-sans font-medium text-[#1C1C1A] dark:text-[#EAE8E3]">Ferramentas: </span>
+          {project.tools}
+        </p>
       </div>
 
-      {activeModalProject && (
-        <CaseStudyModal
-          project={activeModalProject}
-          onClose={() => setActiveModalProject(null)}
-          isFullstack={false}
-        />
+      {/* Visual Showcase Container: up to 1040px */}
+      {project.images && project.images.length > 0 && (
+        <div className="mt-8 mx-auto max-w-[1040px] px-6">
+          {hasMultipleImages && (
+            <div className="flex flex-wrap gap-2 mb-3 pb-2 border-b border-[#E5E3DD] dark:border-[#282826] text-xs font-mono">
+              <span className="self-center mr-2 text-[#6B6B66] dark:text-[#96948E] font-sans">
+                Painéis:
+              </span>
+              {project.images.map((img, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setActiveImageIndex(idx)}
+                  className={`px-2.5 py-1 transition-colors ${
+                    activeImageIndex === idx
+                      ? 'border-b-2 border-[#1F4E5F] dark:border-[#6EA3B4] text-[#1C1C1A] dark:text-[#EAE8E3] font-medium'
+                      : 'text-[#6B6B66] dark:text-[#96948E] hover:text-[#1C1C1A] dark:hover:text-[#EAE8E3]'
+                  }`}
+                >
+                  {idx + 1}. {img.caption.split(':')[0]}
+                </button>
+              ))}
+            </div>
+          )}
+
+          {currentImage && (
+            <figure className="space-y-2">
+              <div className="border border-[#E5E3DD] dark:border-[#282826] bg-[#FFFFFF] dark:bg-[#1C1C1A] overflow-hidden">
+                <img
+                  src={currentImage.url}
+                  alt={currentImage.caption}
+                  className="w-full h-auto object-contain block"
+                  loading="lazy"
+                />
+              </div>
+              <figcaption className="text-xs font-mono text-[#6B6B66] dark:text-[#96948E] pt-1">
+                {currentImage.caption}
+              </figcaption>
+            </figure>
+          )}
+        </div>
       )}
+
+      {/* Case study & Action Links Container: ~720px */}
+      <div className="mt-6 mx-auto max-w-[720px] px-6 space-y-6">
+        {project.caseStudy && (
+          <div>
+            <button
+              onClick={() => setShowCaseStudy(!showCaseStudy)}
+              className="text-sm font-sans font-medium text-[#1F4E5F] dark:text-[#6EA3B4] hover:underline underline-offset-4 inline-flex items-center gap-1.5"
+            >
+              <span>{showCaseStudy ? '− Ocultar estudo de caso' : '+ Ver estudo de caso detalhado'}</span>
+            </button>
+
+            {showCaseStudy && (
+              <div className="mt-5 space-y-5 text-[15px] leading-[1.65] pl-4 border-l-2 border-[#E5E3DD] dark:border-[#282826] text-[#1C1C1A] dark:text-[#EAE8E3]">
+                <div>
+                  <h4 className="font-mono text-xs uppercase tracking-wider text-[#6B6B66] dark:text-[#96948E] mb-1">
+                    Problema
+                  </h4>
+                  <p>{project.caseStudy.problem}</p>
+                </div>
+
+                <div>
+                  <h4 className="font-mono text-xs uppercase tracking-wider text-[#6B6B66] dark:text-[#96948E] mb-1">
+                    Solução Implementada
+                  </h4>
+                  <p>{project.caseStudy.solution}</p>
+                </div>
+
+                <div>
+                  <h4 className="font-mono text-xs uppercase tracking-wider text-[#6B6B66] dark:text-[#96948E] mb-1">
+                    Arquitetura e Engenharia
+                  </h4>
+                  <p>{project.caseStudy.architecture}</p>
+                </div>
+
+                <div>
+                  <h4 className="font-mono text-xs uppercase tracking-wider text-[#6B6B66] dark:text-[#96948E] mb-1">
+                    Resultados
+                  </h4>
+                  <p>{project.caseStudy.results}</p>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+
+        <div className="pt-2 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm">
+          {project.demoUrl && (
+            <a
+              href={project.demoUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="text-[#1F4E5F] dark:text-[#6EA3B4] hover:underline underline-offset-4 font-medium inline-flex items-center gap-1"
+            >
+              <span>{project.demoLabel || 'Ver demonstração'}</span>
+              <span aria-hidden="true">↗</span>
+            </a>
+          )}
+
+          {project.githubUrl && (
+            <a
+              href={project.githubUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="text-[#1F4E5F] dark:text-[#6EA3B4] hover:underline underline-offset-4 font-medium inline-flex items-center gap-1"
+            >
+              <span>Repositório no GitHub</span>
+              <span aria-hidden="true">↗</span>
+            </a>
+          )}
+        </div>
+      </div>
+    </article>
+  );
+}
+
+export default function Projects() {
+  return (
+    <section id="projetos" className="py-16 sm:py-20 border-b border-[#E5E3DD] dark:border-[#282826]">
+      <div className="mx-auto max-w-[720px] px-6 mb-8">
+        <h2 className="text-2xl sm:text-3xl font-serif font-medium text-[#1C1C1A] dark:text-[#EAE8E3]">
+          Projetos Selecionados
+        </h2>
+        <p className="mt-2 text-base text-[#6B6B66] dark:text-[#96948E]">
+          Relatórios executivos no Power BI, esteiras de ETL e automações em Python desenvolvidos no setor público e em projetos analíticos.
+        </p>
+      </div>
+
+      <div className="divide-y-0">
+        {projectsData.map((project, idx) => (
+          <ProjectBlock
+            key={project.id}
+            project={project}
+            isLast={idx === projectsData.length - 1}
+          />
+        ))}
+      </div>
     </section>
   );
 }
