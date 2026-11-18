@@ -1,47 +1,42 @@
-# Portfólio Profissional - Analista de Dados & BI
-### Abraão Cezar Inácio
+# Portfólio — Abraão Cezar Inácio
 
-Portfólio frontend 100% dedicado a vagas de **Analista de Dados**, **Engenheiro de Analytics** e **Business Intelligence**, desenvolvido com **React**, **Tailwind CSS**, **Lucide Icons** e **Vite**.
+Portfólio profissional de Analista de Dados e Business Intelligence. Apresenta projetos desenvolvidos no Tribunal de Contas dos Municípios de Goiás (TCM-GO), relatórios analíticos no Power BI, esteiras de ETL em Python e modelagens em SQL.
 
----
+## Tecnologias
 
-## 🎯 Destaques do Portfólio
+- React 19
+- Vite
+- Tailwind CSS
+- Google Fonts (Newsreader, IBM Plex Sans, IBM Plex Mono)
 
-- **Relatório Executivo no Power BI Cloud:** Destaque para dashboard interativo em nuvem, com modelagem dimensional (Star Schema), medidas DAX calculadas e análise de KPIs estratégicos.
-  - Link direto: [Abrir Relatório no Power BI](https://app.powerbi.com/groups/me/reports/100b5f1f-85d5-4f2d-b082-837165f1cb32/1e83521174a2c02425b5?experience=power-bi)
-- **TCM-GO (Novo Portal do Cidadão):** Construção e sustentação de pipelines ETL para higienização e consolidação de dados orçamentários e de políticas ambientais dos 246 municípios de Goiás.
-- **Hero Interativo (Simulador de BI & ETL Live):** 
-  - Filtro dinâmico por municípios (Goiás Geral, Goiânia, Anápolis, Rio Verde);
-  - Gráficos de barras atualizados em tempo real;
-  - Terminal interativo que simula a execução passo a passo do pipeline ETL em Python/Pandas.
-- **Machine Learning & Visão Computacional:** Extração quantitativa de métricas estruturais com modelo YOLOv8 (mAP50-95, precisão e recall).
-- **Modelagem Relacional & SQL:** Otimização de consultas, criação de índices e agregações analíticas.
-- **Estudos de Caso Aprofundados:** Modais interativos com Problema, Solução Técnica, Arquitetura e Resultados em produção.
+## Como rodar localmente
 
----
-
-## 🚀 Como Rodar Localmente
+Clone o repositório e instale as dependências:
 
 ```bash
-# Instalar dependências
 npm install
+```
 
-# Rodar servidor local de desenvolvimento
+Inicie o servidor de desenvolvimento:
+
+```bash
 npm run dev
+```
 
-# Gerar build otimizado para produção
+Para gerar a versão otimizada de produção:
+
+```bash
 npm run build
 ```
 
----
+Para pré-visualizar o build localmente:
 
-## 🌐 Deploy na Vercel
+```bash
+npm run preview
+```
 
-1. Crie um repositório no seu GitHub (ex: `portfolio-data-analyst`).
-2. Vincule e envie o código:
-   ```bash
-   git remote add origin https://github.com/cezarbtw/portfolio-data-analyst.git
-   git branch -M main
-   git push -u origin main
-   ```
-3. Importe o repositório na [Vercel](https://vercel.com) — o deploy ocorrerá automaticamente.
+## Estrutura do projeto
+
+- `src/components/`: Componentes da interface (Header, Hero, Projects, Experience, Skills, Contact, Footer).
+- `src/data/portfolioData.js`: Dados factuais de projetos, experiência e competências técnicas.
+- `public/dashboards/`: Capturas em alta resolução dos painéis de Power BI.
