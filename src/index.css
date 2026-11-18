@@ -2,85 +2,195 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ═══════════════════════════════════════════════════════
+   DESIGN TOKENS — "dados como identidade"
+   Paleta: #F4F1EA / #121212 / forte: #D9411E
+   Tipo: Instrument Serif (display) · Hanken Grotesk (body) · JetBrains Mono
+   ═══════════════════════════════════════════════════════ */
+
 @layer base {
-  html {
-    scroll-behavior: smooth;
+  :root {
+    --canvas:      #F4F1EA;
+    --ink:         #121212;
+    --strong:      #D9411E;
+    --rule:        #D6D2C8;
+    --muted:       #6E6A63;
+    --header-h:    3.5rem;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --canvas:  #0E0D0B;
+      --ink:     #E8E5DC;
+      --rule:    #272520;
+      --muted:   #9B9790;
+    }
   }
 
-  section {
-    scroll-margin-top: 4.5rem;
+  html {
+    scroll-behavior: smooth;
+    background-color: var(--canvas);
+    color: var(--ink);
+    font-family: 'Hanken Grotesk', -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    font-size: 17px;
+    line-height: 1.6;
   }
-  
+
+  /* scroll-margin para seções com header fixo */
+  section[id] { scroll-margin-top: calc(var(--header-h) + 1rem); }
+
+  /* Foco visível acessível */
   :focus-visible {
-    outline: 2px solid #1F4E5F;
-    outline-offset: 2px;
+    outline: 2px solid var(--strong);
+    outline-offset: 3px;
+  }
+
+  /* Seleção de texto */
+  ::selection { background: var(--strong); color: #fff; }
+}
+
+/* ═══════════════════════════════════════════════════════
+   TIPOGRAFIA DISPLAY
+   ═══════════════════════════════════════════════════════ */
+@layer utilities {
+  .text-display-xl {
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-size: clamp(3.5rem, 11vw, 10rem);
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+  }
+  .text-display-lg {
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-size: clamp(2.2rem, 5.5vw, 5rem);
+    line-height: 0.97;
+    letter-spacing: -0.015em;
+  }
+  .text-display-md {
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+  }
+
+  /* Família tipográfica como utilidade */
+  .font-display { font-family: 'Instrument Serif', Georgia, serif; }
+  .font-body    { font-family: 'Hanken Grotesk', -apple-system, sans-serif; }
+  .font-mono-custom { font-family: 'JetBrains Mono', ui-monospace, monospace; }
+
+  /* Divisores responsivos horizontais */
+  @media (min-width: 640px) {
+    .sm\:rule-r { border-right: 1px solid var(--rule); }
   }
 }
 
-/* Subtle editorial underline on hover */
-.editorial-link {
+/* ═══════════════════════════════════════════════════════
+   GRADE ESTRUTURAL
+   ═══════════════════════════════════════════════════════ */
+.rule-x  { border-top:    1px solid var(--rule); }
+.rule-b  { border-bottom: 1px solid var(--rule); }
+.rule-l  { border-left:   1px solid var(--rule); }
+.rule-r  { border-right:  1px solid var(--rule); }
+
+/* ═══════════════════════════════════════════════════════
+   LINKS — sublinhado que cresce da esquerda
+   ═══════════════════════════════════════════════════════ */
+.link-underline {
   position: relative;
   text-decoration: none;
 }
-.editorial-link::after {
+.link-underline::after {
   content: '';
   position: absolute;
   bottom: -1px;
   left: 0;
   width: 0;
   height: 1px;
-  background-color: currentColor;
-  transition: width 0.25s ease-out;
+  background: currentColor;
+  transition: width 0.22s ease-out;
 }
-.editorial-link:hover::after {
-  width: 100%;
-}
+.link-underline:hover::after { width: 100%; }
 
-/* Arrow nudge on hover */
-.external-link .arrow-icon {
+/* Seta externa — desloca 2px no hover */
+.arrow-ext {
   display: inline-block;
-  transition: transform 0.2s ease;
+  transition: transform 0.18s ease;
 }
-.external-link:hover .arrow-icon {
-  transform: translate(2px, -2px);
-}
+a:hover .arrow-ext { transform: translate(2px, -2px); }
 
-/* Subtle staggered entrance for hero */
-@keyframes heroFadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* ═══════════════════════════════════════════════════════
+   HERO — revelação por máscara, linha a linha
+   ═══════════════════════════════════════════════════════ */
+.hero-line {
+  display: block;
+  overflow: hidden;
 }
-
-.hero-fade-in-1 {
-  animation: heroFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.05s both;
+.hero-line span {
+  display: block;
+  transform: translateY(110%);
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.hero-fade-in-2 {
-  animation: heroFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.12s both;
-}
-.hero-fade-in-3 {
-  animation: heroFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.18s both;
-}
-.hero-fade-in-4 {
-  animation: heroFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.24s both;
-}
+.hero-line.revealed span { transform: translateY(0); }
 
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
+  .hero-line span { transform: none !important; transition: none !important; }
+  .link-underline::after { transition: none !important; }
+}
+
+/* ═══════════════════════════════════════════════════════
+   PROJETOS — preview acompanhando cursor
+   ═══════════════════════════════════════════════════════ */
+.project-cursor-preview {
+  position: fixed;
+  pointer-events: none;
+  z-index: 50;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  transform: translate(-50%, -50%);
+}
+.project-cursor-preview.visible { opacity: 1; }
+
+/* ═══════════════════════════════════════════════════════
+   BARRA DE PROGRESSO DE LEITURA
+   ═══════════════════════════════════════════════════════ */
+#read-progress {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--strong);
+  z-index: 100;
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: transform 0.1s linear;
+}
+
+/* ═══════════════════════════════════════════════════════
+   MAPA SVG
+   ═══════════════════════════════════════════════════════ */
+.mapa-municipio {
+  fill: var(--rule);
+  stroke: var(--canvas);
+  stroke-width: 0.5;
+  cursor: pointer;
+  transition: fill 0.15s ease;
+}
+.mapa-municipio:hover,
+.mapa-municipio:focus { fill: var(--strong); outline: none; }
+.mapa-municipio.aceso { fill: var(--ink); }
+
+/* ═══════════════════════════════════════════════════════
+   VIEW TRANSITIONS (fallback: sem animação)
+   ═══════════════════════════════════════════════════════ */
+@supports (view-transition-name: none) {
+  ::view-transition-old(root) {
+    animation: 220ms ease-out both vt-slide-out;
   }
-  .hero-fade-in-1,
-  .hero-fade-in-2,
-  .hero-fade-in-3,
-  .hero-fade-in-4 {
-    animation: none !important;
+  ::view-transition-new(root) {
+    animation: 280ms ease-in both vt-slide-in;
   }
-  .editorial-link::after {
-    transition: none !important;
+  @keyframes vt-slide-out {
+    to { opacity: 0; transform: translateX(-2rem); }
+  }
+  @keyframes vt-slide-in {
+    from { opacity: 0; transform: translateX(2rem); }
   }
 }

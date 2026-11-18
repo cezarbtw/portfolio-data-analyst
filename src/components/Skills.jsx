@@ -5,32 +5,37 @@ export default function Skills() {
   return (
     <section
       id="competencias"
-      className="py-16 sm:py-24 border-b border-[#E5E3DD] dark:border-[#282826] bg-[#F3F1EB] dark:bg-[#1A1918] transition-colors"
+      className="rule-b"
+      style={{ padding: '5rem 0', background: 'var(--canvas)' }}
     >
-      <div className="mx-auto max-w-[760px] px-5 sm:px-6">
-        <p className="text-xs font-mono uppercase tracking-wider text-[#1F4E5F] dark:text-[#6EA3B4] font-medium">
-          Domínio Técnico
-        </p>
-        <h2 className="mt-1 text-2xl sm:text-3xl font-serif font-medium text-[#1C1C1A] dark:text-[#EAE8E3]">
-          Competências
-        </h2>
-        <p className="mt-2 text-base text-[#444440] dark:text-[#A8A69E]">
-          Ferramentas, linguagens e metodologias utilizadas no ciclo analítico e de engenharia de dados.
-        </p>
+      <div className="max-w-content mx-auto px-5 sm:px-8 lg:px-12">
 
-        {/* 2-Column Grid: group in bold, items in body font separated by comma */}
-        <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-10">
+        {/* Cabeçalho da seção */}
+        <div className="flex items-baseline gap-4 mb-12 rule-b pb-6">
+          <span className="font-mono text-[11px] text-[var(--muted)] uppercase tracking-widest">03</span>
+          <h2 className="text-display-md font-display text-[var(--ink)]">Competências</h2>
+        </div>
+
+        {/* Layout assimétrico: label à esquerda, itens à direita */}
+        <div className="space-y-0">
           {skillsData.map((skill, idx) => (
             <div
               key={idx}
-              className="space-y-2 border-t border-[#E5E3DD] dark:border-[#282826] pt-4"
+              className="grid grid-cols-1 lg:grid-cols-12 gap-0 rule-x py-8 first:border-t-0 first:pt-0"
             >
-              <h3 className="text-[15px] sm:text-base font-sans font-semibold text-[#1C1C1A] dark:text-[#EAE8E3]">
-                {skill.category}
-              </h3>
-              <p className="text-[14px] sm:text-[15px] leading-relaxed font-sans text-[#444440] dark:text-[#A8A69E]">
-                {skill.items}
-              </p>
+              {/* Esquerda: categoria */}
+              <div className="lg:col-span-4 lg:pr-8 mb-2 lg:mb-0">
+                <h3 className="font-body font-semibold text-[14px] text-[var(--muted)] uppercase tracking-wider">
+                  {skill.category}
+                </h3>
+              </div>
+
+              {/* Direita: itens em texto corrido */}
+              <div className="lg:col-span-8">
+                <p className="font-body text-[16px] leading-[1.68] text-[var(--ink)]">
+                  {skill.items}
+                </p>
+              </div>
             </div>
           ))}
         </div>
