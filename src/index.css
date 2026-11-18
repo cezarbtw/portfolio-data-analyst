@@ -36,6 +36,15 @@
   width: 100%;
 }
 
+/* Arrow nudge on hover */
+.external-link .arrow-icon {
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+.external-link:hover .arrow-icon {
+  transform: translate(2px, -2px);
+}
+
 /* Subtle staggered entrance for hero */
 @keyframes heroFadeIn {
   from {
