@@ -1,234 +1,193 @@
 export const personalInfo = {
   name: "Abraão Cezar Inácio",
-  shortName: "Abraão Cezar",
+  role: "Analista de Dados & Business Intelligence",
   location: "Goiás, Brasil",
   email: "abraaocezarIL@outlook.com",
-  phone: "+55 (62) 98280-1501",
+  phone: "(62) 98280-1501",
   whatsapp: "5562982801501",
   github: "https://github.com/cezarbtw",
   githubUsername: "cezarbtw",
   linkedin: "https://www.linkedin.com/in/cezarinaciol/",
   powerBiReportUrl: "https://app.powerbi.com/groups/me/reports/100b5f1f-85d5-4f2d-b082-837165f1cb32/1e83521174a2c02425b5?experience=power-bi",
-  status: "Disponível para novas oportunidades",
-  availability: "Contratação Imediata (Remoto / Híbrido)"
 };
 
-export const dataAnalystData = {
-  role: "Analista de Dados & BI",
-  badge: "Power BI • Pipelines ETL • SQL Avançado • Automação de APIs • Machine Learning",
-  accentColor: "emerald",
-  gradientText: "from-emerald-400 via-teal-300 to-cyan-400",
-  tagline: "Analista de Dados especializado em pipelines ETL, consultas SQL analíticas complexas, automação de validação de APIs de IA e relatórios executivos no Power BI.",
-  headline: "Analista de Dados & BI focado em SQL avançado, ETL, Power BI e automação de auditoria de dados.",
-  bio: [
-    "Sou Analista de Dados com sólida experiência na concepção e sustentação de esteiras de ETL, modelagem dimensional e relacional, criação de dashboards interativos no Power BI (DAX) e desenvolvimento de scripts analíticos em Python e SQL para auditoria e governança de dados.",
-    "No TCM-GO (Tribunal de Contas dos Municípios de Goiás), atuo como Analista de Dados desenvolvendo pipelines ETL em Python e SQL para saneamento e agregação de dados orçamentários dos 246 municípios goianos, com elaboração dos gráficos no Power BI para a aba 'Meio Ambiente' do Novo Portal do Cidadão.",
-    "Também sou o autor de rotinas automatizadas de testes e validação da API de NER (Named Entity Recognition) do TCM-GO, processando extratos bancários e contábeis em paralelo e reconciliando os payloads JSON da IA contra consultas SQL complexas em bases de altíssimo volume (ORCAFI, COLARE e Data Warehouse)."
-  ],
-  stats: [
-    { label: "Atuação TCM-GO", value: "246 Municípios", hint: "ETL, SQL e gráficos Power BI no Portal do Cidadão" },
-    { label: "Power BI & BI", value: "Cloud / DAX", hint: "Modelagem dimensional Star Schema & KPIs" },
-    { label: "Consultas & DW", value: "SQL Avançado", hint: "Joins cross-database, CTEs & nolock em big data" },
-    { label: "Validação de IA", value: "API de NER", hint: "Automação paralela Python JSON x SQL" }
-  ],
-  skills: {
-    categories: [
-      {
-        name: "SQL Avançado & Bancos de Dados",
-        skills: [
-          { name: "SQL para Auditoria (Cross-DB)", level: "Avançado", badge: "Core" },
-          { name: "Otimização de Queries (with nolock)", level: "Avançado", badge: "Performance" },
-          { name: "Modelagem Relacional & DW", level: "Avançado", badge: "Modeling" },
-          { name: "MySQL, PostgreSQL & SQL Server", level: "Avançado", badge: "Databases" },
-          { name: "Subqueries & Window Functions", level: "Avançado", badge: "Analytics" }
-        ]
-      },
-      {
-        name: "Engenharia de Dados, ETL & Automação",
-        skills: [
-          { name: "Python (Pandas, NumPy, Requests)", level: "Avançado", badge: "Core" },
-          { name: "Automação de Testes de APIs (NER)", level: "Avançado", badge: "Quality" },
-          { name: "Pipelines ETL & Data Wrangling", level: "Avançado", badge: "Pipelines" },
-          { name: "Processamento Concorrente/Paralelo", level: "Avançado", badge: "Speed" },
-          { name: "Reconciliação JSON x SQL", level: "Avançado", badge: "Data Match" }
-        ]
-      },
-      {
-        name: "Power BI & Machine Learning",
-        skills: [
-          { name: "Power BI (Desktop & Service)", level: "Avançado", badge: "BI Core" },
-          { name: "Modelagem DAX (Medidas & Filtros)", level: "Avançado", badge: "DAX" },
-          { name: "Modelagem Dimensional (Star Schema)", level: "Avançado", badge: "Architecture" },
-          { name: "Visão Computacional (YOLOv8 & OpenCV)", level: "Avançado", badge: "AI/ML" },
-          { name: "Análise de Séries Temporais", level: "Avançado", badge: "Statistics" }
-        ]
-      }
-    ]
-  },
-  projects: [
-    {
-      id: "power-bi-report",
-      title: "Dashboard Comercial & Funil de Vendas no Power BI",
-      category: "Business Intelligence & Analytics",
-      description: "Dashboard analítico executivo desenvolvido no Microsoft Power BI para monitoramento de KPIs comerciais e estratégicos: CAC (R$ 612), Ticket Médio (R$ 14,96 Mil), Taxa de Conversão (8%), Evolução do Funil de Vendas (Leads, Oportunidades, Propostas e Clientes) e Performance de Faturamento e Aquisição por Canal.",
-      tags: ["Power BI", "DAX", "Funil de Vendas", "CAC & LTV", "KPIs Executivos", "Storytelling"],
-      featured: true,
-      coverImage: "/dashboards/dashboard-comercial-funil.png",
-      images: [
-        {
-          url: "/dashboards/dashboard-comercial-funil.png",
-          title: "Dashboard Comercial, CAC & Funil de Vendas",
-          description: "Visão executiva com cartões de KPIs (CAC, Ticket Médio, Conversão, Leads, Clientes, Receita), funil de conversão com percentual de passagem e análises cruzadas por canal de aquisição."
-        }
-      ],
-      metrics: "Receita R$ 374 Mil | CAC R$ 612 | Ticket Médio R$ 14,96 Mil | Conversão 8% | 5 Canais Analisados",
-      github: null,
-      demo: "https://app.powerbi.com/groups/me/reports/100b5f1f-85d5-4f2d-b082-837165f1cb32/1e83521174a2c02425b5?experience=power-bi",
-      caseStudy: {
-        problem: "A equipe comercial e a diretoria necessitavam de visibilidade clara do ciclo de vendas, gargalos de conversão no funil e retorno financeiro por canal de captação de leads para otimização de orçamento.",
-        solution: "Desenvolvimento de relatório executivo no Power BI com funil de conversão dinâmico, cálculos de CAC por canal, distribuição de clientes e cruzamento de faturamento por canal de mídia (Google Ads, Facebook Ads, Indicação, LinkedIn e Orgânico).",
-        techStackDetails: "Power BI Desktop, modelagem Star Schema, medidas em DAX (CAC, taxa de conversão, ticket médio ponderado, faturamento acumulado), filtros dinâmicos cruzados e layout focado em UX executiva.",
-        results: "Identificação precisa de canais mais rentáveis (Indicação com menor CAC e alto faturamento), além de diagnóstico de gargalos entre proposta e fechamento no funil."
-      }
-    },
-    {
-      id: "tcmgo-ner-automation",
-      title: "Automação de Validação da API de NER & Auditoria SQL",
-      category: "Automação de Dados & Validação de IA",
-      description: "Construção de suíte de testes e validação automatizada em Python para a API de Reconhecimento de Entidades Nomeadas (NER) utilizada no TCM-GO. Execução paralela sobre milhares de extratos bancários e relatórios contábeis, com reconciliação automatizada de payloads JSON contra consultas SQL em bases ORCAFI, COLARE e Data Warehouse.",
-      tags: ["Python", "SQL Avançado", "API de NER", "Automação de Testes", "Data Quality", "Processamento Paralelo", "Auditoria"],
-      featured: true,
-      metrics: "Milhares de extratos validados | Reconciliação JSON x SQL | Processamento multithread | Relatórios automáticos de divergência",
-      github: null,
-      demo: null,
-      caseStudy: {
-        problem: "A equipe de auditoria do tribunal precisava validar a acurácia das entidades extraídas pela API de NER em documentos fiscais e extratos bancários públicos, tarefa inviável de ser executada manualmente devido ao volume massivo de envios municipais.",
-        solution: "Desenvolvimento de rotinas em Python com processamento concorrente para consumir a API de NER, extrair os dados oficiais do banco relacional via consultas SQL otimizadas (com 'nolock' e joins dimensionais) e cruzar campos-chave (bancos, agências, contas, CPFs e valores) gerando relatórios de divergência em CSV e JSON.",
-        techStackDetails: "Python, bibliotecas Requests, Pandas, re (regex), manipulação estruturada de JSON, queries SQL complexas integrando múltiplas bases do tribunal (COLARE_ETL, ORCAFI, DW e integrarfb) e geração de logs detalhados de auditoria.",
-        results: "Redução drástica no tempo de homologação da API de inteligência artificial do tribunal, com detecção automática de inconsistências cadastrais e garantia de conformidade fiscal."
-      }
-    },
-    {
-      id: "tcmgo-etl",
-      title: "TCM-GO: Painéis Power BI & Pipelines ETL (Portal do Cidadão)",
-      category: "Engenharia de Dados & Governança Pública",
-      description: "Atuação como Analista de Dados no Tribunal de Contas dos Municípios de Goiás: desenvolvimento e sustentação de esteiras ETL para extração, saneamento e consolidação de dados orçamentários de políticas ambientais dos 246 municípios goianos, com elaboração dos gráficos e relatórios completos no Power BI para a aba 'Meio Ambiente' do Novo Portal do Cidadão (Águas, Esgoto, Resíduos Sólidos, Águas Pluviais e Gestão Municipal).",
-      tags: ["Power BI", "Python", "SQL", "Pandas", "ETL Pipelines", "Saneamento Básico", "Auditoria Pública"],
-      featured: true,
-      coverImage: "/dashboards/tcmgo-meio-ambiente-aguas.png",
-      images: [
-        {
-          url: "/dashboards/tcmgo-meio-ambiente-aguas.png",
-          title: "Dimensão Ambiental: Águas",
-          description: "Mapeamento dos 246 municípios: Consumo médio per capita (L/hab/dia), atendimento da rede de água, reparos e paralisações comparados à Média Goiana."
-        },
-        {
-          url: "/dashboards/tcmgo-meio-ambiente-esgoto.png",
-          title: "Dimensão Ambiental: Esgotamento Sanitário",
-          description: "Indicadores de atendimento da rede, reparos e reclamações de extravasamentos e percentual oficial de esgoto tratado (2023 vs 2024)."
-        },
-        {
-          url: "/dashboards/tcmgo-meio-ambiente-residuos.png",
-          title: "Dimensão Ambiental: Resíduos Sólidos",
-          description: "Cobertura de coleta seletiva e indiferenciada, disposição em aterro controlado, cooperativas e dados de catadores formais e informais."
-        },
-        {
-          url: "/dashboards/tcmgo-meio-ambiente-aguas-pluviais.png",
-          title: "Dimensão Ambiental: Águas Pluviais & Prevenção",
-          description: "Cobertura de drenagem pluvial, mapeamento de áreas de risco, ocorrências de inundações, pessoas desabrigadas e sistemas de alerta."
-        },
-        {
-          url: "/dashboards/tcmgo-meio-ambiente-gestao-municipal.png",
-          title: "Governança & Gestão Municipal",
-          description: "Auditoria de conformidade: Política Municipal de Saneamento, PMGIRS, Plano Diretor Urbano, EVTEF, Lei de Zoneamento, Ouvidoria e Conselhos."
-        }
-      ],
-      metrics: "246 Municípios analisados | 5 Painéis Power BI Oficiais | Relatórios ODS ONU | Milhões de dados fiscais saneados",
-      github: null,
-      demo: "https://portalcidadao.tcmgo.tc.br/new-portal-cidadao/",
-      caseStudy: {
-        problem: "Bases de dados orçamentárias municipais apresentavam divergências de formato, registros nulos e duplicidades, inviabilizando a geração direta de indicadores ambientais de transparência pública.",
-        solution: "Desenvolvimento de pipelines ETL em Python (Pandas) e SQL para ingestão e tratamento automatizado dos dados públicos, com criação dos gráficos e relatórios analíticos no Power BI que alimentam as consultas da aba Meio Ambiente.",
-        techStackDetails: "Pipelines em Python com Pandas para higienização vetorizada, queries SQL otimizadas com agregações contábeis e construção de visuais analíticos no Power BI.",
-        results: "Alimentação confiável e auditável das informações ambientais de todos os 246 municípios do estado de Goiás para a sociedade civil e auditores do tribunal."
-      }
-    },
-    {
-      id: "cripto-emotion-lens-data",
-      title: "Cripto EmotionLens: Telemetria Temporal & Estatística",
-      category: "Data Analytics & Machine Learning",
-      description: "Processamento e modelagem analítica de séries temporais de dados biométricos em tempo real. Análise segundo a segundo de 7 classes canônicas de emoção, histogramas de dispersão temporal, suavização por média móvel centrada e benchmarks de latência criptográfica (0.22ms).",
-      tags: ["Python", "Pandas", "PyTorch", "Estatística Descritiva", "Séries Temporais", "Benchmarks"],
-      featured: true,
-      metrics: "Séries temporais segundo a segundo | Filtro anti-flickering | Benchmark mediano de 0.22ms",
-      github: "https://github.com/cezarbtw",
-      demo: null,
-      caseStudy: {
-        problem: "Extrair tendências comportamentais consistentes a partir de sinais afetivos de vídeo altamente voláteis e ruidosos.",
-        solution: "Implementação de filtros estatísticos de suavização temporal por média móvel centrada (janela de 9 quadros), normalização adaptativa CLAHE e estruturação tabular de probabilidades por segundo.",
-        techStackDetails: "Python, Pandas, NumPy, cálculo de matrizes de confusão, análise de dispersão de variância e testes empíricos de desempenho com 1.000 iterações.",
-        results: "Geração de relatórios analíticos de telemetria afetiva com alta confiabilidade e remoção total de ruídos de transição facial."
-      }
-    },
-    {
-      id: "detector-rachaduras-data",
-      title: "Análise Preditiva & Métricas com YOLOv8",
-      category: "Machine Learning & Visão Computacional",
-      description: "Extração de dados quantitativos e análise de métricas estruturais a partir de fotos de patologias na construção civil utilizando aprendizado profundo (YOLOv8).",
-      tags: ["Python", "YOLOv8", "Métricas mAP", "Visão Computacional", "OpenCV", "Estatística"],
-      featured: false,
-      metrics: "Avaliação estatística de precisão (mAP50-95) | Extração de área de defeitos | Classificação automática",
-      github: "https://github.com/cezarbtw/Detector-de-Rachaduras",
-      demo: null,
-      caseStudy: {
-        problem: "Transformar fotos de inspeção de obras em dados numéricos acionáveis para relatórios periciais.",
-        solution: "Treinamento e validação de modelo YOLOv8 com métricas de Precision, Recall e mAP, associando algoritmo para extração do comprimento e espessura estimada das rachaduras.",
-        techStackDetails: "Python, frameworks de IA, cálculo estatístico de matriz de confusão e curvas PR (Precision-Recall).",
-        results: "Conversão de dados não estruturados em tabelas analíticas com índice de severidade de risco."
-      }
-    },
-    {
-      id: "clinica-sql-analytics",
-      title: "Modelagem e Análise de Dados Clínicos (MediClin)",
-      category: "Modelagem SQL & Analytics",
-      description: "Modelagem relacional de banco de dados e consultas SQL analíticas para cálculo de taxas de absenteísmo, ocupação de consultórios e tempo médio de espera.",
-      tags: ["SQL Avançado", "Modelagem Relacional", "Agregações", "MySQL 8.0", "Indicadores de Saúde"],
-      featured: false,
-      metrics: "Modelagem normalizada (3FN) | Otimização de tempo de query em 60% | KPIs operacionais",
-      github: "https://github.com/cezarbtw/Projeto-Medicos",
-      demo: null,
-      caseStudy: {
-        problem: "Extração lenta de dados operacionais para geração de relatórios de produtividade clínica e faturamento.",
-        solution: "Criação de índices estratégicos compostos, views analíticas e queries com joins e agregações para gerar relatórios sem onerar a base transacional.",
-        techStackDetails: "MySQL 8.0, índices B-Tree, modelagem entidade-relacionamento e scripts SQL analíticos.",
-        results: "Redução no tempo de extração de relatórios e identificação de horários ociosos para maximizar a capacidade de atendimento."
-      }
-    }
-  ],
-  experiences: [
-    {
-      role: "Analista de Dados & Automação de Auditoria",
-      company: "TCM-GO (Tribunal de Contas dos Municípios de Goiás)",
-      period: "Projeto Portal do Cidadão & Auditoria de IA",
-      type: "Setor Público / Governança & Auditoria",
-      description: "Atuação como Analista de Dados no TCM-GO: desenvolvimento de rotinas de ETL e criação de relatórios/gráficos no Power BI para o Portal do Cidadão, além de automação de testes da API de NER com reconciliação JSON x SQL.",
-      achievements: [
-        "Criação e execução de scripts SQL complexos em bases de altíssimo volume (ORCAFI, COLARE_ETL, DW) para auditoria contábil e de folha de pagamento.",
-        "Desenvolvimento de suíte de testes em Python para validação concorrente da API de IA (NER) em extratos bancários municipais.",
-        "Construção de pipelines ETL e relatórios analíticos no Power BI para acompanhamento de políticas públicas ambientais dos 246 municípios."
-      ]
-    },
-    {
-      role: "Pesquisador & Analista de Dados e Telemetria",
-      company: "Cripto EmotionLens & Projetos de Dados (GitHub)",
-      period: "Constante",
-      type: "Pesquisa Aplicada & Analytics",
-      description: "Desenvolvimento de dashboards executivos no Power BI Cloud, análise de séries temporais afetivas e modelagem preditiva em Python.",
-      achievements: [
-        "Construção de relatórios e dashboards interativos no Microsoft Power BI com modelagem DAX avançada.",
-        "Modelagem estatística e análise de séries temporais de microexpressões faciais no Cripto EmotionLens.",
-        "Execução de benchmarks empíricos de desempenho computacional com análise de variância e latência."
-      ]
-    }
+export const bioData = {
+  headline: "Analista de Dados e BI especializado em pipelines ETL, consultas SQL analíticas e relatórios no Power BI.",
+  intro: [
+    "Atuo na construção de pipelines ETL e relatórios no Power BI para o Portal do Cidadão no Tribunal de Contas dos Municípios de Goiás (TCM-GO), consolidando indicadores de saneamento e políticas públicas dos 246 municípios goianos.",
+    "Desenvolvi rotinas automatizadas em Python para validação e auditoria da API de reconhecimento de entidades nomeadas (NER), reconciliando dados de extratos e documentos contábeis contra consultas SQL em bases orçamentárias."
   ]
 };
+
+export const skillsData = [
+  {
+    category: "Visualização e BI",
+    items: "Power BI (Desktop e Service), DAX, modelagem dimensional (Star Schema), relatórios executivos."
+  },
+  {
+    category: "Linguagens",
+    items: "Python (Pandas, NumPy, Requests), SQL."
+  },
+  {
+    category: "Dados e ETL",
+    items: "Pipelines de extração e tratamento, saneamento de dados, reconciliação JSON e SQL, bancos relacionais (MySQL, PostgreSQL, SQL Server)."
+  },
+  {
+    category: "Estatística e Machine Learning",
+    items: "Análise de séries temporais, estatística descritiva, validação de modelos e métricas de avaliação."
+  }
+];
+
+export const projectsData = [
+  {
+    id: "tcmgo-portal-cidadao",
+    title: "TCM-GO: Painéis no Power BI para o Portal do Cidadão",
+    context: "Tribunal de Contas dos Municípios de Goiás | Setor Público",
+    summary: "Construção de esteiras ETL e relatórios analíticos no Power BI para a aba Meio Ambiente do Portal do Cidadão do TCM-GO. Os painéis consolidam indicadores de saneamento básico, resíduos sólidos, drenagem pluvial e governança dos 246 municípios do estado de Goiás.",
+    tools: "Power BI, DAX, Python (Pandas), SQL, ETL",
+    demoUrl: "https://portalcidadao.tcmgo.tc.br/new-portal-cidadao/",
+    demoLabel: "Acessar Portal do Cidadão",
+    githubUrl: null,
+    images: [
+      {
+        url: "/dashboards/tcmgo-meio-ambiente-aguas.png",
+        caption: "Dimensão Águas: consumo per capita, atendimento de rede, reparos e paralisações em comparação com a média estadual."
+      },
+      {
+        url: "/dashboards/tcmgo-meio-ambiente-esgoto.png",
+        caption: "Dimensão Esgoto: cobertura de esgotamento sanitário, reparos de extravasamento e percentual de esgoto tratado (2023 vs. 2024)."
+      },
+      {
+        url: "/dashboards/tcmgo-meio-ambiente-residuos.png",
+        caption: "Dimensão Resíduos Sólidos: coleta indiferenciada e seletiva, destinação em aterros controlados e cooperativas de catadores."
+      },
+      {
+        url: "/dashboards/tcmgo-meio-ambiente-aguas-pluviais.png",
+        caption: "Dimensão Águas Pluviais: cobertura de drenagem, áreas de risco de inundação, ocorrências e sistemas de alerta."
+      },
+      {
+        url: "/dashboards/tcmgo-meio-ambiente-gestao-municipal.png",
+        caption: "Governança Municipal: acompanhamento de planos municipais de saneamento, PMGIRS, planos diretores e ouvidorias."
+      }
+    ],
+    caseStudy: {
+      problem: "Os dados de prestação de contas dos 246 municípios de Goiás apresentavam inconsistências de preenchimento, divergências de esquema e duplicidades, inviabilizando consultas consolidadas diretas sobre serviços de saneamento básico.",
+      solution: "Desenvolvi pipelines em Python com Pandas para higienização e padronização dos dados, estruturados em consultas SQL analíticas com agregações por município e ano. Em seguida, projetei os relatórios analíticos no Power BI com medidas DAX para cálculo de médias regionais e desvios.",
+      architecture: "Scripts em Python integrados a rotinas agendadas de ETL, modelagem tabular para cruzamento temporal (2023 vs. 2024) e integração aos visuais do Portal do Cidadão.",
+      results: "Disponibilização pública dos indicadores de meio ambiente dos 246 municípios goianos, permitindo aos cidadãos e ao corpo técnico do tribunal comparar desempenhos municipais com a média estadual."
+    }
+  },
+  {
+    id: "tcmgo-ner-validation",
+    title: "TCM-GO: Automação de Validação de API de NER e Reconciliação SQL",
+    context: "Tribunal de Contas dos Municípios de Goiás | Auditoria de Dados",
+    summary: "Automação em Python com processamento concorrente para validação da API de Reconhecimento de Entidades Nomeadas (NER) aplicada a extratos bancários e documentos contábeis públicos. Reconciliação de payloads JSON contra consultas SQL em bases orçamentárias.",
+    tools: "Python (Requests, Pandas), SQL, JSON, Multithreading",
+    demoUrl: null,
+    demoLabel: null,
+    githubUrl: null,
+    images: [],
+    caseStudy: {
+      problem: "A conferência manual das entidades extraídas por inteligência artificial (nomes, bancos, agências, contas, CPFs e valores) demandava centenas de horas da equipe de auditoria frente ao volume contínuo de envios municipais.",
+      solution: "Construí uma rotina automatizada em Python com processamento paralelo que consome a API de NER, executa consultas SQL otimizadas nas bases orçamentárias e contábeis do tribunal e confronta campo a campo cada extração contra os registros oficiais.",
+      architecture: "Arquitetura concorrente em Python com controle de requisições, tratamento de exceções, consultas relacionais com leitura não bloqueante (nolock) e geração de arquivos CSV e JSON com divergências identificadas.",
+      results: "Redução do ciclo de homologação da API de inteligência artificial do tribunal, apontando automaticamente inconsistências de extração e divergências cadastrais."
+    }
+  },
+  {
+    id: "power-bi-comercial",
+    title: "Dashboard de Performance Comercial e Funil de Vendas",
+    context: "Projeto Analítico de Vendas",
+    summary: "Relatório executivo no Power BI para acompanhamento do ciclo de vendas e retorno por canal de aquisição. Apresenta cálculo de CAC, ticket médio, taxa de conversão e faturamento por canal de mídia.",
+    tools: "Power BI, DAX, Modelagem Dimensional (Star Schema)",
+    demoUrl: "https://app.powerbi.com/groups/me/reports/100b5f1f-85d5-4f2d-b082-837165f1cb32/1e83521174a2c02425b5?experience=power-bi",
+    demoLabel: "Abrir no Power BI Service (requer acesso institucional)",
+    githubUrl: null,
+    images: [
+      {
+        url: "/dashboards/dashboard-comercial-funil.png",
+        caption: "Dashboard Comercial no Power BI: KPIs de CAC (R$ 612), Ticket Médio (R$ 14,96 Mil), Conversão (8%), Funil de Vendas e Faturamento por Canal."
+      }
+    ],
+    caseStudy: {
+      problem: "Dificuldade na visualização clara das etapas do funil de vendas (lead até fechamento) e na identificação de quais canais de aquisição geravam maior retorno sobre investimento.",
+      solution: "Estruturei os dados em modelo dimensional (Star Schema) e elaborei fórmulas DAX para cálculo de CAC médio, ticket médio ponderado, taxa de conversão do funil e distribuição percentual de receita por canal de aquisição.",
+      architecture: "Modelo estrela com tabela fato de vendas conectada a dimensões de clientes, canais e datas. Layout com cartões de KPIs executivos e gráficos de barras com ordenação analítica.",
+      results: "Visibilidade imediata das taxas de perda entre proposta e cliente (conversão final de 23,1% sobre oportunidades) e identificação do canal de indicação com melhor retorno proporcional."
+    }
+  },
+  {
+    id: "cripto-emotion-lens",
+    title: "Cripto EmotionLens: Telemetria de Séries Temporais",
+    context: "Pesquisa Aplicada em Dados",
+    summary: "Processamento analítico de dados temporais de sinais biométricos coletados em tempo real. Implementação de filtros estatísticos de suavização por média móvel centrada e análise de dispersão.",
+    tools: "Python, Pandas, NumPy, Estatística Descritiva",
+    demoUrl: null,
+    demoLabel: null,
+    githubUrl: "https://github.com/cezarbtw",
+    images: [],
+    caseStudy: {
+      problem: "Sinais biométricos captados em vídeo apresentam alta variabilidade segundo a segundo, gerando ruído de transição que prejudica a interpretação estatística contínua.",
+      solution: "Apliquei filtros de média móvel centrada sobre janelas temporais de quadros consecutivos para atenuar variações bruscas, normalização estatística e tabulação estruturada das probabilidades por segundo.",
+      architecture: "Estruturação de dados com Pandas e NumPy, cálculo de variância e testes empíricos de tempo de resposta.",
+      results: "Séries temporais estabilizadas com redução de ruídos de transição, facilitando a geração de gráficos de tendência ao longo de gravações contínuas."
+    }
+  },
+  {
+    id: "detector-rachaduras",
+    title: "Detecção e Análise de Métricas Estruturais com YOLOv8",
+    context: "Visão Computacional Aplicada",
+    summary: "Treinamento e validação de modelo YOLOv8 para identificação de patologias em imagens de inspeção civil, com extração de métricas de precisão (mAP), sensibilidade e estimativa dimensional.",
+    tools: "Python, YOLOv8, OpenCV, Estatística",
+    demoUrl: null,
+    demoLabel: null,
+    githubUrl: "https://github.com/cezarbtw/Detector-de-Rachaduras",
+    images: [],
+    caseStudy: {
+      problem: "A avaliação puramente qualitativa de imagens de inspeção estrutural dificulta o acompanhamento histórico de danos e o cálculo de índices de criticidade.",
+      solution: "Treinei um modelo de detecção de objetos com validação cruzada de métricas estatísticas (Precision, Recall e mAP50-95), acoplado a rotinas de processamento de imagem em OpenCV para estimativa de comprimento e área dos defeitos.",
+      architecture: "Pipeline de preparação de dados com anotação controlada, treinamento com curvas de perda monitoradas e exportação dos resultados em matrizes analíticas.",
+      results: "Estruturação de dados numéricos a partir de fotos de campo, permitindo ordenar relatórios técnicos por gravidade estimada."
+    }
+  },
+  {
+    id: "clinica-sql-analytics",
+    title: "Modelagem Relacional e Consultas Clínicas (MediClin)",
+    context: "Modelagem de Dados e SQL",
+    summary: "Modelagem relacional de banco de dados na terceira forma normal (3FN) e criação de consultas analíticas para acompanhamento de taxas operacionais de atendimento e produtividade médica.",
+    tools: "SQL, MySQL 8.0, Modelagem Relacional (3FN)",
+    demoUrl: null,
+    demoLabel: null,
+    githubUrl: "https://github.com/cezarbtw/Projeto-Medicos",
+    images: [],
+    caseStudy: {
+      problem: "Bases relacionais operacionais não otimizadas apresentavam lentidão ao gerar relatórios gerenciais de consultas, faltas e tempo médio de espera.",
+      solution: "Reformulei a modelagem na 3FN, criei índices compostos nas chaves estrangeiras e campos de filtro por data, e estruturei views com consultas agregadas utilizando subqueries e agrupamentos.",
+      architecture: "Banco de dados MySQL 8.0, diagramação entidade-relacionamento e consultas estruturadas para relatórios operacionais sem lock de tabelas transacionais.",
+      results: "Redução no tempo de resposta das consultas analíticas e organização normalizada para relatórios de gestão operacional."
+    }
+  }
+];
+
+export const experiencesData = [
+  {
+    period: "2024 — Presente",
+    role: "Analista de Dados (Projeto Portal do Cidadão & Auditoria de IA)",
+    organization: "Tribunal de Contas dos Municípios de Goiás (TCM-GO)",
+    deliverables: [
+      "Desenvolvi esteiras ETL em Python (Pandas) e SQL para saneamento de dados orçamentários dos 246 municípios de Goiás.",
+      "Construí os relatórios analíticos no Power BI para a aba Meio Ambiente do Portal do Cidadão do TCM-GO.",
+      "Elaborei rotinas automatizadas em Python com execução concorrente para validação e auditoria da API de NER contra consultas SQL em bases orçamentárias e contábeis."
+    ]
+  },
+  {
+    period: "2023 — Presente",
+    role: "Pesquisador e Desenvolvedor em Projetos de Dados",
+    organization: "Projetos Analíticos e Repositórios Técnicos",
+    deliverables: [
+      "Desenvolvimento de relatórios executivos no Microsoft Power BI com modelagem dimensional (Star Schema) e medidas DAX.",
+      "Modelagem e análise estatística de séries temporais de dados biométricos em Python.",
+      "Estruturação de bancos de dados relacionais normalizados e consultas analíticas avançadas em SQL."
+    ]
+  }
+];
