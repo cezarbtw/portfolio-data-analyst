@@ -71,6 +71,16 @@
     line-height: 1.08;
     letter-spacing: -0.01em;
   }
+
+  /* Família tipográfica como utilidade */
+  .font-display { font-family: 'Instrument Serif', Georgia, serif; }
+  .font-body    { font-family: 'Hanken Grotesk', -apple-system, sans-serif; }
+  .font-mono-custom { font-family: 'JetBrains Mono', ui-monospace, monospace; }
+
+  /* Divisores responsivos horizontais */
+  @media (min-width: 640px) {
+    .sm\:rule-r { border-right: 1px solid var(--rule); }
+  }
 }
 
 /* ═══════════════════════════════════════════════════════

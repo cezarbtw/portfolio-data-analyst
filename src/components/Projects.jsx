@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { featuredProject, otherProjects } from '../data/portfolioData';
 import {
   NerPipelineDiagram,
@@ -8,423 +8,347 @@ import {
 } from './TechnicalDiagrams';
 import ImageLightbox from './ImageLightbox';
 
+/* ─── Preview cursor fixo ─────────────────────────────── */
+function CursorPreview({ project, pos }) {
+  if (!project || !pos) return null;
+
+  const getVisual = (p) => {
+    if (p.visualType === 'image' && p.image) {
+      return (
+        <img
+          src={p.image.url}
+          alt={p.title}
+          className="w-full h-full object-cover"
+          decoding="async"
+        />
+      );
+    }
+    if (p.visualType === 'diagram-ner') return <NerPipelineDiagram compact />;
+    if (p.visualType === 'diagram-ts')  return <TimeSeriesDiagram compact />;
+    if (p.visualType === 'diagram-yolo') return <YoloInspectionDiagram compact />;
+    if (p.visualType === 'diagram-er')  return <RelationalSchemaDiagram compact />;
+    return null;
+  };
+
+  const visual = getVisual(project);
+  if (!visual) return null;
+
+  return (
+    <div
+      className="project-cursor-preview visible"
+      style={{
+        left: pos.x,
+        top: pos.y,
+        width: 220,
+        height: 140,
+        overflow: 'hidden',
+        border: '1px solid var(--rule)',
+        background: 'var(--canvas)',
+      }}
+      aria-hidden="true"
+    >
+      {visual}
+    </div>
+  );
+}
+
+/* ─── Linha de projeto (Tier 2) ───────────────────────── */
+function ProjectRow({ project, onToggle, isOpen, setLightboxImage, onMouseEnter, onMouseLeave }) {
+  const getVisual = () => {
+    if (project.visualType === 'image' && project.image) {
+      return (
+        <div
+          className="relative group cursor-zoom-in"
+          onClick={() => setLightboxImage({ url: project.image.url, title: project.title, caption: project.image.caption })}
+        >
+          <img
+            src={project.image.url}
+            alt={project.title}
+            className="w-full h-auto object-cover"
+            style={{ border: '1px solid var(--rule)' }}
+            decoding="async"
+          />
+          {project.image.caption && (
+            <p className="mt-1.5 text-[11px] font-mono text-[var(--muted)]">{project.image.caption}</p>
+          )}
+        </div>
+      );
+    }
+    if (project.visualType === 'diagram-ner') return <NerPipelineDiagram />;
+    if (project.visualType === 'diagram-ts')  return <TimeSeriesDiagram />;
+    if (project.visualType === 'diagram-yolo') return <YoloInspectionDiagram />;
+    if (project.visualType === 'diagram-er')  return <RelationalSchemaDiagram />;
+    return null;
+  };
+
+  return (
+    <article
+      className="rule-x py-8 group"
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+    >
+      {/* Linha do projeto */}
+      <div className="flex items-baseline gap-4 cursor-pointer" onClick={onToggle}>
+        <span className="font-mono text-[13px] text-[var(--muted)] shrink-0 group-hover:text-[var(--strong)] transition-colors w-6">
+          {project.number}
+        </span>
+        <div className="flex-1 min-w-0">
+          <h3 className="text-display-md font-display text-[var(--ink)] group-hover:text-[var(--strong)] transition-colors leading-tight">
+            {project.title}
+          </h3>
+          <div className="mt-1 flex flex-wrap items-center gap-x-4 gap-y-1">
+            <span className="font-mono text-[11px] text-[var(--muted)] uppercase tracking-wider">
+              {project.context}
+            </span>
+            <span className="font-mono text-[11px] text-[var(--muted)]">
+              {project.tools}
+            </span>
+          </div>
+        </div>
+        <span className="font-mono text-[11px] text-[var(--muted)] shrink-0 ml-auto group-hover:text-[var(--strong)] transition-colors">
+          {isOpen ? '−' : '+'}
+        </span>
+      </div>
+
+      {/* Conteúdo expandido */}
+      {isOpen && (
+        <div className="mt-6 ml-10 space-y-6">
+          <p className="text-[16px] leading-[1.7] font-body text-[var(--ink)]">
+            {project.summary}
+          </p>
+
+          {getVisual() && (
+            <div className="mt-4">{getVisual()}</div>
+          )}
+
+          {/* Estudo de caso */}
+          {project.caseStudy && (
+            <div className="space-y-4 pl-4" style={{ borderLeft: '2px solid var(--strong)' }}>
+              {[
+                { label: 'Problema', text: project.caseStudy.problem },
+                { label: 'Solução', text: project.caseStudy.solution },
+                { label: 'Arquitetura', text: project.caseStudy.architecture },
+                { label: 'Resultado', text: project.caseStudy.results },
+              ].map(({ label, text }) => (
+                <div key={label}>
+                  <h5 className="font-mono text-[10px] uppercase tracking-widest text-[var(--strong)] mb-1">
+                    {label}
+                  </h5>
+                  <p className="text-[15px] leading-[1.65] font-body text-[var(--ink)]">{text}</p>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {/* Links */}
+          <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm">
+            {project.githubUrl && (
+              <a href={project.githubUrl} target="_blank" rel="noreferrer"
+                 className="link-underline font-body font-medium text-[var(--ink)] inline-flex items-center gap-1">
+                Código no GitHub <span aria-hidden="true" className="text-[var(--muted)]">↗</span>
+              </a>
+            )}
+            {project.demoUrl && (
+              <a href={project.demoUrl} target="_blank" rel="noreferrer"
+                 className="link-underline font-body font-medium text-[var(--ink)] inline-flex items-center gap-1">
+                {project.demoLabel || 'Ver projeto'} <span aria-hidden="true" className="text-[var(--muted)]">↗</span>
+              </a>
+            )}
+          </div>
+        </div>
+      )}
+    </article>
+  );
+}
+
+/* ─── Componente principal ────────────────────────────── */
 export default function Projects() {
   const [activeScreenIndex, setActiveScreenIndex] = useState(0);
   const [lightboxImage, setLightboxImage] = useState(null);
-  const [openCaseStudies, setOpenCaseStudies] = useState({});
+  const [openProjects, setOpenProjects] = useState({});
+  const [cursorPos, setCursorPos] = useState(null);
+  const [hoveredProject, setHoveredProject] = useState(null);
 
-  const toggleCaseStudy = (id) => {
-    setOpenCaseStudies((prev) => ({
-      ...prev,
-      [id]: !prev[id],
-    }));
-  };
+  const toggleProject = (id) =>
+    setOpenProjects((prev) => ({ ...prev, [id]: !prev[id] }));
+
+  // Cursor preview — só desktop
+  const handleMouseMove = useCallback((e) => {
+    setCursorPos({ x: e.clientX, y: e.clientY });
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, [handleMouseMove]);
 
   const currentScreen = featuredProject.screens[activeScreenIndex];
 
   return (
     <section
       id="projetos"
-      className="py-16 sm:py-24 border-b border-[#E5E3DD] dark:border-[#282826] bg-[#F3F1EB] dark:bg-[#1A1918] transition-colors"
+      className="rule-b"
+      style={{ padding: '5rem 0' }}
     >
-      {/* Lightbox Modal */}
-      <ImageLightbox
-        image={lightboxImage}
-        onClose={() => setLightboxImage(null)}
-      />
+      <ImageLightbox image={lightboxImage} onClose={() => setLightboxImage(null)} />
+      <CursorPreview project={hoveredProject} pos={cursorPos} />
 
-      {/* Section Header */}
-      <div className="mx-auto max-w-[760px] px-5 sm:px-6 mb-12">
-        <p className="text-xs font-mono uppercase tracking-wider text-[#1F4E5F] dark:text-[#6EA3B4] font-medium">
-          Portfólio Técnico
-        </p>
-        <h2 className="mt-1 text-2xl sm:text-3xl md:text-[34px] font-serif font-medium text-[#1C1C1A] dark:text-[#EAE8E3] leading-tight">
-          Projetos Selecionados
-        </h2>
-        <p className="mt-2 text-base text-[#444440] dark:text-[#A8A69E]">
-          Relatórios executivos no Power BI, esteiras ETL e reconciliação analítica no setor público e em projetos de engenharia de dados.
-        </p>
-      </div>
+      <div className="max-w-content mx-auto px-5 sm:px-8 lg:px-12">
 
-      {/* ========================================================
-          TIER 1: PROJETO PRINCIPAL (TCM-GO: PAINÉIS POWER BI)
-         ======================================================== */}
-      <article className="pb-16 sm:pb-20 border-b border-[#E5E3DD] dark:border-[#282826]">
-        {/* Tier 1 - Narrative Header */}
-        <div className="mx-auto max-w-[760px] px-5 sm:px-6">
-          <div className="flex items-baseline gap-3">
-            <span className="text-2xl sm:text-3xl font-mono font-medium text-[#1F4E5F] dark:text-[#6EA3B4]">
+        {/* Cabeçalho da seção */}
+        <div className="flex items-baseline gap-4 mb-12 rule-b pb-6">
+          <span className="font-mono text-[11px] text-[var(--muted)] uppercase tracking-widest">01</span>
+          <h2 className="text-display-md font-display text-[var(--ink)]">Projetos</h2>
+        </div>
+
+        {/* ════════════════════════════════════════════════════
+            TIER 1: TCM-GO — Projeto principal em destaque
+            ════════════════════════════════════════════════════ */}
+        <article className="rule-b pb-16 mb-16">
+          {/* Número + contexto */}
+          <div className="flex items-baseline gap-4 mb-4">
+            <span className="font-mono text-[clamp(2.5rem,6vw,5rem)] font-medium leading-none text-[var(--strong)]">
               {featuredProject.number}
             </span>
-            <span className="text-xs font-mono uppercase tracking-wider text-[#444440] dark:text-[#A8A69E]">
+            <span className="font-mono text-[11px] text-[var(--muted)] uppercase tracking-wider">
               {featuredProject.context}
             </span>
           </div>
 
-          <h3 className="mt-2 text-2xl sm:text-[30px] font-serif font-medium text-[#1C1C1A] dark:text-[#EAE8E3] leading-snug">
+          {/* Título display */}
+          <h3 className="text-display-lg font-display text-[var(--ink)] leading-tight mb-6">
             {featuredProject.title}
           </h3>
 
-          <p className="mt-4 text-[17px] leading-[1.68] text-[#1C1C1A] dark:text-[#EAE8E3]">
+          {/* Sumário */}
+          <p className="text-[16px] leading-[1.7] font-body text-[var(--ink)] max-w-[65ch] mb-4">
             {featuredProject.summary}
           </p>
-
-          <p className="mt-3 text-sm font-mono text-[#444440] dark:text-[#A8A69E]">
-            <span className="font-sans font-medium text-[#1C1C1A] dark:text-[#EAE8E3]">
-              Ferramentas:{' '}
-            </span>
+          <p className="font-mono text-[12px] text-[var(--muted)] mb-8">
             {featuredProject.tools}
           </p>
 
-          {/* Interactive Segmented Control: 5 Dashboard Screens */}
-          <div className="mt-8 pt-6 border-t border-[#E5E3DD] dark:border-[#282826]">
-            <div className="flex items-center justify-between flex-wrap gap-2 mb-3">
-              <span className="text-xs font-mono uppercase tracking-wider text-[#444440] dark:text-[#A8A69E]">
-                Telas do Painel ({activeScreenIndex + 1}/5):
-              </span>
-              <span className="text-xs font-mono text-[#1F4E5F] dark:text-[#6EA3B4]">
-                Clique nas abas para navegar pelas dimensões
-              </span>
-            </div>
-
-            <div
-              role="tablist"
-              aria-label="Navegação entre telas do painel Power BI"
-              className="flex flex-wrap gap-1.5 p-1 bg-[#EBE8E0] dark:bg-[#20201E] rounded-none border border-[#E5E3DD] dark:border-[#282826]"
-            >
-              {featuredProject.screens.map((screen, idx) => {
-                const isActive = activeScreenIndex === idx;
-                return (
-                  <button
-                    key={screen.id}
-                    type="button"
-                    role="tab"
-                    id={`tab-${screen.id}`}
-                    aria-selected={isActive}
-                    aria-controls={`panel-${screen.id}`}
-                    onClick={() => setActiveScreenIndex(idx)}
-                    className={`px-3 py-1.5 text-xs sm:text-[13px] font-sans transition-all duration-150 ${
-                      isActive
-                        ? 'bg-[#FAF9F6] dark:bg-[#141413] text-[#1C1C1A] dark:text-[#EAE8E3] font-medium shadow-sm border border-[#E5E3DD] dark:border-[#282826]'
-                        : 'text-[#444440] dark:text-[#A8A69E] hover:text-[#1C1C1A] dark:hover:text-[#EAE8E3] hover:bg-[#FAF9F6]/50 dark:hover:bg-[#141413]/50'
-                    }`}
-                  >
-                    {screen.tab}
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-
-        {/* Tier 1 - Visual Showcase: Full-width responsive container (up to 1040px) */}
-        <div className="mt-6 mx-auto max-w-[1040px] px-5 sm:px-6">
+          {/* Tabs segmentadas (fonte do corpo, legíveis) */}
           <div
-            id={`panel-${currentScreen.id}`}
-            role="tabpanel"
-            aria-labelledby={`tab-${currentScreen.id}`}
-            className="space-y-3"
+            role="tablist"
+            aria-label="Dimensões do painel Power BI"
+            className="flex flex-wrap gap-1.5 mb-5"
           >
-            {/* Analytical Context Callout */}
-            <div className="p-3 sm:p-4 bg-[#FAF9F6] dark:bg-[#141413] border border-[#E5E3DD] dark:border-[#282826] space-y-1.5">
-              <div className="text-xs font-mono text-[#1F4E5F] dark:text-[#6EA3B4] font-medium">
-                PERGUNTA ANALÍTICA RESPONDIDA:
-              </div>
-              <p className="text-sm sm:text-[15px] font-sans text-[#1C1C1A] dark:text-[#EAE8E3] leading-relaxed">
-                {currentScreen.question}
-              </p>
-              <div className="text-xs font-mono text-[#444440] dark:text-[#A8A69E] pt-1 border-t border-[#E5E3DD]/70 dark:border-[#282826]/70">
-                <span className="font-sans font-medium text-[#1C1C1A] dark:text-[#EAE8E3]">
-                  Indicadores:{' '}
-                </span>
-                {currentScreen.indicators}
-              </div>
-            </div>
+            {featuredProject.screens.map((screen, idx) => {
+              const isActive = activeScreenIndex === idx;
+              return (
+                <button
+                  key={screen.id}
+                  type="button"
+                  role="tab"
+                  aria-selected={isActive}
+                  onClick={() => setActiveScreenIndex(idx)}
+                  className="font-body text-[13px] px-3 py-1.5 transition-all"
+                  style={{
+                    border: '1px solid var(--rule)',
+                    background: isActive ? 'var(--strong)' : 'transparent',
+                    color: isActive ? '#fff' : 'var(--muted)',
+                    fontWeight: isActive ? '500' : '400',
+                  }}
+                >
+                  {screen.tab}
+                </button>
+              );
+            })}
+          </div>
 
-            {/* High-Resolution Dashboard Image with Zoom & Lightbox trigger */}
-            <div className="relative group border border-[#E5E3DD] dark:border-[#282826] bg-[#FFFFFF] dark:bg-[#1C1C1A] overflow-hidden">
-              <img
-                src={currentScreen.url}
-                alt={`${featuredProject.title} - ${currentScreen.title}`}
-                width={currentScreen.width}
-                height={currentScreen.height}
-                decoding="sync"
-                onClick={() =>
-                  setLightboxImage({
-                    url: currentScreen.url,
-                    title: currentScreen.title,
-                    indicators: currentScreen.indicators,
-                  })
-                }
-                className="w-full h-auto object-contain block cursor-zoom-in transition-transform duration-300 ease-out group-hover:scale-[1.015]"
-              />
+          {/* Pergunta analítica */}
+          <div
+            className="mb-4 p-4 font-body text-[15px] text-[var(--ink)] leading-relaxed"
+            style={{ borderLeft: '2px solid var(--strong)', background: 'rgba(217,65,30,0.04)' }}
+          >
+            <span className="font-mono text-[10px] text-[var(--strong)] uppercase tracking-widest block mb-1">
+              Pergunta analítica respondida
+            </span>
+            {currentScreen.question}
+          </div>
 
-              {/* Click to expand pill */}
+          {/* Imagem em largura total */}
+          <div
+            className="relative group cursor-zoom-in"
+            style={{ border: '1px solid var(--rule)' }}
+            onClick={() => setLightboxImage({ url: currentScreen.url, title: currentScreen.title, indicators: currentScreen.indicators })}
+          >
+            <img
+              src={currentScreen.url}
+              alt={`${featuredProject.title} – ${currentScreen.title}`}
+              width={currentScreen.width}
+              height={currentScreen.height}
+              className="w-full h-auto object-contain block"
+              decoding="sync"
+            />
+            <span className="absolute bottom-3 right-3 font-mono text-[11px] px-2 py-1 opacity-0 group-hover:opacity-100 transition-opacity"
+                  style={{ background: 'var(--ink)', color: 'var(--canvas)' }}>
+              Ampliar [↗]
+            </span>
+          </div>
+          <p className="mt-2 font-mono text-[11px] text-[var(--muted)]">
+            Indicadores: {currentScreen.indicators}
+          </p>
+
+          {/* Estudo de caso em acordeão */}
+          {featuredProject.caseStudy && (
+            <div className="mt-8">
               <button
                 type="button"
-                onClick={() =>
-                  setLightboxImage({
-                    url: currentScreen.url,
-                    title: currentScreen.title,
-                    indicators: currentScreen.indicators,
-                  })
-                }
-                className="absolute bottom-3 right-3 text-xs font-mono bg-[#1C1C1A]/85 text-[#FAF9F6] dark:bg-[#FAF9F6]/90 dark:text-[#1C1C1A] px-2.5 py-1 backdrop-blur-sm opacity-90 group-hover:opacity-100 transition-opacity"
+                onClick={() => toggleProject(featuredProject.id)}
+                className="font-body text-[14px] font-medium text-[var(--ink)] link-underline"
               >
-                Ampliar em alta resolução [↗]
+                {openProjects[featuredProject.id] ? '− Recolher estudo de caso' : '+ Estudo de caso completo'}
               </button>
+              {openProjects[featuredProject.id] && (
+                <div className="mt-6 space-y-4 pl-4" style={{ borderLeft: '2px solid var(--strong)' }}>
+                  {[
+                    { label: 'Problema', text: featuredProject.caseStudy.problem },
+                    { label: 'Solução', text: featuredProject.caseStudy.solution },
+                    { label: 'Arquitetura', text: featuredProject.caseStudy.architecture },
+                    { label: 'Resultado', text: featuredProject.caseStudy.results },
+                  ].map(({ label, text }) => (
+                    <div key={label}>
+                      <h5 className="font-mono text-[10px] uppercase tracking-widest text-[var(--strong)] mb-1">
+                        {label}
+                      </h5>
+                      <p className="text-[15px] leading-[1.65] font-body text-[var(--ink)]">{text}</p>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
-          </div>
-        </div>
+          )}
 
-        {/* Tier 1 - Links & Expandable Case Study (~760px) */}
-        <div className="mt-8 mx-auto max-w-[760px] px-5 sm:px-6 space-y-5">
-          <div className="flex flex-wrap items-center gap-x-6 gap-y-3 text-sm">
+          {/* Link portal */}
+          <div className="mt-6">
             <a
               href={featuredProject.demoUrl}
               target="_blank"
               rel="noreferrer"
-              className="editorial-link external-link text-[#1F4E5F] dark:text-[#6EA3B4] font-medium inline-flex items-center gap-1"
+              className="link-underline font-body font-medium text-[var(--ink)] inline-flex items-center gap-1 text-sm"
             >
-              <span>{featuredProject.demoLabel}</span>
-              <span className="arrow-icon" aria-hidden="true">↗</span>
+              {featuredProject.demoLabel}
+              <span aria-hidden="true" className="text-[var(--muted)]">↗</span>
             </a>
-
-            <button
-              type="button"
-              onClick={() => toggleCaseStudy(featuredProject.id)}
-              className="editorial-link text-[#1C1C1A] dark:text-[#EAE8E3] font-medium inline-flex items-center gap-1.5"
-            >
-              <span>
-                {openCaseStudies[featuredProject.id]
-                  ? '− Ocultar estudo de caso'
-                  : '+ Estudo de caso detalhado'}
-              </span>
-            </button>
           </div>
+        </article>
 
-          {openCaseStudies[featuredProject.id] && (
-            <div className="mt-5 space-y-5 text-[15px] leading-[1.68] pl-4 sm:pl-5 border-l-2 border-[#1F4E5F] dark:border-[#6EA3B4] bg-[#FAF9F6] dark:bg-[#141413] p-4 sm:p-5 border border-[#E5E3DD] dark:border-[#282826]">
-              <div>
-                <h4 className="font-mono text-xs uppercase tracking-wider text-[#1F4E5F] dark:text-[#6EA3B4] mb-1 font-semibold">
-                  Problema de Negócio & Contexto
-                </h4>
-                <p className="text-[#1C1C1A] dark:text-[#EAE8E3]">
-                  {featuredProject.caseStudy.problem}
-                </p>
-              </div>
-
-              <div>
-                <h4 className="font-mono text-xs uppercase tracking-wider text-[#1F4E5F] dark:text-[#6EA3B4] mb-1 font-semibold">
-                  Solução Implementada
-                </h4>
-                <p className="text-[#1C1C1A] dark:text-[#EAE8E3]">
-                  {featuredProject.caseStudy.solution}
-                </p>
-              </div>
-
-              <div>
-                <h4 className="font-mono text-xs uppercase tracking-wider text-[#1F4E5F] dark:text-[#6EA3B4] mb-1 font-semibold">
-                  Arquitetura de Dados & Engenharia
-                </h4>
-                <p className="text-[#1C1C1A] dark:text-[#EAE8E3]">
-                  {featuredProject.caseStudy.architecture}
-                </p>
-              </div>
-
-              <div>
-                <h4 className="font-mono text-xs uppercase tracking-wider text-[#1F4E5F] dark:text-[#6EA3B4] mb-1 font-semibold">
-                  Resultados & Impacto
-                </h4>
-                <p className="text-[#1C1C1A] dark:text-[#EAE8E3]">
-                  {featuredProject.caseStudy.results}
-                </p>
-              </div>
-            </div>
-          )}
-        </div>
-      </article>
-
-      {/* ========================================================
-          TIER 2: OUTROS PROJETOS (COMPACTO E UNIFORME: 02 - 06)
-         ======================================================== */}
-      <div className="pt-12 sm:pt-16">
-        <div className="mx-auto max-w-[760px] px-5 sm:px-6 mb-8">
-          <h3 className="text-xs font-mono uppercase tracking-wider text-[#444440] dark:text-[#A8A69E]">
-            Outros Projetos de Engenharia & Análise de Dados
-          </h3>
-        </div>
-
-        <div className="space-y-16">
-          {otherProjects.map((project, idx) => (
-            <article
+        {/* ════════════════════════════════════════════════════
+            TIER 2: Outros projetos — lista tipográfica
+            ════════════════════════════════════════════════════ */}
+        <div>
+          {otherProjects.map((project) => (
+            <ProjectRow
               key={project.id}
-              className={`pb-14 ${
-                idx < otherProjects.length - 1
-                  ? 'border-b border-[#E5E3DD] dark:border-[#282826]'
-                  : ''
-              }`}
-            >
-              <div className="mx-auto max-w-[760px] px-5 sm:px-6">
-                {/* Header with large editorial number */}
-                <div className="flex items-baseline gap-3">
-                  <span className="text-2xl sm:text-3xl font-mono font-medium text-[#1F4E5F] dark:text-[#6EA3B4]">
-                    {project.number}
-                  </span>
-                  <span className="text-xs font-mono uppercase tracking-wider text-[#444440] dark:text-[#A8A69E]">
-                    {project.context}
-                  </span>
-                </div>
-
-                <h4 className="mt-1 text-xl sm:text-2xl font-serif font-medium text-[#1C1C1A] dark:text-[#EAE8E3] leading-snug">
-                  {project.title}
-                </h4>
-
-                <p className="mt-3 text-[16px] leading-[1.65] text-[#1C1C1A] dark:text-[#EAE8E3]">
-                  {project.summary}
-                </p>
-
-                <p className="mt-2 text-sm font-mono text-[#444440] dark:text-[#A8A69E]">
-                  <span className="font-sans font-medium text-[#1C1C1A] dark:text-[#EAE8E3]">
-                    Ferramentas:{' '}
-                  </span>
-                  {project.tools}
-                </p>
-
-                {/* Technical Visual / Diagram / Real Screenshot */}
-                <div className="mt-6">
-                  {project.visualType === 'diagram-ner' && <NerPipelineDiagram />}
-
-                  {project.visualType === 'diagram-timeseries' && (
-                    <TimeSeriesDiagram />
-                  )}
-
-                  {project.visualType === 'diagram-yolo' && (
-                    <YoloInspectionDiagram />
-                  )}
-
-                  {project.visualType === 'diagram-er' && (
-                    <RelationalSchemaDiagram />
-                  )}
-
-                  {project.visualType === 'image' && project.image && (
-                    <div className="border border-[#E5E3DD] dark:border-[#282826] bg-[#FFFFFF] dark:bg-[#1C1C1A] overflow-hidden group">
-                      <img
-                        src={project.image.url}
-                        alt={project.image.caption}
-                        width={project.image.width}
-                        height={project.image.height}
-                        decoding="sync"
-                        onClick={() =>
-                          setLightboxImage({
-                            url: project.image.url,
-                            caption: project.image.caption,
-                          })
-                        }
-                        className="w-full h-auto object-contain block cursor-zoom-in transition-transform duration-300 ease-out group-hover:scale-[1.015]"
-                      />
-                      <div className="p-2 sm:p-2.5 border-t border-[#E5E3DD] dark:border-[#282826] bg-[#FAF9F6] dark:bg-[#141413] flex items-center justify-between">
-                        <span className="text-xs font-mono text-[#444440] dark:text-[#A8A69E]">
-                          {project.image.caption}
-                        </span>
-                        <button
-                          type="button"
-                          onClick={() =>
-                            setLightboxImage({
-                              url: project.image.url,
-                              caption: project.image.caption,
-                            })
-                          }
-                          className="text-xs font-mono text-[#1F4E5F] dark:text-[#6EA3B4] hover:underline"
-                        >
-                          Ampliar [↗]
-                        </button>
-                      </div>
-                    </div>
-                  )}
-                </div>
-
-                {/* Standardized Links Row */}
-                <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm">
-                  {project.caseStudy && (
-                    <button
-                      type="button"
-                      onClick={() => toggleCaseStudy(project.id)}
-                      className="editorial-link text-[#1C1C1A] dark:text-[#EAE8E3] font-medium"
-                    >
-                      {openCaseStudies[project.id]
-                        ? '− Ocultar estudo de caso'
-                        : '+ Estudo de caso'}
-                    </button>
-                  )}
-
-                  {project.githubUrl && (
-                    <a
-                      href={project.githubUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="editorial-link external-link text-[#1F4E5F] dark:text-[#6EA3B4] font-medium inline-flex items-center gap-1"
-                    >
-                      <span>Código no GitHub</span>
-                      <span className="arrow-icon" aria-hidden="true">↗</span>
-                    </a>
-                  )}
-
-                  {project.demoUrl && (
-                    <a
-                      href={project.demoUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="editorial-link external-link text-[#1F4E5F] dark:text-[#6EA3B4] font-medium inline-flex items-center gap-1"
-                    >
-                      <span>{project.demoLabel || 'Acessar projeto'}</span>
-                      <span className="arrow-icon" aria-hidden="true">↗</span>
-                    </a>
-                  )}
-                </div>
-
-                {/* Expandable Case Study for Tier 2 */}
-                {openCaseStudies[project.id] && project.caseStudy && (
-                  <div className="mt-5 space-y-4 text-[15px] leading-[1.65] pl-4 border-l-2 border-[#1F4E5F] dark:border-[#6EA3B4] bg-[#FAF9F6] dark:bg-[#141413] p-4 border border-[#E5E3DD] dark:border-[#282826]">
-                    <div>
-                      <h5 className="font-mono text-xs uppercase tracking-wider text-[#1F4E5F] dark:text-[#6EA3B4] mb-1 font-semibold">
-                        Problema
-                      </h5>
-                      <p className="text-[#1C1C1A] dark:text-[#EAE8E3]">
-                        {project.caseStudy.problem}
-                      </p>
-                    </div>
-
-                    <div>
-                      <h5 className="font-mono text-xs uppercase tracking-wider text-[#1F4E5F] dark:text-[#6EA3B4] mb-1 font-semibold">
-                        Solução
-                      </h5>
-                      <p className="text-[#1C1C1A] dark:text-[#EAE8E3]">
-                        {project.caseStudy.solution}
-                      </p>
-                    </div>
-
-                    <div>
-                      <h5 className="font-mono text-xs uppercase tracking-wider text-[#1F4E5F] dark:text-[#6EA3B4] mb-1 font-semibold">
-                        Arquitetura & Engenharia
-                      </h5>
-                      <p className="text-[#1C1C1A] dark:text-[#EAE8E3]">
-                        {project.caseStudy.architecture}
-                      </p>
-                    </div>
-
-                    <div>
-                      <h5 className="font-mono text-xs uppercase tracking-wider text-[#1F4E5F] dark:text-[#6EA3B4] mb-1 font-semibold">
-                        Resultados
-                      </h5>
-                      <p className="text-[#1C1C1A] dark:text-[#EAE8E3]">
-                        {project.caseStudy.results}
-                      </p>
-                    </div>
-                  </div>
-                )}
-              </div>
-            </article>
+              project={project}
+              isOpen={!!openProjects[project.id]}
+              onToggle={() => toggleProject(project.id)}
+              setLightboxImage={setLightboxImage}
+              onMouseEnter={() => setHoveredProject(project)}
+              onMouseLeave={() => setHoveredProject(null)}
+            />
           ))}
         </div>
       </div>
