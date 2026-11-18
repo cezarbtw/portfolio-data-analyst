@@ -4,29 +4,43 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
-  darkMode: 'class',
+  darkMode: 'media',
   theme: {
     extend: {
       colors: {
-        dev: {
-          50: '#f5f3ff',
-          100: '#ede9fe',
-          500: '#8b5cf6',
-          600: '#7c3aed',
-          700: '#6d28d9',
+        paper: {
+          light: '#FAF9F6',
+          dark: '#141413',
         },
-        data: {
-          50: '#ecfdf5',
-          100: '#d1fae5',
-          500: '#10b981',
-          600: '#059669',
-          700: '#047857',
-        }
+        ink: {
+          light: '#1C1C1A',
+          dark: '#EAE8E3',
+        },
+        muted: {
+          light: '#6B6B66',
+          dark: '#96948E',
+        },
+        line: {
+          light: '#E5E3DD',
+          dark: '#282826',
+        },
+        accent: {
+          light: '#1F4E5F',
+          dark: '#6EA3B4',
+        },
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
-        mono: ['Fira Code', 'JetBrains Mono', 'ui-monospace', 'monospace'],
-      }
+        serif: ['Newsreader', 'Charter', 'Georgia', 'serif'],
+        sans: ['"IBM Plex Sans"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+        mono: ['"IBM Plex Mono"', 'ui-monospace', 'monospace'],
+      },
+      maxWidth: {
+        prose: '720px',
+        showcase: '1040px',
+      },
+      lineHeight: {
+        relaxed: '1.65',
+      },
     },
   },
   plugins: [],
