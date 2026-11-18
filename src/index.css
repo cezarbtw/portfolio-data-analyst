@@ -6,10 +6,72 @@
   html {
     scroll-behavior: smooth;
   }
+
+  section {
+    scroll-margin-top: 4.5rem;
+  }
   
-  /* Accessible focus indicators */
   :focus-visible {
     outline: 2px solid #1F4E5F;
     outline-offset: 2px;
+  }
+}
+
+/* Subtle editorial underline on hover */
+.editorial-link {
+  position: relative;
+  text-decoration: none;
+}
+.editorial-link::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: currentColor;
+  transition: width 0.25s ease-out;
+}
+.editorial-link:hover::after {
+  width: 100%;
+}
+
+/* Subtle staggered entrance for hero */
+@keyframes heroFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-fade-in-1 {
+  animation: heroFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.05s both;
+}
+.hero-fade-in-2 {
+  animation: heroFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.12s both;
+}
+.hero-fade-in-3 {
+  animation: heroFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.18s both;
+}
+.hero-fade-in-4 {
+  animation: heroFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.24s both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .hero-fade-in-1,
+  .hero-fade-in-2,
+  .hero-fade-in-3,
+  .hero-fade-in-4 {
+    animation: none !important;
+  }
+  .editorial-link::after {
+    transition: none !important;
   }
 }

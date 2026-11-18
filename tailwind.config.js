@@ -10,15 +10,17 @@ export default {
       colors: {
         paper: {
           light: '#FAF9F6',
+          alt: '#F3F1EB',
           dark: '#141413',
+          darkAlt: '#1A1918',
         },
         ink: {
           light: '#1C1C1A',
           dark: '#EAE8E3',
         },
         muted: {
-          light: '#6B6B66',
-          dark: '#96948E',
+          light: '#444440',
+          dark: '#A8A69E',
         },
         line: {
           light: '#E5E3DD',
@@ -35,8 +37,8 @@ export default {
         mono: ['"IBM Plex Mono"', 'ui-monospace', 'monospace'],
       },
       maxWidth: {
-        prose: '720px',
-        showcase: '1040px',
+        container: '760px',
+        showcase: '980px',
       },
       lineHeight: {
         relaxed: '1.65',
