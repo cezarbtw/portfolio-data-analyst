@@ -1,32 +1,28 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
-import { municipios, MAPA_WIDTH, MAPA_HEIGHT } from '../data/goiasMapPaths';
+import goiasData from '../assets/goias.svg.json';
 
 export default function GoiasMap() {
   const svgRef = useRef(null);
   const [hovered, setHovered] = useState(null); // { name, x, y }
-  const [animated, setAnimated] = useState(false);
 
-  // Animação de "acendimento" ao montar: onda geográfica sutil
+  // Onda de "acender" ao carregar (≤1,2s, uma vez) — respeita prefers-reduced-motion
   useEffect(() => {
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduced) { setAnimated(true); return; }
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
 
-    // Ordenar municípios por latitude/longitude aproximada para onda coerente
-    const sorted = [...municipios];
-    const total = sorted.length;
-    const duration = 1000;
+    const municipios = goiasData.municipios;
+    const total = municipios.length;
+    const totalDuration = 1000; // 1s (≤1,2s)
 
-    sorted.forEach((m, i) => {
-      const delay = (i / total) * duration;
+    municipios.forEach((m, idx) => {
+      const delay = (idx / total) * totalDuration;
       setTimeout(() => {
         const el = svgRef.current?.querySelector(`[data-id="${m.id}"]`);
         if (!el) return;
-        el.classList.add('aceso');
-        setTimeout(() => el.classList.remove('aceso'), 250);
+        el.classList.add('mapa-aceso');
+        setTimeout(() => el.classList.remove('mapa-aceso'), 240);
       }, delay);
     });
-
-    setTimeout(() => setAnimated(true), duration + 300);
   }, []);
 
   const handleMouseEnter = useCallback((e, name) => {
@@ -44,21 +40,21 @@ export default function GoiasMap() {
   const handleMouseLeave = useCallback(() => setHovered(null), []);
 
   return (
-    <div className="relative w-full max-w-[420px] select-none">
+    <div className="relative w-full max-w-[440px] select-none">
       <svg
         ref={svgRef}
-        viewBox={`0 0 ${MAPA_WIDTH} ${MAPA_HEIGHT}`}
-        className="w-full h-auto"
+        viewBox={`0 0 ${goiasData.width} ${goiasData.height}`}
+        className="w-full h-auto text-[var(--ink)]"
         aria-label="Mapa de Goiás com 246 municípios"
         role="img"
       >
         <g>
-          {municipios.map((m) => (
+          {goiasData.municipios.map((m) => (
             <path
               key={m.id}
               data-id={m.id}
               d={m.d}
-              className="mapa-municipio focus:fill-[var(--strong)] outline-none"
+              className="mapa-municipio focus:fill-[var(--accent)] outline-none"
               tabIndex={0}
               aria-label={m.name}
               onMouseEnter={(e) => handleMouseEnter(e, m.name)}
@@ -70,10 +66,10 @@ export default function GoiasMap() {
         </g>
       </svg>
 
-      {/* Tooltip mono com nome do município */}
+      {/* Rótulo mono com o nome do município no hover */}
       {hovered && (
         <div
-          className="absolute pointer-events-none font-mono text-[11px] font-medium text-[var(--ink)] bg-[var(--canvas)] border border-[var(--rule)] px-2 py-0.5 whitespace-nowrap z-20 shadow-sm leading-tight"
+          className="absolute pointer-events-none font-mono text-[12px] uppercase tracking-[0.08em] font-medium text-[var(--ink)] bg-[var(--bg)] border border-[var(--line)] px-2.5 py-1 whitespace-nowrap z-20 leading-tight"
           style={{
             left: hovered.x,
             top: hovered.y,
@@ -85,9 +81,9 @@ export default function GoiasMap() {
         </div>
       )}
 
-      {/* Legenda */}
-      <p className="mt-2 text-[11px] font-mono text-[var(--muted)] text-center">
-        246 municípios · Goiás, Brasil
+      {/* Legenda mono discreta */}
+      <p className="mt-3 text-center font-mono text-[12px] uppercase tracking-[0.08em] text-[var(--muted)]">
+        {goiasData.total} municípios · Goiás, Brasil
       </p>
     </div>
   );

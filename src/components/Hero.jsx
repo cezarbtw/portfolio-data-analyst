@@ -1,195 +1,138 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { personalInfo, heroData } from '../data/portfolioData';
+import React, { useEffect, useState } from 'react';
 import GoiasMap from './GoiasMap';
 
-function useCountUp(target, duration = 1200, started = false) {
-  const [count, setCount] = useState(target);
-  useEffect(() => {
-    if (!started) return;
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduced) { setCount(target); return; }
-    let start = null;
-    const step = (ts) => {
-      if (!start) start = ts;
-      const pct = Math.min((ts - start) / duration, 1);
-      // ease out cubic
-      const eased = 1 - Math.pow(1 - pct, 3);
-      setCount(Math.round(eased * target));
-      if (pct < 1) requestAnimationFrame(step);
-    };
-    requestAnimationFrame(step);
-  }, [started, target, duration]);
-  return count;
-}
-
 export default function Hero() {
-  const factsRef = useRef(null);
-  const [factsVisible, setFactsVisible] = useState(true);
-  const [linesRevealed, setLinesRevealed] = useState(false);
-  const count246 = useCountUp(246, 1200, factsVisible);
+  const [revealed, setRevealed] = useState(false);
 
-  // Revelar linhas do hero
   useEffect(() => {
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduced) { setLinesRevealed(true); return; }
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) {
+      setRevealed(true);
+      return;
+    }
     const timer = setTimeout(() => {
-      setLinesRevealed(true);
-    }, 80);
+      setRevealed(true);
+    }, 60);
     return () => clearTimeout(timer);
   }, []);
 
-  // IntersectionObserver para contagem dos fatos
-  useEffect(() => {
-    const el = factsRef.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) { setFactsVisible(true); obs.disconnect(); } },
-      { threshold: 0.05 }
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, []);
-
-  // Stagger de linhas
-  const lineDelay = (i) => ({ transitionDelay: linesRevealed ? `${i * 80}ms` : '0ms' });
+  const maskStyle = (delayMs) => ({
+    transitionDelay: revealed ? `${delayMs}ms` : '0ms',
+  });
 
   return (
-    <section
-      id="top"
-      className="rule-b"
-      style={{ paddingTop: 'calc(var(--header-h) + 3rem)', paddingBottom: '4rem' }}
-    >
-      {/* Grade estrutural: linha horizontal superior */}
-      <div className="max-w-content mx-auto px-5 sm:px-8 lg:px-12">
-
-        {/* Layout assimétrico: 55% texto / 45% mapa */}
-        <div className="flex flex-col lg:flex-row lg:items-start gap-10 lg:gap-16">
-
-          {/* Coluna esquerda: nome + cargo + intro + links */}
-          <div className="flex-1 min-w-0">
-
-            {/* Nome display — máscara linha a linha */}
-            <h1 className="overflow-hidden" aria-label={heroData.headline}>
-              <span
-                className={`hero-line ${linesRevealed ? 'revealed' : ''}`}
-                style={lineDelay(0)}
-              >
-                <span className="text-display-xl font-display text-[var(--ink)] block">
-                  {/* Quebra em 2 linhas editorialmente */}
-                  Abraão
-                </span>
+    <section id="top" className="border-b border-[var(--line)] py-20 lg:py-32">
+      <div className="max-w-[1200px] mx-auto px-6">
+        {/* Layout de 2 colunas: texto à esquerda (col 1-7) e mapa à direita (col 8-12) */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+          {/* Coluna de texto */}
+          <div className="lg:col-span-7">
+            {/* Nome gigante com revelação por máscara linha a linha (DESIGN.md) */}
+            <h1 className="text-[clamp(3.5rem,11vw,9.5rem)] font-display leading-[0.95] tracking-[-0.02em] text-[var(--ink)]">
+              <span className={`hero-mask-line ${revealed ? 'revealed' : ''}`} style={maskStyle(0)}>
+                Abraão Cezar
               </span>
-              <span
-                className={`hero-line ${linesRevealed ? 'revealed' : ''}`}
-                style={lineDelay(1)}
-              >
-                <span className="text-display-xl font-display text-[var(--ink)] block">
-                  Cezar
-                </span>
-              </span>
-              <span
-                className={`hero-line ${linesRevealed ? 'revealed' : ''}`}
-                style={lineDelay(2)}
-              >
-                <span className="text-display-xl font-display text-[var(--ink)] block">
-                  Inácio
-                </span>
+              <span className={`hero-mask-line ${revealed ? 'revealed' : ''}`} style={maskStyle(80)}>
+                Inácio
               </span>
             </h1>
 
-            {/* Cargo em Hanken Grotesk */}
-            <div
-              className={`hero-line mt-4 ${linesRevealed ? 'revealed' : ''}`}
-              style={lineDelay(3)}
-            >
-              <span className="font-body text-base font-medium text-[var(--muted)] block tracking-wide uppercase">
-                {personalInfo.role}
-              </span>
+            {/* Subtítulo mono (DESIGN.md) */}
+            <div className="mt-6">
+              <p className="font-mono text-[12px] uppercase tracking-[0.08em] text-[var(--muted)]">
+                Analista de Dados · Business Intelligence · Goiás
+              </p>
             </div>
 
-            {/* Linha de grade após cargo */}
-            <div className="rule-x mt-6 mb-6" />
+            {/* Linha técnica divisora de 1px */}
+            <div className="h-px w-full bg-[var(--line)] my-8" />
 
-            {/* Intro */}
-            <div className="space-y-4 text-[16px] leading-[1.7] text-[var(--ink)] font-body">
-              {heroData.intro.map((p, i) => (
-                <p
-                  key={i}
-                  className={`hero-line ${linesRevealed ? 'revealed' : ''}`}
-                  style={lineDelay(4 + i)}
-                >
-                  <span className="block">{p}</span>
-                </p>
-              ))}
+            {/* 2 frases do texto atual mantendo o conteúdo existente */}
+            <div className="space-y-4 font-body text-[18px] leading-[1.6] text-[var(--ink)] max-w-prose">
+              <p>
+                Atuo na construção de pipelines ETL e relatórios no Power BI para o Portal do Cidadão no Tribunal de Contas dos Municípios de Goiás (TCM-GO), consolidando indicadores de saneamento e políticas públicas dos 246 municípios goianos.
+              </p>
+              <p>
+                Desenvolvi rotinas automatizadas em Python para validação e auditoria da API de reconhecimento de entidades nomeadas (NER), reconciliando dados de extratos e documentos contábeis contra consultas SQL em bases orçamentárias.
+              </p>
             </div>
 
-            {/* Links — flex layout com espaçamento claro */}
-            <div
-              className={`hero-line mt-8 ${linesRevealed ? 'revealed' : ''}`}
-              style={lineDelay(6)}
-            >
-              <div className="flex flex-wrap items-center gap-x-6 gap-y-3 text-sm font-body">
-                <a href={`mailto:${personalInfo.email}`} className="link-underline text-[var(--ink)] font-medium">
-                  {personalInfo.email}
-                </a>
-                <a href={personalInfo.linkedin} target="_blank" rel="noreferrer"
-                  className="link-underline text-[var(--ink)] font-medium inline-flex items-center gap-1">
-                  LinkedIn <span aria-hidden="true" className="text-[var(--muted)]">↗</span>
-                </a>
-                <a href={personalInfo.github} target="_blank" rel="noreferrer"
-                  className="link-underline text-[var(--ink)] font-medium inline-flex items-center gap-1">
-                  GitHub <span aria-hidden="true" className="text-[var(--muted)]">↗</span>
-                </a>
-                <a href="#projetos" className="link-underline text-[var(--ink)] font-medium inline-flex items-center gap-1">
-                  Ver projetos <span aria-hidden="true">↓</span>
-                </a>
-              </div>
+            {/* Links em texto com sublinhado e seta externa */}
+            <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 font-body text-[16px] sm:text-[18px]">
+              <a
+                href="mailto:abraaocezarIL@outlook.com"
+                className="link-underline text-[var(--ink)] font-medium"
+              >
+                abraaocezarIL@outlook.com
+              </a>
+              <a
+                href="https://www.linkedin.com/in/cezarinaciol/"
+                target="_blank"
+                rel="noreferrer"
+                className="link-underline text-[var(--ink)] font-medium inline-flex items-center gap-1"
+              >
+                <span>LinkedIn</span>
+                <span aria-hidden="true" className="arrow-ext text-[var(--muted)]">↗</span>
+              </a>
+              <a
+                href="https://github.com/cezarbtw"
+                target="_blank"
+                rel="noreferrer"
+                className="link-underline text-[var(--ink)] font-medium inline-flex items-center gap-1"
+              >
+                <span>GitHub</span>
+                <span aria-hidden="true" className="arrow-ext text-[var(--muted)]">↗</span>
+              </a>
+              <a
+                href="#projetos"
+                className="link-underline text-[var(--ink)] font-medium inline-flex items-center gap-1"
+              >
+                <span>Ver projetos</span>
+                <span aria-hidden="true">↓</span>
+              </a>
             </div>
           </div>
 
-          {/* Coluna direita: mapa SVG */}
-          <div
-            className={`w-full lg:w-[42%] lg:pt-4 flex justify-center lg:justify-end transition-opacity duration-700 ${linesRevealed ? 'opacity-100' : 'opacity-0'}`}
-          >
+          {/* Coluna do Mapa SVG (à direita no desktop, abaixo no mobile) */}
+          <div className="lg:col-span-5 flex justify-center lg:justify-end">
             <GoiasMap />
           </div>
         </div>
 
-        {/* Faixa de fatos com contagem */}
-        <div ref={factsRef} className="mt-12 pt-8 rule-x">
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-0">
-            {/* Fato 1: 246 com contagem */}
-            <div className="sm:rule-r pr-0 sm:pr-8 pb-6 sm:pb-0">
-              <div className="text-display-lg font-display text-[var(--strong)]" aria-label="246">
-                {count246}
+        {/* 3 fatos em serifada grande, sem caixas, divididos por linhas de 1px (DESIGN.md) */}
+        <div className="mt-16 lg:mt-24 pt-12 border-t border-[var(--line)]">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-0">
+            {/* Fato 1 */}
+            <div className="md:pr-8 md:border-r md:border-[var(--line)]">
+              <div className="font-display text-[clamp(2.5rem,5vw,4.5rem)] leading-none text-[var(--ink)]">
+                246 municípios
               </div>
-              <div className="mt-1 text-xs font-mono text-[var(--muted)] uppercase tracking-wider">
-                Municípios de Goiás · TCM-GO
-              </div>
+              <p className="mt-2 font-mono text-[12px] uppercase tracking-[0.08em] text-[var(--muted)]">
+                Cobertura estadual · TCM-GO
+              </p>
             </div>
 
-            {/* Fato 2: stack */}
-            <div className="sm:rule-r px-0 sm:px-8 py-6 sm:py-0 rule-x sm:border-t-0">
-              <div className="text-display-lg font-display text-[var(--ink)]">
-                Power BI
+            {/* Fato 2 */}
+            <div className="md:px-8 md:border-r md:border-[var(--line)] border-t md:border-t-0 pt-6 md:pt-0 border-[var(--line)]">
+              <div className="font-display text-[clamp(2.5rem,5vw,4.5rem)] leading-none text-[var(--ink)]">
+                Power BI · Python · SQL
               </div>
-              <div className="mt-1 text-xs font-mono text-[var(--muted)] uppercase tracking-wider">
-                Python · SQL · DAX · ETL
-              </div>
+              <p className="mt-2 font-mono text-[12px] uppercase tracking-[0.08em] text-[var(--muted)]">
+                Stack analítica &amp; Engenharia ETL
+              </p>
             </div>
 
-            {/* Fato 3: setor */}
-            <div className="pl-0 sm:pl-8 pt-6 sm:pt-0 rule-x sm:border-t-0">
-              <div className="text-display-lg font-display text-[var(--ink)]">
-                Público
+            {/* Fato 3 */}
+            <div className="md:pl-8 border-t md:border-t-0 pt-6 md:pt-0 border-[var(--line)]">
+              <div className="font-display text-[clamp(2.5rem,5vw,4.5rem)] leading-none text-[var(--ink)]">
+                Setor público
               </div>
-              <div className="mt-1 text-xs font-mono text-[var(--muted)] uppercase tracking-wider">
-                Controle externo · Transparência
-              </div>
+              <p className="mt-2 font-mono text-[12px] uppercase tracking-[0.08em] text-[var(--muted)]">
+                Controle externo &amp; Auditoria
+              </p>
             </div>
           </div>
         </div>
-
       </div>
     </section>
   );

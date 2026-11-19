@@ -7,6 +7,8 @@ const filesToCheck = [
   'src/App.jsx',
   'src/main.jsx',
   'src/components/Header.jsx',
+  'src/components/Hero.jsx',
+  'src/components/GoiasMap.jsx',
   'src/components/Footer.jsx',
   'vercel.json'
 ];
@@ -28,6 +30,7 @@ const forbidden = [
 
 let hasErrors = false;
 for (const file of filesToCheck) {
+  if (!fs.existsSync(file)) continue;
   const content = fs.readFileSync(file, 'utf-8');
   for (const word of forbidden) {
     const regex = new RegExp('\\b' + word + '\\b', 'gi');
@@ -39,5 +42,5 @@ for (const file of filesToCheck) {
   }
 }
 if (!hasErrors) {
-  console.log('CLEAN: No forbidden keywords found in Phase 1 files!');
+  console.log('CLEAN: No forbidden keywords found in Phase 2 files!');
 }
