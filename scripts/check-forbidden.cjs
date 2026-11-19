@@ -9,6 +9,8 @@ const filesToCheck = [
   'src/components/Header.jsx',
   'src/components/Hero.jsx',
   'src/components/GoiasMap.jsx',
+  'src/components/Projects.jsx',
+  'src/data/projects.js',
   'src/components/Footer.jsx',
   'vercel.json'
 ];
