@@ -3,6 +3,9 @@ import { Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import Projects from './components/Projects';
+import Experience from './components/Experience';
+import Skills from './components/Skills';
+import Contact from './components/Contact';
 import Footer from './components/Footer';
 import ProjectDetail from './pages/ProjectDetail';
 
@@ -13,6 +16,9 @@ function Home() {
       <main className="flex-1 pt-[56px]">
         <Hero />
         <Projects />
+        <Experience />
+        <Skills />
+        <Contact />
       </main>
       <Footer />
     </div>
