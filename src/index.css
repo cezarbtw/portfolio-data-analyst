@@ -2,195 +2,116 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ═══════════════════════════════════════════════════════
-   DESIGN TOKENS — "dados como identidade"
-   Paleta: #F4F1EA / #121212 / forte: #D9411E
-   Tipo: Instrument Serif (display) · Hanken Grotesk (body) · JetBrains Mono
-   ═══════════════════════════════════════════════════════ */
+/* ═════════════════════════════════════════════════════════════
+   DESIGN.md — FUNDAÇÃO E TOKENS
+   Paleta: --bg #F4F1EA | --ink #121212 | --muted #5E5B54 | --line #121212 15% | --accent #D9411E
+   Fontes: Instrument Serif (display) · Schibsted Grotesk (corpo) · JetBrains Mono (mono)
+   ═════════════════════════════════════════════════════════════ */
 
 @layer base {
   :root {
-    --canvas:      #F4F1EA;
-    --ink:         #121212;
-    --strong:      #D9411E;
-    --rule:        #D6D2C8;
-    --muted:       #6E6A63;
-    --header-h:    3.5rem;
+    --bg: #F4F1EA;
+    --ink: #121212;
+    --muted: #5E5B54;
+    --line: rgba(18, 18, 18, 0.15);
+    --accent: #D9411E;
+    --header-height: 56px;
   }
+
   @media (prefers-color-scheme: dark) {
     :root {
-      --canvas:  #0E0D0B;
-      --ink:     #E8E5DC;
-      --rule:    #2F2D27;
-      --muted:   #9B9790;
+      --bg: #121212;
+      --ink: #F4F1EA;
+      --muted: #9E9B94;
+      --line: rgba(244, 241, 234, 0.15);
+      --accent: #FF6A3D;
     }
+  }
+
+  /* Reset global: sem border-radius em nada (DESIGN.md) */
+  *, *::before, *::after {
+    border-radius: 0;
   }
 
   html {
     scroll-behavior: smooth;
-    background-color: var(--canvas);
+    background-color: var(--bg);
     color: var(--ink);
-    font-family: 'Hanken Grotesk', -apple-system, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    font-size: 17px;
+    font-family: 'Schibsted Grotesk', system-ui, -apple-system, sans-serif;
+    font-size: 18px;
     line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
   }
 
-  /* scroll-margin para seções com header fixo */
-  section[id] { scroll-margin-top: calc(var(--header-h) + 1rem); }
+  body {
+    background-color: var(--bg);
+    color: var(--ink);
+    margin: 0;
+    min-height: 100vh;
+  }
 
-  /* Foco visível acessível */
+  /* Exceção do DESIGN.md: controles de formulário: 2px */
+  input, textarea, select, button {
+    border-radius: 2px;
+  }
+
+  /* Foco visível acessível (contraste AA) */
   :focus-visible {
-    outline: 2px solid var(--strong);
-    outline-offset: 3px;
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
   }
 
   /* Seleção de texto */
-  ::selection { background: var(--strong); color: #fff; }
+  ::selection {
+    background-color: var(--accent);
+    color: var(--bg);
+  }
 }
 
-/* ═══════════════════════════════════════════════════════
-   TIPOGRAFIA DISPLAY
-   ═══════════════════════════════════════════════════════ */
+/* ═════════════════════════════════════════════════════════════
+   UTILITÁRIOS DA GRADE E TIPOGRAFIA
+   ═════════════════════════════════════════════════════════════ */
 @layer utilities {
-  .text-display-xl {
-    font-family: 'Instrument Serif', Georgia, serif;
-    font-size: clamp(3.5rem, 11vw, 10rem);
-    line-height: 0.95;
-    letter-spacing: -0.02em;
+  /* Linhas de 1px (--line) */
+  .line-t { border-top: 1px solid var(--line); }
+  .line-b { border-bottom: 1px solid var(--line); }
+  .line-l { border-left: 1px solid var(--line); }
+  .line-r { border-right: 1px solid var(--line); }
+
+  /* Sublinhado cresce da esquerda para a direita em 250ms (DESIGN.md) */
+  .link-underline {
+    position: relative;
+    text-decoration: none;
   }
-  .text-display-lg {
-    font-family: 'Instrument Serif', Georgia, serif;
-    font-size: clamp(2.2rem, 5.5vw, 5rem);
-    line-height: 0.97;
-    letter-spacing: -0.015em;
+  .link-underline::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: currentColor;
+    transition: width 250ms ease;
   }
-  .text-display-md {
-    font-family: 'Instrument Serif', Georgia, serif;
-    font-size: clamp(1.5rem, 3vw, 2.5rem);
-    line-height: 1.08;
-    letter-spacing: -0.01em;
+  .link-underline:hover::after {
+    width: 100%;
   }
 
-  /* Família tipográfica como utilidade */
-  .font-display { font-family: 'Instrument Serif', Georgia, serif; }
-  .font-body    { font-family: 'Hanken Grotesk', -apple-system, sans-serif; }
-  .font-mono-custom { font-family: 'JetBrains Mono', ui-monospace, monospace; }
-
-  /* Divisores responsivos horizontais */
-  @media (min-width: 640px) {
-    .sm\:rule-r { border-right: 1px solid var(--rule); }
+  /* Setas externas deslocam 3px na diagonal no hover (DESIGN.md) */
+  .arrow-ext {
+    display: inline-block;
+    transition: transform 180ms ease;
+  }
+  a:hover .arrow-ext {
+    transform: translate(3px, -3px);
   }
 }
-
-/* ═══════════════════════════════════════════════════════
-   GRADE ESTRUTURAL
-   ═══════════════════════════════════════════════════════ */
-.rule-x  { border-top:    1px solid var(--rule); }
-.rule-b  { border-bottom: 1px solid var(--rule); }
-.rule-l  { border-left:   1px solid var(--rule); }
-.rule-r  { border-right:  1px solid var(--rule); }
-
-/* ═══════════════════════════════════════════════════════
-   LINKS — sublinhado que cresce da esquerda
-   ═══════════════════════════════════════════════════════ */
-.link-underline {
-  position: relative;
-  text-decoration: none;
-}
-.link-underline::after {
-  content: '';
-  position: absolute;
-  bottom: -1px;
-  left: 0;
-  width: 0;
-  height: 1px;
-  background: currentColor;
-  transition: width 0.22s ease-out;
-}
-.link-underline:hover::after { width: 100%; }
-
-/* Seta externa — desloca 2px no hover */
-.arrow-ext {
-  display: inline-block;
-  transition: transform 0.18s ease;
-}
-a:hover .arrow-ext { transform: translate(2px, -2px); }
-
-/* ═══════════════════════════════════════════════════════
-   HERO — revelação por máscara, linha a linha
-   ═══════════════════════════════════════════════════════ */
-.hero-line {
-  display: block;
-  overflow: hidden;
-}
-.hero-line span {
-  display: block;
-  transform: translateY(110%);
-  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.hero-line.revealed span { transform: translateY(0); }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-line span { transform: none !important; transition: none !important; }
-  .link-underline::after { transition: none !important; }
-}
-
-/* ═══════════════════════════════════════════════════════
-   PROJETOS — preview acompanhando cursor
-   ═══════════════════════════════════════════════════════ */
-.project-cursor-preview {
-  position: fixed;
-  pointer-events: none;
-  z-index: 50;
-  opacity: 0;
-  transition: opacity 0.2s ease;
-  transform: translate(-50%, -50%);
-}
-.project-cursor-preview.visible { opacity: 1; }
-
-/* ═══════════════════════════════════════════════════════
-   BARRA DE PROGRESSO DE LEITURA
-   ═══════════════════════════════════════════════════════ */
-#read-progress {
-  position: fixed;
-  top: 0; left: 0;
-  height: 2px;
-  background: var(--strong);
-  z-index: 100;
-  transform-origin: left;
-  transform: scaleX(0);
-  transition: transform 0.1s linear;
-}
-
-/* ═══════════════════════════════════════════════════════
-   MAPA SVG
-   ═══════════════════════════════════════════════════════ */
-.mapa-municipio {
-  fill: var(--rule);
-  stroke: var(--canvas);
-  stroke-width: 0.5;
-  cursor: pointer;
-  transition: fill 0.15s ease;
-}
-.mapa-municipio:hover,
-.mapa-municipio:focus { fill: var(--strong); outline: none; }
-.mapa-municipio.aceso { fill: var(--strong); opacity: 0.7; }
-
-/* ═══════════════════════════════════════════════════════
-   VIEW TRANSITIONS (fallback: sem animação)
-   ═══════════════════════════════════════════════════════ */
-@supports (view-transition-name: none) {
-  ::view-transition-old(root) {
-    animation: 220ms ease-out both vt-slide-out;
+  .link-underline::after {
+    transition: none !important;
   }
-  ::view-transition-new(root) {
-    animation: 280ms ease-in both vt-slide-in;
-  }
-  @keyframes vt-slide-out {
-    to { opacity: 0; transform: translateX(-2rem); }
-  }
-  @keyframes vt-slide-in {
-    from { opacity: 0; transform: translateX(2rem); }
+  .arrow-ext {
+    transition: none !important;
   }
 }

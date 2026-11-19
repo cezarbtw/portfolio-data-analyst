@@ -1,110 +1,48 @@
 import React, { useState, useEffect } from 'react';
-import { personalInfo } from '../data/portfolioData';
 
 export default function Header() {
-  const [scrollProgress, setScrollProgress] = useState(0);
-  const [activeSection, setActiveSection] = useState('top');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  // Travar o scroll do body quando o menu tela cheia estiver aberto
   useEffect(() => {
-    const handleScroll = () => {
-      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = totalHeight > 0 ? (window.scrollY / totalHeight) * 100 : 0;
-      setScrollProgress(Math.min(100, Math.max(0, progress)));
-
-      const sections = ['top', 'projetos', 'experiencia', 'competencias', 'contato'];
-      const sp = window.scrollY + 120;
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const el = document.getElementById(sections[i]);
-        if (el && el.offsetTop <= sp) { setActiveSection(sections[i]); break; }
-      }
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
     };
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [mobileMenuOpen]);
 
   const navLinks = [
-    { id: 'projetos', label: 'Projetos' },
-    { id: 'experiencia', label: 'Experiência' },
-    { id: 'competencias', label: 'Competências' },
-    { id: 'contato', label: 'Contato' },
+    { href: '#projetos', label: 'Projetos' },
+    { href: '#experiencia', label: 'Experiência' },
+    { href: '#competencias', label: 'Competências' },
+    { href: '#contato', label: 'Contato' },
   ];
 
   return (
-    <header
-      className="sticky top-0 z-40 w-full bg-[var(--canvas)]/95 backdrop-blur-sm"
-      style={{ borderBottom: '1px solid var(--rule)', height: 'var(--header-h)' }}
-    >
-      {/* Barra de progresso 2px */}
-      <div
-        className="absolute top-0 left-0 h-[2px] bg-[var(--strong)] transition-all duration-75 ease-out"
-        style={{ width: `${scrollProgress}%` }}
-        aria-hidden="true"
-      />
-
-      <div className="max-w-content mx-auto px-5 sm:px-8 lg:px-12 h-full flex items-center justify-between">
-
-        {/* Logo / nome */}
-        <a
-          href="#top"
-          className="font-mono text-[13px] font-medium text-[var(--ink)] hover:text-[var(--strong)] transition-colors whitespace-nowrap"
-        >
-          <span className="hidden sm:inline">{personalInfo.name}</span>
-          <span className="sm:hidden">{personalInfo.initials}</span>
-        </a>
-
-        {/* Nav desktop */}
-        <nav aria-label="Navegação" className="hidden sm:block">
-          <ul className="flex items-center gap-6 text-[13px] font-body text-[var(--muted)]">
-            {navLinks.map((link) => {
-              const isActive = activeSection === link.id;
-              return (
-                <li key={link.id}>
-                  <a
-                    href={`#${link.id}`}
-                    className={`transition-colors py-1 ${isActive
-                      ? 'text-[var(--strong)] font-medium'
-                      : 'hover:text-[var(--ink)]'
-                      }`}
-                  >
-                    {link.label}
-                  </a>
-                </li>
-              );
-            })}
-          </ul>
-        </nav>
-
-        {/* Botão mobile */}
-        <div className="sm:hidden">
-          <button
-            type="button"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-expanded={mobileMenuOpen}
-            aria-label="Menu"
-            className="font-mono text-[11px] px-2.5 py-1 text-[var(--ink)]"
-            style={{ border: '1px solid var(--rule)' }}
+    <>
+      <header className="fixed top-0 left-0 right-0 z-40 h-[56px] bg-[var(--bg)] border-b border-[var(--line)]">
+        <div className="max-w-[1200px] mx-auto px-6 h-full flex items-center justify-between">
+          {/* Nome à esquerda: Instrument Serif 20px */}
+          <a
+            href="/"
+            className="font-display text-[20px] leading-none text-[var(--ink)] hover:text-[var(--accent)] transition-colors"
           >
-            {mobileMenuOpen ? '[×]' : '[≡]'}
-          </button>
-        </div>
-      </div>
+            <span className="hidden sm:inline">Abraão Cezar Inácio</span>
+            <span className="sm:hidden">AC</span>
+          </a>
 
-      {/* Menu mobile */}
-      {mobileMenuOpen && (
-        <div
-          className="sm:hidden bg-[var(--canvas)] px-5 py-3"
-          style={{ borderTop: '1px solid var(--rule)' }}
-        >
-          <nav aria-label="Menu móvel">
-            <ul className="flex flex-col gap-2 text-sm font-body text-[var(--muted)]">
+          {/* Desktop links: mono 12px, uppercase, letter-spacing 0.08em */}
+          <nav aria-label="Navegação principal" className="hidden sm:block">
+            <ul className="flex items-center gap-6 font-mono text-[12px] uppercase tracking-[0.08em] text-[var(--muted)]">
               {navLinks.map((link) => (
-                <li key={link.id}>
+                <li key={link.href}>
                   <a
-                    href={`#${link.id}`}
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="block py-1 hover:text-[var(--ink)] transition-colors"
+                    href={link.href}
+                    className="link-underline text-[var(--ink)] hover:text-[var(--accent)] transition-colors py-1"
                   >
                     {link.label}
                   </a>
@@ -112,8 +50,73 @@ export default function Header() {
               ))}
             </ul>
           </nav>
+
+          {/* Mobile menu trigger: botão "Menu" */}
+          <div className="sm:hidden">
+            <button
+              type="button"
+              onClick={() => setMobileMenuOpen(true)}
+              aria-label="Abrir menu"
+              aria-expanded={mobileMenuOpen}
+              className="font-mono text-[12px] uppercase tracking-[0.08em] text-[var(--ink)] px-2 py-1 border border-[var(--line)] bg-[var(--bg)]"
+            >
+              Menu
+            </button>
+          </div>
+        </div>
+      </header>
+
+      {/* Menu mobile em tela cheia (DESIGN.md: abre lista em tela cheia) */}
+      {mobileMenuOpen && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label="Menu de navegação móvel"
+          className="fixed inset-0 z-50 bg-[var(--bg)] flex flex-col justify-between p-6 sm:hidden"
+        >
+          {/* Topo do menu tela cheia */}
+          <div className="flex items-center justify-between h-[56px] border-b border-[var(--line)] -mx-6 px-6 -mt-6">
+            <span className="font-display text-[20px] text-[var(--ink)]">
+              AC
+            </span>
+            <button
+              type="button"
+              onClick={() => setMobileMenuOpen(false)}
+              aria-label="Fechar menu"
+              className="font-mono text-[12px] uppercase tracking-[0.08em] text-[var(--ink)] px-2 py-1 border border-[var(--line)] bg-[var(--bg)]"
+            >
+              Fechar [×]
+            </button>
+          </div>
+
+          {/* Lista de navegação em tela cheia */}
+          <nav className="my-auto">
+            <ul className="flex flex-col gap-6">
+              {navLinks.map((link, idx) => (
+                <li key={link.href}>
+                  <a
+                    href={link.href}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="font-display text-[32px] text-[var(--ink)] hover:text-[var(--accent)] transition-colors block"
+                  >
+                    <span className="font-mono text-[12px] text-[var(--muted)] mr-3 tracking-[0.08em]">
+                      0{idx + 1}
+                    </span>
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          {/* Rodapé do menu mobile */}
+          <div className="pt-6 border-t border-[var(--line)]">
+            <p className="font-mono text-[12px] uppercase tracking-[0.08em] text-[var(--muted)]">
+              Abraão Cezar Inácio · Goiás, Brasil
+            </p>
+          </div>
         </div>
       )}
-    </header>
+    </>
   );
 }

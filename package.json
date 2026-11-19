@@ -19,6 +19,7 @@
     "@vitejs/plugin-react": "^6.1.2",
     "autoprefixer": "^10.6.2",
     "d3-geo": "^3.1.2",
+    "playwright": "^1.65.1",
     "postcss": "^8.5.33",
     "tailwindcss": "^3.4.17",
     "topojson-client": "^3.1.0",
