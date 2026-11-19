@@ -1,11 +1,19 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 export default function ImageLightbox({ image, onClose }) {
+  const closeButtonRef = useRef(null);
+
   useEffect(() => {
     if (!image) return;
 
+    // Foco no botão de fechar ao abrir
+    closeButtonRef.current?.focus();
+
     const handleKeyDown = (e) => {
-      if (e.key === 'Escape') onClose();
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        onClose();
+      }
     };
 
     window.addEventListener('keydown', handleKeyDown);
@@ -24,37 +32,42 @@ export default function ImageLightbox({ image, onClose }) {
     <div
       role="dialog"
       aria-modal="true"
-      aria-label="Visualização em alta resolução do painel"
-      className="fixed inset-0 z-50 flex flex-col items-center justify-center p-3 sm:p-6 bg-[#141413]/90 backdrop-blur-sm cursor-zoom-out animate-fadeIn"
+      aria-label="Visualização em alta resolução da imagem"
+      className="fixed inset-0 z-50 flex flex-col items-center justify-center p-4 sm:p-8 bg-[#121212]/95 cursor-zoom-out"
       onClick={onClose}
     >
-      <div className="absolute top-4 right-4 flex items-center gap-3 z-10">
-        <span className="text-xs font-mono text-[#A8A69E]">
-          Pressione ESC para fechar
+      {/* Barra superior de controle do lightbox */}
+      <div className="absolute top-4 left-4 right-4 max-w-[1200px] mx-auto flex items-center justify-between pointer-events-auto">
+        <span className="font-mono text-[12px] uppercase tracking-[0.08em] text-[#F4F1EA]/70">
+          [ESC] para fechar
         </span>
         <button
+          ref={closeButtonRef}
           type="button"
           onClick={onClose}
           aria-label="Fechar ampliação"
-          className="px-3 py-1.5 text-xs font-mono uppercase bg-[#1C1C1A] text-[#EAE8E3] border border-[#282826] hover:bg-[#282826] transition-colors"
+          className="px-4 py-2 font-mono text-[12px] uppercase tracking-[0.08em] bg-[#121212] text-[#F4F1EA] border border-[#F4F1EA]/30 hover:border-[#F4F1EA] hover:text-[#D9411E] transition-colors focus-visible:outline-2 focus-visible:outline-[var(--accent)]"
         >
           Fechar [×]
         </button>
       </div>
 
+      {/* Conteúdo ampliado */}
       <div
-        className="max-w-[96vw] max-h-[85vh] flex flex-col items-center"
+        className="max-w-[1100px] max-h-[85vh] w-full flex flex-col items-center pointer-events-auto cursor-default mt-8"
         onClick={(e) => e.stopPropagation()}
       >
-        <img
-          src={image.url}
-          alt={image.caption || image.title || "Captura em alta resolução"}
-          className="max-w-full max-h-[78vh] object-contain border border-[#282826] bg-[#141413] shadow-2xl block"
-        />
+        <div className="border border-[#F4F1EA]/20 bg-[#121212] overflow-hidden max-w-full">
+          <img
+            src={image.url || image}
+            alt={image.caption || image.title || "Captura em alta resolução"}
+            className="max-w-full max-h-[72vh] w-auto h-auto object-contain block"
+          />
+        </div>
 
-        {(image.caption || image.indicators) && (
-          <p className="mt-3 text-xs sm:text-sm font-sans text-center text-[#EAE8E3] max-w-2xl px-2">
-            {image.caption || image.indicators}
+        {(image.caption || image.title) && (
+          <p className="mt-3 font-mono text-[12px] uppercase tracking-[0.08em] text-center text-[#F4F1EA]/80 max-w-2xl px-2">
+            {image.caption || image.title}
           </p>
         )}
       </div>

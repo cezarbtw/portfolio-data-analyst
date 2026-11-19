@@ -9,7 +9,47 @@ export const projects = [
     context: "Tribunal de Contas dos Municípios de Goiás · Setor Público",
     isFeatured: true,
     image: "/dashboards/tcmgo-meio-ambiente-aguas.webp",
-    imageCaption: "Painel de Meio Ambiente no Power BI — Portal do Cidadão do TCM-GO",
+    imageCaption: "Painel de Meio Ambiente no Power BI — Dimensão Águas (Portal do Cidadão do TCM-GO)",
+    demoUrl: "https://portalcidadao.tcmgo.tc.br/new-portal-cidadao/",
+    demoLabel: "Acessar Portal do Cidadão",
+    githubUrl: null,
+    screens: [
+      {
+        id: "aguas",
+        tab: "Águas",
+        title: "Dimensão Águas",
+        url: "/dashboards/tcmgo-meio-ambiente-aguas.webp",
+        caption: "Consumo médio per capita (L/hab/dia), atendimento de rede e paralisações nos 246 municípios."
+      },
+      {
+        id: "esgoto",
+        tab: "Esgoto",
+        title: "Dimensão Esgoto",
+        url: "/dashboards/tcmgo-meio-ambiente-esgoto.webp",
+        caption: "Atendimento da rede coletora e índice de esgoto tratado frente à média estadual."
+      },
+      {
+        id: "residuos",
+        tab: "Resíduos",
+        title: "Dimensão Resíduos Sólidos",
+        url: "/dashboards/tcmgo-meio-ambiente-residuos.webp",
+        caption: "Destinação em aterros controlados, coleta seletiva e inclusão de catadores."
+      },
+      {
+        id: "pluviais",
+        tab: "Drenagem",
+        title: "Dimensão Águas Pluviais",
+        url: "/dashboards/tcmgo-meio-ambiente-aguas-pluviais.webp",
+        caption: "Cobertura de drenagem pluvial, histórico de inundações e sistemas de alerta."
+      },
+      {
+        id: "gestao",
+        tab: "Gestão",
+        title: "Governança Municipal",
+        url: "/dashboards/tcmgo-meio-ambiente-gestao-municipal.webp",
+        caption: "Aderência ao Marco Legal do Saneamento, Plano Diretor e ouvidorias ativas."
+      }
+    ],
     summary: "Construção de esteiras ETL e relatórios analíticos no Power BI para a aba Meio Ambiente do Portal do Cidadão do TCM-GO. Os painéis consolidam indicadores de saneamento básico, resíduos sólidos, drenagem pluvial e governança dos 246 municípios do estado de Goiás.",
     caseStudy: {
       problem: "Os dados de prestação de contas dos 246 municípios de Goiás apresentavam inconsistências de preenchimento, divergências de esquema e duplicidades, inviabilizando consultas consolidadas diretas sobre serviços de saneamento básico.",
@@ -29,6 +69,9 @@ export const projects = [
     isFeatured: false,
     image: null,
     imageCaption: null,
+    demoUrl: null,
+    demoLabel: null,
+    githubUrl: null,
     summary: "Automação em Python com processamento concorrente para validação da API de Reconhecimento de Entidades Nomeadas (NER) aplicada a extratos bancários e documentos contábeis públicos. Reconciliação de payloads JSON contra consultas SQL em bases orçamentárias.",
     caseStudy: {
       problem: "A conferência manual das entidades extraídas por inteligência artificial (nomes, bancos, agências, contas, CPFs e valores) demandava centenas de horas da equipe de auditoria frente ao volume contínuo de envios municipais.",
@@ -48,6 +91,9 @@ export const projects = [
     isFeatured: false,
     image: "/dashboards/dashboard-comercial-funil.webp",
     imageCaption: "Dashboard Comercial no Power BI: KPIs de CAC, ticket médio e funil de vendas",
+    demoUrl: null,
+    demoLabel: null,
+    githubUrl: null,
     summary: "Relatório executivo no Power BI para acompanhamento do ciclo de vendas e retorno por canal de aquisição. Apresenta cálculo de CAC, ticket médio, taxa de conversão e faturamento por canal de mídia.",
     caseStudy: {
       problem: "Dificuldade na visualização clara das etapas do funil de vendas (lead até fechamento) e na identificação de quais canais de aquisição geravam maior retorno sobre investimento.",
@@ -67,6 +113,9 @@ export const projects = [
     isFeatured: false,
     image: null,
     imageCaption: null,
+    demoUrl: null,
+    demoLabel: null,
+    githubUrl: "https://github.com/cezarbtw/Cripto_EmotionLens",
     summary: "Processamento analítico de dados temporais de sinais biométricos coletados em tempo real. Implementação de filtros estatísticos de suavização por média móvel centrada e análise de dispersão.",
     caseStudy: {
       problem: "Sinais biométricos captados em vídeo apresentam alta variabilidade segundo a segundo, gerando ruído de transição que prejudica a interpretação estatística contínua.",
@@ -86,6 +135,9 @@ export const projects = [
     isFeatured: false,
     image: null,
     imageCaption: null,
+    demoUrl: null,
+    demoLabel: null,
+    githubUrl: "https://github.com/cezarbtw/Detector-de-Rachaduras",
     summary: "Treinamento e validação de modelo YOLOv8 para identificação de patologias em imagens de inspeção civil, com extração de métricas de precisão (mAP), sensibilidade e estimativa dimensional.",
     caseStudy: {
       problem: "A avaliação puramente qualitativa de imagens de inspeção estrutural dificulta o acompanhamento histórico de danos e o cálculo de índices de criticidade.",
@@ -105,6 +157,9 @@ export const projects = [
     isFeatured: false,
     image: null,
     imageCaption: null,
+    demoUrl: null,
+    demoLabel: null,
+    githubUrl: "https://github.com/cezarbtw/Projeto-Medicos",
     summary: "Modelagem relacional de banco de dados na terceira forma normal (3FN) e criação de consultas analíticas para acompanhamento de taxas operacionais de atendimento e produtividade médica.",
     caseStudy: {
       problem: "Bases relacionais operacionais não otimizadas apresentavam lentidão ao gerar relatórios gerenciais de consultas, faltas e tempo médio de espera.",

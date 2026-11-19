@@ -88,6 +88,7 @@ export default function Projects() {
               <Link
                 key={project.id}
                 to={`/projetos/${project.slug}`}
+                viewTransition
                 onMouseEnter={() => setHoveredProject(project)}
                 onMouseLeave={() => setHoveredProject(null)}
                 className="group block py-6 sm:py-8 border-b border-[var(--line)] px-3 sm:px-4 -mx-3 sm:-mx-4 transition-colors duration-150 hover:bg-[var(--accent)]"
