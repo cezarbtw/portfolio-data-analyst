@@ -3,7 +3,7 @@ import { personalInfo, heroData } from '../data/portfolioData';
 import GoiasMap from './GoiasMap';
 
 function useCountUp(target, duration = 1200, started = false) {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(target);
   useEffect(() => {
     if (!started) return;
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -24,7 +24,7 @@ function useCountUp(target, duration = 1200, started = false) {
 
 export default function Hero() {
   const factsRef = useRef(null);
-  const [factsVisible, setFactsVisible] = useState(false);
+  const [factsVisible, setFactsVisible] = useState(true);
   const [linesRevealed, setLinesRevealed] = useState(false);
   const count246 = useCountUp(246, 1200, factsVisible);
 
@@ -44,7 +44,7 @@ export default function Hero() {
     if (!el) return;
     const obs = new IntersectionObserver(
       ([entry]) => { if (entry.isIntersecting) { setFactsVisible(true); obs.disconnect(); } },
-      { threshold: 0.4 }
+      { threshold: 0.05 }
     );
     obs.observe(el);
     return () => obs.disconnect();
@@ -123,34 +123,33 @@ export default function Hero() {
               ))}
             </div>
 
-            {/* Links */}
+            {/* Links — flex layout com espaçamento claro */}
             <div
               className={`hero-line mt-8 ${linesRevealed ? 'revealed' : ''}`}
               style={lineDelay(6)}
             >
-              <span className="flex flex-wrap gap-x-6 gap-y-2 text-sm font-body block">
+              <div className="flex flex-wrap items-center gap-x-6 gap-y-3 text-sm font-body">
                 <a href={`mailto:${personalInfo.email}`} className="link-underline text-[var(--ink)] font-medium">
                   {personalInfo.email}
                 </a>
                 <a href={personalInfo.linkedin} target="_blank" rel="noreferrer"
-                   className="link-underline text-[var(--ink)] font-medium inline-flex items-center gap-1">
+                  className="link-underline text-[var(--ink)] font-medium inline-flex items-center gap-1">
                   LinkedIn <span aria-hidden="true" className="text-[var(--muted)]">↗</span>
                 </a>
                 <a href={personalInfo.github} target="_blank" rel="noreferrer"
-                   className="link-underline text-[var(--ink)] font-medium inline-flex items-center gap-1">
+                  className="link-underline text-[var(--ink)] font-medium inline-flex items-center gap-1">
                   GitHub <span aria-hidden="true" className="text-[var(--muted)]">↗</span>
                 </a>
                 <a href="#projetos" className="link-underline text-[var(--ink)] font-medium inline-flex items-center gap-1">
                   Ver projetos <span aria-hidden="true">↓</span>
                 </a>
-              </span>
+              </div>
             </div>
           </div>
 
           {/* Coluna direita: mapa SVG */}
           <div
-            className={`w-full lg:w-[42%] lg:pt-4 hero-line ${linesRevealed ? 'revealed' : ''}`}
-            style={lineDelay(1)}
+            className={`w-full lg:w-[42%] lg:pt-4 flex justify-center lg:justify-end transition-opacity duration-700 ${linesRevealed ? 'opacity-100' : 'opacity-0'}`}
           >
             <GoiasMap />
           </div>
@@ -162,7 +161,7 @@ export default function Hero() {
             {/* Fato 1: 246 com contagem */}
             <div className="sm:rule-r pr-0 sm:pr-8 pb-6 sm:pb-0">
               <div className="text-display-lg font-display text-[var(--strong)]" aria-label="246">
-                {factsVisible ? count246 : 0}
+                {count246}
               </div>
               <div className="mt-1 text-xs font-mono text-[var(--muted)] uppercase tracking-wider">
                 Municípios de Goiás · TCM-GO

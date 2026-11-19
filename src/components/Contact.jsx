@@ -3,11 +3,11 @@ import { personalInfo } from '../data/portfolioData';
 
 export default function Contact() {
   const links = [
-    { label: 'E-mail',     href: `mailto:${personalInfo.email}`,               display: personalInfo.email,                   external: false },
-    { label: 'Telefone',   href: `tel:+5562982801501`,                          display: personalInfo.phone,                   external: false },
-    { label: 'WhatsApp',   href: `https://wa.me/${personalInfo.whatsapp}`,      display: 'Conversar via WhatsApp',             external: true  },
-    { label: 'LinkedIn',   href: personalInfo.linkedin,                         display: 'linkedin.com/in/cezarinaciol',       external: true  },
-    { label: 'GitHub',     href: personalInfo.github,                           display: `github.com/${personalInfo.githubUsername}`, external: true  },
+    { label: 'E-mail', href: `mailto:${personalInfo.email}`, display: personalInfo.email, external: false },
+    { label: 'Telefone', href: `tel:+5562982801501`, display: personalInfo.phone, external: false },
+    { label: 'WhatsApp', href: `https://wa.me/${personalInfo.whatsapp}`, display: 'Conversar via WhatsApp', external: true },
+    { label: 'LinkedIn', href: personalInfo.linkedin, display: 'linkedin.com/in/cezarinaciol', external: true },
+    { label: 'GitHub', href: personalInfo.github, display: `github.com/${personalInfo.githubUsername}`, external: true },
   ];
 
   return (

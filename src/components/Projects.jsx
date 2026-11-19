@@ -68,6 +68,10 @@ function ProjectRow({ project, onToggle, isOpen, setLightboxImage, onMouseEnter,
             style={{ border: '1px solid var(--rule)' }}
             decoding="async"
           />
+          <span className="absolute bottom-3 right-3 font-mono text-[11px] px-2 py-1 opacity-90 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity"
+                style={{ background: 'var(--ink)', color: 'var(--canvas)' }}>
+            Ampliar [↗]
+          </span>
           {project.image.caption && (
             <p className="mt-1.5 text-[11px] font-mono text-[var(--muted)]">{project.image.caption}</p>
           )}
@@ -88,7 +92,7 @@ function ProjectRow({ project, onToggle, isOpen, setLightboxImage, onMouseEnter,
       onMouseLeave={onMouseLeave}
     >
       {/* Linha do projeto */}
-      <div className="flex items-baseline gap-4 cursor-pointer" onClick={onToggle}>
+      <div className="flex items-baseline gap-3 sm:gap-4 cursor-pointer" onClick={onToggle}>
         <span className="font-mono text-[13px] text-[var(--muted)] shrink-0 group-hover:text-[var(--strong)] transition-colors w-6">
           {project.number}
         </span>
@@ -96,7 +100,7 @@ function ProjectRow({ project, onToggle, isOpen, setLightboxImage, onMouseEnter,
           <h3 className="text-display-md font-display text-[var(--ink)] group-hover:text-[var(--strong)] transition-colors leading-tight">
             {project.title}
           </h3>
-          <div className="mt-1 flex flex-wrap items-center gap-x-4 gap-y-1">
+          <div className="mt-1.5 flex flex-wrap items-center gap-x-4 gap-y-1">
             <span className="font-mono text-[11px] text-[var(--muted)] uppercase tracking-wider">
               {project.context}
             </span>
@@ -105,14 +109,14 @@ function ProjectRow({ project, onToggle, isOpen, setLightboxImage, onMouseEnter,
             </span>
           </div>
         </div>
-        <span className="font-mono text-[11px] text-[var(--muted)] shrink-0 ml-auto group-hover:text-[var(--strong)] transition-colors">
+        <span className="font-mono text-[13px] text-[var(--muted)] shrink-0 ml-auto group-hover:text-[var(--strong)] transition-colors pl-2">
           {isOpen ? '−' : '+'}
         </span>
       </div>
 
-      {/* Conteúdo expandido */}
+      {/* Conteúdo expandido — responsivo sem quebrar no mobile */}
       {isOpen && (
-        <div className="mt-6 ml-10 space-y-6">
+        <div className="mt-6 ml-0 sm:ml-10 space-y-6">
           <p className="text-[16px] leading-[1.7] font-body text-[var(--ink)]">
             {project.summary}
           </p>
@@ -141,7 +145,7 @@ function ProjectRow({ project, onToggle, isOpen, setLightboxImage, onMouseEnter,
           )}
 
           {/* Links */}
-          <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm">
+          <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm pt-2">
             {project.githubUrl && (
               <a href={project.githubUrl} target="_blank" rel="noreferrer"
                  className="link-underline font-body font-medium text-[var(--ink)] inline-flex items-center gap-1">
@@ -243,13 +247,11 @@ export default function Projects() {
                   role="tab"
                   aria-selected={isActive}
                   onClick={() => setActiveScreenIndex(idx)}
-                  className="font-body text-[13px] px-3 py-1.5 transition-all"
-                  style={{
-                    border: '1px solid var(--rule)',
-                    background: isActive ? 'var(--strong)' : 'transparent',
-                    color: isActive ? '#fff' : 'var(--muted)',
-                    fontWeight: isActive ? '500' : '400',
-                  }}
+                  className={`font-body text-[13px] px-3.5 py-1.5 transition-colors border ${
+                    isActive
+                      ? 'bg-[var(--strong)] text-white border-[var(--strong)] font-medium'
+                      : 'border-[var(--rule)] text-[var(--muted)] hover:text-[var(--ink)] hover:border-[var(--ink)] bg-transparent'
+                  }`}
                 >
                   {screen.tab}
                 </button>
@@ -282,7 +284,7 @@ export default function Projects() {
               className="w-full h-auto object-contain block"
               decoding="sync"
             />
-            <span className="absolute bottom-3 right-3 font-mono text-[11px] px-2 py-1 opacity-0 group-hover:opacity-100 transition-opacity"
+            <span className="absolute bottom-3 right-3 font-mono text-[11px] px-2 py-1 opacity-90 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity"
                   style={{ background: 'var(--ink)', color: 'var(--canvas)' }}>
               Ampliar [↗]
             </span>

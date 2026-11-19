@@ -25,10 +25,10 @@ export default function Header() {
   }, []);
 
   const navLinks = [
-    { id: 'projetos',    label: 'Projetos' },
+    { id: 'projetos', label: 'Projetos' },
     { id: 'experiencia', label: 'Experiência' },
-    { id: 'competencias',label: 'Competências' },
-    { id: 'contato',     label: 'Contato' },
+    { id: 'competencias', label: 'Competências' },
+    { id: 'contato', label: 'Contato' },
   ];
 
   return (
@@ -63,11 +63,10 @@ export default function Header() {
                 <li key={link.id}>
                   <a
                     href={`#${link.id}`}
-                    className={`transition-colors py-1 ${
-                      isActive
-                        ? 'text-[var(--strong)] font-medium'
-                        : 'hover:text-[var(--ink)]'
-                    }`}
+                    className={`transition-colors py-1 ${isActive
+                      ? 'text-[var(--strong)] font-medium'
+                      : 'hover:text-[var(--ink)]'
+                      }`}
                   >
                     {link.label}
                   </a>

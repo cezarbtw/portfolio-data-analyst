@@ -21,7 +21,7 @@
     :root {
       --canvas:  #0E0D0B;
       --ink:     #E8E5DC;
-      --rule:    #272520;
+      --rule:    #2F2D27;
       --muted:   #9B9790;
     }
   }
@@ -175,7 +175,7 @@ a:hover .arrow-ext { transform: translate(2px, -2px); }
 }
 .mapa-municipio:hover,
 .mapa-municipio:focus { fill: var(--strong); outline: none; }
-.mapa-municipio.aceso { fill: var(--ink); }
+.mapa-municipio.aceso { fill: var(--strong); opacity: 0.7; }
 
 /* ═══════════════════════════════════════════════════════
    VIEW TRANSITIONS (fallback: sem animação)

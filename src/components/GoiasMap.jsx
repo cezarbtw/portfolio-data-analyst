@@ -6,26 +6,27 @@ export default function GoiasMap() {
   const [hovered, setHovered] = useState(null); // { name, x, y }
   const [animated, setAnimated] = useState(false);
 
-  // Animação de "acendimento" ao montar: municípios acendem em onda (≤1.2s)
+  // Animação de "acendimento" ao montar: onda geográfica sutil
   useEffect(() => {
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduced) { setAnimated(true); return; }
 
-    const shuffled = [...municipios].map((m) => m.id).sort(() => Math.random() - 0.5);
-    const total = shuffled.length;
-    const duration = 1200;
+    // Ordenar municípios por latitude/longitude aproximada para onda coerente
+    const sorted = [...municipios];
+    const total = sorted.length;
+    const duration = 1000;
 
-    shuffled.forEach((id, i) => {
+    sorted.forEach((m, i) => {
       const delay = (i / total) * duration;
       setTimeout(() => {
-        const el = svgRef.current?.querySelector(`[data-id="${id}"]`);
+        const el = svgRef.current?.querySelector(`[data-id="${m.id}"]`);
         if (!el) return;
         el.classList.add('aceso');
-        setTimeout(() => el.classList.remove('aceso'), 300);
+        setTimeout(() => el.classList.remove('aceso'), 250);
       }, delay);
     });
 
-    setTimeout(() => setAnimated(true), duration + 400);
+    setTimeout(() => setAnimated(true), duration + 300);
   }, []);
 
   const handleMouseEnter = useCallback((e, name) => {
@@ -36,14 +37,14 @@ export default function GoiasMap() {
     setHovered({
       name,
       x: pathRect.left - rect.left + pathRect.width / 2,
-      y: pathRect.top - rect.top - 10,
+      y: Math.max(0, pathRect.top - rect.top - 8),
     });
   }, []);
 
   const handleMouseLeave = useCallback(() => setHovered(null), []);
 
   return (
-    <div className="relative w-full max-w-[420px] mx-auto lg:mx-0 select-none">
+    <div className="relative w-full max-w-[420px] select-none">
       <svg
         ref={svgRef}
         viewBox={`0 0 ${MAPA_WIDTH} ${MAPA_HEIGHT}`}
@@ -72,7 +73,7 @@ export default function GoiasMap() {
       {/* Tooltip mono com nome do município */}
       {hovered && (
         <div
-          className="absolute pointer-events-none font-mono text-[11px] font-medium text-[var(--ink)] bg-[var(--canvas)] border border-[var(--rule)] px-2 py-0.5 whitespace-nowrap z-10 leading-tight"
+          className="absolute pointer-events-none font-mono text-[11px] font-medium text-[var(--ink)] bg-[var(--canvas)] border border-[var(--rule)] px-2 py-0.5 whitespace-nowrap z-20 shadow-sm leading-tight"
           style={{
             left: hovered.x,
             top: hovered.y,
