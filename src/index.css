@@ -49,9 +49,10 @@
     margin: 0;
     min-height: 100vh;
     overflow-x: hidden;
-    /* Textura de ruído contínua nativa no body: repetição infinita sem costuras nem cortes */
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' opacity='0.045' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    /* Textura de microgrão 4K contínua e ultra-fina (baseFrequency 2.2, opacidade suave 2.4%, tile 130px) */
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='2.2' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' opacity='0.024' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
     background-repeat: repeat;
+    background-size: 130px 130px;
   }
 
   /* Foco visível acessível (contraste AA) */
@@ -71,11 +72,12 @@
    UTILITÁRIOS E COMPONENTES
    ═════════════════════════════════════════════════════════════ */
 @layer utilities {
-  /* Textura de ruído para elementos fixos como Header e Mobile Menu */
+  /* Textura de microgrão 4K para elementos fixos como Header e Mobile Menu */
   .bg-noise {
     background-color: var(--bg);
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' opacity='0.045' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='2.2' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' opacity='0.024' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
     background-repeat: repeat;
+    background-size: 130px 130px;
   }
 
   /* Sublinhado animado para links */
