@@ -1,158 +1,140 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { projects } from '../data/projects';
-
-/* ─── Preview flutuante que acompanha o cursor (Desktop) ─── */
-function CursorImagePreview({ project, pos }) {
-  if (!project || !pos) return null;
-
-  const previewWidth = 280;
-  const previewHeight = 175;
-  const isNearRightEdge = typeof window !== 'undefined' && pos.x + previewWidth + 40 > window.innerWidth;
-  const x = isNearRightEdge ? pos.x - previewWidth - 24 : pos.x + 24;
-  const y = Math.max(
-    72,
-    Math.min(pos.y - previewHeight / 2, (typeof window !== 'undefined' ? window.innerHeight : 800) - previewHeight - 24)
-  );
-
-  return (
-    <div
-      className="hidden lg:block fixed pointer-events-none z-50 overflow-hidden border border-[var(--line)] bg-[var(--bg)] transition-opacity duration-150"
-      style={{
-        left: `${x}px`,
-        top: `${y}px`,
-        width: `${previewWidth}px`,
-        height: `${previewHeight}px`,
-      }}
-      aria-hidden="true"
-    >
-      {project.image ? (
-        <img
-          src={project.image}
-          alt={project.title}
-          className="w-full h-full object-cover block"
-          loading="lazy"
-        />
-      ) : (
-        <div className="w-full h-full flex flex-col items-center justify-center bg-[var(--bg)] p-4 text-center">
-          <span className="font-mono text-[12px] uppercase tracking-[0.08em] text-[var(--accent)] font-semibold">
-            [IMAGEM]
-          </span>
-          <span className="font-mono text-[10px] uppercase tracking-[0.08em] text-[var(--muted)] mt-1">
-            Diagrama técnico em preparação
-          </span>
-        </div>
-      )}
-    </div>
-  );
-}
+import PixelIcon from './PixelIcon';
 
 export default function Projects() {
-  const [hoveredProject, setHoveredProject] = useState(null);
-  const [cursorPos, setCursorPos] = useState(null);
-
-  const handleMouseMove = useCallback((e) => {
-    setCursorPos({ x: e.clientX, y: e.clientY });
-  }, []);
-
-  useEffect(() => {
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, [handleMouseMove]);
-
   return (
-    <section id="projetos" className="py-20 lg:py-32 border-b border-[var(--line)]">
-      {/* Preview flutuante no desktop */}
-      <CursorImagePreview project={hoveredProject} pos={cursorPos} />
-
-      <div className="max-w-[1200px] mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
-          {/* Coluna 1-4: Título da seção (sticky em ≥1024px conforme DESIGN.md) */}
+    <section id="projetos" className="py-16 sm:py-24 border-b border-[var(--line)]">
+      <div className="max-w-[1100px] mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14">
+          {/* ─── Coluna 1-4: Título da Seção (Sticky Desktop) ─── */}
           <div className="lg:col-span-4">
-            <div className="lg:sticky lg:top-[88px]">
-              <p className="font-mono text-[12px] uppercase tracking-[0.08em] text-[var(--muted)] mb-3">
-                <span className="text-[var(--accent)]">01 /</span> Projetos
-              </p>
-              <h2 className="font-display text-[clamp(2.25rem,5vw,4rem)] leading-[1] text-[var(--ink)]">
-                Projetos Selecionados
+            <div className="lg:sticky lg:top-[88px] space-y-4">
+              <div className="flex items-center gap-2 font-mono text-[12px] uppercase tracking-[0.1em] text-[var(--accent)] font-semibold">
+                <PixelIcon name="folder" size={14} />
+                <span>01 // Projetos</span>
+              </div>
+              <h2 className="font-display font-bold text-[clamp(2rem,4vw,3.25rem)] leading-[1.18] text-[var(--ink)]">
+                Projetos de Dados
               </h2>
-              <p className="mt-4 font-mono text-[12px] uppercase tracking-[0.08em] text-[var(--muted)]">
+              <p className="font-mono text-[11px] sm:text-[12px] uppercase tracking-[0.08em] text-[var(--muted)]">
                 Power BI · Pipelines ETL · Auditoria SQL
+              </p>
+              <div className="pt-2">
+                <span className="inline-flex items-center gap-2 px-2.5 py-1 rounded-card bg-[var(--surface)] border border-[var(--line)] font-mono text-[11px] uppercase tracking-wider text-[var(--muted)]">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent)] inline-block" />
+                  6 Projetos Catalogados
+                </span>
+              </div>
+              <p className="font-body text-[14px] leading-[1.7] text-[var(--muted)] pt-2 hidden lg:block max-w-[32ch]">
+                Casos práticos de saneamento de dados orçamentários, modelagem dimensional e esteiras analíticas.
               </p>
             </div>
           </div>
 
-          {/* Colunas 5-12: Lista de projetos (cada projeto é uma linha técnica) */}
-          <div className="lg:col-span-8 border-t border-[var(--line)]">
-            {projects.map((project) => (
-              <Link
-                key={project.id}
-                to={`/projetos/${project.slug}`}
-                viewTransition
-                onMouseEnter={() => setHoveredProject(project)}
-                onMouseLeave={() => setHoveredProject(null)}
-                className="group block py-6 sm:py-8 border-b border-[var(--line)] px-3 sm:px-4 -mx-3 sm:-mx-4 transition-colors duration-150 hover:bg-[var(--accent)]"
-              >
-                {/* Linha principal: Número + Título */}
-                <div className="flex items-baseline gap-4 sm:gap-6">
-                  {/* Número mono */}
-                  <span className="font-mono text-[14px] sm:text-[16px] text-[var(--muted)] group-hover:text-[var(--bg)] transition-colors duration-150 shrink-0 w-8">
-                    {project.number}
-                  </span>
-
-                  {/* Título: TCM-GO maior que os demais conforme DESIGN.md */}
-                  <div className="flex-1 min-w-0">
-                    <h3
-                      className={`font-display text-[var(--ink)] group-hover:text-[var(--bg)] transition-colors duration-150 leading-[1.08] ${
-                        project.isFeatured
-                          ? 'text-[clamp(2rem,4vw,3.25rem)]'
-                          : 'text-[clamp(1.6rem,3vw,2.5rem)]'
-                      }`}
-                    >
-                      {project.title}
-                    </h3>
-
-                    {/* Metadados: Ano e ferramentas em mono */}
-                    <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 font-mono text-[12px] uppercase tracking-[0.08em] text-[var(--muted)] group-hover:text-[var(--bg)] transition-colors duration-150">
-                      <span>{project.year}</span>
-                      <span aria-hidden="true">·</span>
-                      <span>{project.tools}</span>
+          {/* ─── Colunas 5-12: Cards com Borda Fina de 1px (Inspirado em tania.dev / Ref A) ─── */}
+          <div className="lg:col-span-8 space-y-6">
+            {projects.map((project) => {
+              const toolsList = project.tools.split('·').map((t) => t.trim());
+              return (
+                <article
+                  key={project.id}
+                  className="rounded-card border border-[var(--line)] bg-[var(--surface)] hover:border-[var(--accent)] transition-all p-6 sm:p-7 flex flex-col justify-between group"
+                >
+                  {/* Linha superior: Metadados técnicos */}
+                  <div className="flex flex-wrap items-center justify-between gap-2 font-mono text-[12px] uppercase tracking-[0.08em] text-[var(--muted)] mb-4">
+                    <div className="flex items-center gap-2.5">
+                      <span className="text-[var(--accent)] font-bold">{project.number}</span>
+                      <span aria-hidden="true" className="text-[var(--line)]">/</span>
+                      <span className="text-[var(--ink)] font-medium">{project.year}</span>
                     </div>
+                    <span className="text-[11px] tracking-wider text-[var(--muted)] bg-[var(--surface-hover)] px-2 py-0.5 rounded-card border border-[var(--line)]">
+                      {project.context.split('·')[0].trim()}
+                    </span>
+                  </div>
 
-                    {/* Mobile: imagem abaixo do título dentro da própria linha (DESIGN.md) */}
-                    <div className="mt-4 block lg:hidden">
-                      {project.image ? (
-                        <div className="border border-[var(--line)] bg-[var(--bg)] overflow-hidden">
-                          <img
-                            src={project.image}
-                            alt={project.title}
-                            className="w-full h-auto object-cover max-h-[220px] block"
-                            loading="lazy"
-                          />
-                        </div>
-                      ) : (
-                        <div className="border border-[var(--line)] bg-[var(--bg)] p-4 text-center">
-                          <span className="font-mono text-[12px] uppercase tracking-[0.08em] text-[var(--accent)] font-semibold block">
-                            [IMAGEM]
-                          </span>
-                          <span className="font-mono text-[10px] uppercase tracking-[0.08em] text-[var(--muted)] block mt-0.5">
-                            Diagrama técnico
-                          </span>
+                  {/* Título do Projeto */}
+                  <h3 className="font-display font-bold text-[clamp(1.25rem,2.2vw,1.65rem)] text-[var(--ink)] group-hover:text-[var(--accent)] transition-colors leading-[1.25] mb-3">
+                    <Link to={`/projetos/${project.slug}`} className="hover:underline focus-visible:outline-none">
+                      {project.title}
+                    </Link>
+                  </h3>
+
+                  {/* Resumo Técnico */}
+                  <p className="font-body text-[14px] sm:text-[15px] leading-[1.75] text-[var(--muted)] mb-5">
+                    {project.summary}
+                  </p>
+
+                  {/* Preview de Dashboard (quando disponível) */}
+                  {project.image && (
+                    <div className="mb-5 rounded-card overflow-hidden border border-[var(--line)] bg-[var(--bg)]">
+                      <Link to={`/projetos/${project.slug}`}>
+                        <img
+                          src={project.image}
+                          alt={project.imageCaption || project.title}
+                          className="w-full h-auto max-h-[260px] object-cover block opacity-90 group-hover:opacity-100 transition-opacity"
+                          loading="lazy"
+                        />
+                      </Link>
+                      {project.imageCaption && (
+                        <div className="px-3 py-2 bg-[var(--surface-hover)] border-t border-[var(--line)] font-mono text-[10px] sm:text-[11px] text-[var(--muted)] truncate">
+                          // {project.imageCaption}
                         </div>
                       )}
                     </div>
+                  )}
+
+                  {/* Tags de Tecnologias em Mono */}
+                  <div className="flex flex-wrap gap-1.5 mb-6">
+                    {toolsList.map((tool, tIdx) => (
+                      <span
+                        key={tIdx}
+                        className="px-2 py-0.5 rounded-card bg-[var(--surface-hover)] border border-[var(--line)] font-mono text-[11px] text-[var(--muted)] uppercase tracking-wider"
+                      >
+                        {tool}
+                      </span>
+                    ))}
                   </div>
 
-                  {/* Seta discreta em mono à direita */}
-                  <span
-                    aria-hidden="true"
-                    className="font-mono text-[14px] text-[var(--muted)] group-hover:text-[var(--bg)] group-hover:translate-x-1 transition-all duration-150 shrink-0 ml-2"
-                  >
-                    →
-                  </span>
-                </div>
-              </Link>
-            ))}
+                  {/* Ações e Links Diretos */}
+                  <div className="pt-4 border-t border-[var(--line)] flex flex-wrap items-center justify-between gap-4 font-mono text-[12px] uppercase tracking-wider">
+                    <Link
+                      to={`/projetos/${project.slug}`}
+                      className="link-underline text-[var(--accent)] hover:text-[var(--ink)] font-semibold inline-flex items-center gap-1.5 transition-colors"
+                    >
+                      <span>Estudo de Caso</span>
+                      <span aria-hidden="true" className="group-hover:translate-x-1 transition-transform">→</span>
+                    </Link>
+
+                    <div className="flex items-center gap-4 text-[var(--muted)]">
+                      {project.demoUrl && (
+                        <a
+                          href={project.demoUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="link-underline hover:text-[var(--accent)] transition-colors inline-flex items-center gap-1 text-[11px]"
+                        >
+                          <PixelIcon name="external" size={13} className="text-[var(--accent)]" />
+                          <span>Portal</span>
+                        </a>
+                      )}
+                      {project.githubUrl && (
+                        <a
+                          href={project.githubUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="link-underline hover:text-[var(--accent)] transition-colors inline-flex items-center gap-1 text-[11px]"
+                        >
+                          <PixelIcon name="github" size={13} className="text-[var(--accent)]" />
+                          <span>Código</span>
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                </article>
+              );
+            })}
           </div>
         </div>
       </div>

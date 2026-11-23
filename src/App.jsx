@@ -11,15 +11,19 @@ import ProjectDetail from './pages/ProjectDetail';
 
 function Home() {
   return (
-    <div className="min-h-screen flex flex-col bg-[var(--bg)] text-[var(--ink)]">
+    <div className="min-h-screen flex flex-col bg-transparent text-[var(--ink)]">
+      {/* Cabeçalho fixo no topo com links e toggle de tema */}
       <Header />
-      <main className="flex-1 pt-[56px]">
+
+      {/* Área de conteúdo centralizada (max-w ~1100px) */}
+      <main className="flex-1 max-w-[1100px] w-full mx-auto px-5 sm:px-8 pt-[88px] pb-16 space-y-28 sm:space-y-36">
         <Hero />
         <Projects />
         <Experience />
         <Skills />
         <Contact />
       </main>
+
       <Footer />
     </div>
   );

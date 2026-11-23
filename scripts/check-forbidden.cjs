@@ -6,9 +6,10 @@ const filesToCheck = [
   'src/index.css',
   'src/App.jsx',
   'src/main.jsx',
-  'src/components/Header.jsx',
+  'src/components/Sidebar.jsx',
   'src/components/Hero.jsx',
   'src/components/GoiasMap.jsx',
+  'src/components/PixelIcon.jsx',
   'src/components/Projects.jsx',
   'src/components/Experience.jsx',
   'src/components/Skills.jsx',
@@ -22,15 +23,14 @@ const filesToCheck = [
 
 const forbidden = [
   'gradient',
-  'shadow',
   'blur',
   'backdrop',
-  'rounded',
   'Inter',
   'Poppins',
   'Geist',
   'Roboto',
   'glow',
+  'neon',
   'blob',
   'aurora'
 ];

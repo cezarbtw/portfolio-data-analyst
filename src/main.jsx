@@ -1,6 +1,7 @@
 import { StrictMode, useEffect } from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter, useLocation } from 'react-router-dom';
+import { ThemeProvider } from './context/ThemeContext';
 import './index.css';
 import App from './App.jsx';
 
@@ -16,9 +17,11 @@ function ScrollRestoration() {
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <BrowserRouter>
-      <ScrollRestoration />
-      <App />
-    </BrowserRouter>
+    <ThemeProvider>
+      <BrowserRouter>
+        <ScrollRestoration />
+        <App />
+      </BrowserRouter>
+    </ThemeProvider>
   </StrictMode>,
 );

@@ -3,6 +3,7 @@ import { useParams, Link, Navigate } from 'react-router-dom';
 import { projects } from '../data/projects';
 import ImageLightbox from '../components/ImageLightbox';
 import Footer from '../components/Footer';
+import PixelIcon from '../components/PixelIcon';
 
 export default function ProjectDetail() {
   const { slug } = useParams();
@@ -23,16 +24,16 @@ export default function ProjectDetail() {
     : null;
 
   return (
-    <div className="min-h-screen flex flex-col bg-[var(--bg)] text-[var(--ink)]">
-      {/* ─── Cabeçalho Reduzido Fixo (56px) ─── */}
-      <header className="fixed top-0 left-0 right-0 z-40 h-[56px] bg-[var(--bg)] border-b border-[var(--line)]">
+    <div className="min-h-screen flex flex-col bg-transparent text-[var(--ink)]">
+      {/* ─── Cabeçalho Reduzido Fixo (56px) com bg-noise ─── */}
+      <header className="fixed top-0 left-0 right-0 z-40 h-[56px] bg-noise border-b border-[var(--line)]">
         <div className="max-w-[1200px] mx-auto h-full px-6 flex items-center justify-between">
           <Link
             to="/#projetos"
             viewTransition
             className="font-mono text-[12px] uppercase tracking-[0.08em] text-[var(--ink)] hover:text-[var(--accent)] transition-colors inline-flex items-center gap-2 focus-visible:outline-2 focus-visible:outline-[var(--accent)]"
           >
-            <span aria-hidden="true">←</span> Voltar aos projetos
+            <span aria-hidden="true" className="text-[var(--accent)]">←</span> Voltar aos projetos
           </Link>
 
           <span className="font-mono text-[12px] uppercase tracking-[0.08em] text-[var(--muted)]">
@@ -87,10 +88,10 @@ export default function ProjectDetail() {
                       key={screen.id}
                       type="button"
                       onClick={() => setActiveScreenIndex(idx)}
-                      className={`px-3 py-1 font-mono text-[12px] uppercase tracking-[0.08em] transition-colors ${
+                      className={`px-3 py-1 font-mono text-[12px] uppercase tracking-[0.08em] transition-colors rounded-card ${
                         activeScreenIndex === idx
-                          ? 'bg-[var(--ink)] text-[var(--bg)] border border-[var(--ink)]'
-                          : 'border border-[var(--line)] text-[var(--muted)] hover:border-[var(--ink)] hover:text-[var(--ink)]'
+                          ? 'bg-[var(--accent)] text-[#FFFFFF] font-bold border border-[var(--accent)]'
+                          : 'border border-[var(--line)] bg-[var(--surface)] text-[var(--muted)] hover:border-[var(--accent)] hover:text-[var(--ink)]'
                       }`}
                     >
                       {screen.tab}
@@ -105,7 +106,7 @@ export default function ProjectDetail() {
                   className="w-full text-left group block focus-visible:outline-2 focus-visible:outline-[var(--accent)]"
                   title="Clique para ampliar a visualização"
                 >
-                  <div className="border border-[var(--line)] bg-[var(--bg)] overflow-hidden cursor-zoom-in">
+                  <div className="rounded-card border border-[var(--line)] bg-[var(--surface)] overflow-hidden cursor-zoom-in">
                     <img
                       src={displayImage.url}
                       alt={displayImage.title}
@@ -128,7 +129,7 @@ export default function ProjectDetail() {
                   className="w-full text-left group block focus-visible:outline-2 focus-visible:outline-[var(--accent)]"
                   title="Clique para ampliar a visualização"
                 >
-                  <div className="border border-[var(--line)] bg-[var(--bg)] overflow-hidden cursor-zoom-in">
+                  <div className="rounded-card border border-[var(--line)] bg-[var(--surface)] overflow-hidden cursor-zoom-in">
                     <img
                       src={project.image}
                       alt={project.title}
@@ -145,7 +146,7 @@ export default function ProjectDetail() {
               </div>
             ) : (
               /* Placeholder técnico [IMAGEM] para projetos sem screenshot */
-              <div className="border border-[var(--line)] p-8 sm:p-12 text-center bg-[var(--bg)]">
+              <div className="rounded-card border border-[var(--line)] p-8 sm:p-12 text-center bg-[var(--surface)]">
                 <span className="font-mono text-[14px] uppercase tracking-[0.08em] text-[var(--accent)] font-semibold block">
                   [IMAGEM]
                 </span>
@@ -225,8 +226,9 @@ export default function ProjectDetail() {
                       href={project.demoUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="link-underline font-mono text-[13px] uppercase tracking-[0.08em] text-[var(--ink)] hover:text-[var(--accent)] inline-flex items-center gap-1.5 focus-visible:outline-2 focus-visible:outline-[var(--accent)]"
+                      className="link-underline font-mono text-[13px] uppercase tracking-[0.08em] text-[var(--accent)] hover:text-[var(--ink)] inline-flex items-center gap-1.5 focus-visible:outline-2 focus-visible:outline-[var(--accent)] font-semibold"
                     >
+                      <PixelIcon name="external" size={14} className="text-[var(--accent)]" />
                       <span>{project.demoLabel || 'Acessar Dashboard'}</span>
                       <span aria-hidden="true" className="arrow-ext text-[11px]">↗</span>
                     </a>
@@ -237,8 +239,9 @@ export default function ProjectDetail() {
                       href={project.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="link-underline font-mono text-[13px] uppercase tracking-[0.08em] text-[var(--ink)] hover:text-[var(--accent)] inline-flex items-center gap-1.5 focus-visible:outline-2 focus-visible:outline-[var(--accent)]"
+                      className="link-underline font-mono text-[13px] uppercase tracking-[0.08em] text-[var(--accent)] hover:text-[var(--ink)] inline-flex items-center gap-1.5 focus-visible:outline-2 focus-visible:outline-[var(--accent)] font-semibold"
                     >
+                      <PixelIcon name="github" size={14} className="text-[var(--accent)]" />
                       <span>Repositório no GitHub</span>
                       <span aria-hidden="true" className="arrow-ext text-[11px]">↗</span>
                     </a>
