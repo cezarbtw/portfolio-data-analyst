@@ -1,4 +1,4 @@
-# DESIGN.md - Portfólio Abraão Cezar Inácio
+# DESIGN.md - Portfólio Abraão Leopoldino
 
 ## Conceito
 Revista técnica impressa + planta de engenharia. Estilo tipográfico suíço/editorial, grade visível, tipografia gigante, UMA cor chapada. O site é feito dos meus dados reais (setor público, 246 municípios de Goiás). Não é um "template de portfólio dev".

@@ -1,7 +1,7 @@
 export const personalInfo = {
-  name: "Abraão Cezar Inácio",
-  shortName: "Abraão Cezar",
-  initials: "AC",
+  name: "Abraão Leopoldino",
+  shortName: "Abraão Leopoldino",
+  initials: "AL",
   role: "Analista de Dados & Business Intelligence",
   location: "Goiás, Brasil",
   email: "abraaocezarIL@outlook.com",
@@ -14,7 +14,7 @@ export const personalInfo = {
 };
 
 export const heroData = {
-  headline: "Abraão Cezar Inácio",
+  headline: "Abraão Leopoldino",
   role: "Analista de Dados & Business Intelligence",
   intro: [
     "Atuo na construção de pipelines ETL e relatórios no Power BI para o Portal do Cidadão no Tribunal de Contas dos Municípios de Goiás (TCM-GO), consolidando indicadores de saneamento e políticas públicas dos 246 municípios goianos.",

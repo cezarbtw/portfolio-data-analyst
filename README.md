@@ -1,6 +1,6 @@
-# Portfólio — Abraão Cezar Inácio
+# Portfólio — Abraão Leopoldino
 
-Portfólio editorial de Analista de Dados e Business Intelligence. Desenvolvido com foco em dados reais do setor público (Tribunal de Contas dos Municípios de Goiás — TCM-GO), consolidação dos 246 municípios do estado de Goiás, esteiras ETL em Python, consultas analíticas em SQL e relatórios no Power BI.
+Portfólio editorial de Analista de Dados e Business Intelligence de Abraão Leopoldino. Desenvolvido com foco em dados reais do setor público (Tribunal de Contas dos Municípios de Goiás — TCM-GO), consolidação dos 246 municípios do estado de Goiás, esteiras ETL em Python, consultas analíticas em SQL e relatórios no Power BI.
 
 ## Conceito Visual
 

@@ -69,8 +69,8 @@ export default function Header() {
             href="/"
             className="font-display text-[20px] leading-none text-[var(--ink)] hover:text-[var(--accent)] transition-colors focus-visible:outline-2 focus-visible:outline-[var(--accent)]"
           >
-            <span className="hidden sm:inline">Abraão Cezar Inácio</span>
-            <span className="sm:hidden">AC</span>
+            <span className="hidden sm:inline">Abraão Leopoldino</span>
+            <span className="sm:hidden">AL</span>
           </a>
 
           {/* Desktop links: mono 12px, uppercase, letter-spacing 0.08em */}
@@ -120,10 +120,10 @@ export default function Header() {
           aria-label="Menu de navegação mobile"
           className="fixed inset-0 z-50 bg-[var(--bg)] text-[var(--ink)] flex flex-col justify-between p-6 sm:hidden animate-fadeIn"
         >
-          {/* Topo do modal: "AC" + Fechar */}
+          {/* Topo do modal: "AL" + Fechar */}
           <div className="flex items-center justify-between pb-6 border-b border-[var(--line)]">
             <span className="font-display text-[22px] text-[var(--ink)]">
-              Abraão Cezar Inácio
+              Abraão Leopoldino
             </span>
             <button
               type="button"

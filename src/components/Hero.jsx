@@ -30,10 +30,10 @@ export default function Hero() {
             {/* Nome gigante com revelação por máscara linha a linha (DESIGN.md) */}
             <h1 className="text-[clamp(3.5rem,11vw,9.5rem)] font-display leading-[0.95] tracking-[-0.02em] text-[var(--ink)]">
               <span className={`hero-mask-line ${revealed ? 'revealed' : ''}`} style={maskStyle(0)}>
-                Abraão Cezar
+                Abraão
               </span>
               <span className={`hero-mask-line ${revealed ? 'revealed' : ''}`} style={maskStyle(80)}>
-                Inácio
+                Leopoldino
               </span>
             </h1>
 
