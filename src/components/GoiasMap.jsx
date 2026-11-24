@@ -13,14 +13,14 @@ export default function GoiasMap() {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  // Onda de "acender" ao carregar (≤1,2s, uma vez) — respeita prefers-reduced-motion
+  // Onda de "acender" ao carregar (≤1s) — respeita prefers-reduced-motion
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReducedMotion) return;
 
     const municipios = goiasData.municipios;
     const total = municipios.length;
-    const totalDuration = 1000; // 1s (≤1,2s)
+    const totalDuration = 1000;
 
     municipios.forEach((m, idx) => {
       const delay = (idx / total) * totalDuration;
@@ -55,27 +55,20 @@ export default function GoiasMap() {
   }, []);
 
   return (
-    <div className="relative w-full max-w-[720px] mx-auto select-none overflow-hidden">
-      {/* ─── Microelementos de Telemetria e Coordenadas Técnicas ─── */}
-      <div className="flex flex-col sm:flex-row items-center sm:items-center justify-between gap-1.5 font-mono text-[10px] sm:text-[11px] text-[var(--muted)] mb-4 border-b border-[var(--line)] pb-2.5 text-center sm:text-left">
-        <div className="flex items-center gap-2">
-          <span className="text-[var(--accent)] font-semibold">//</span>
-          <span className="tracking-wider uppercase">db.goias.municipalities</span>
-          <span className="text-[var(--line)]">·</span>
-          <span className="text-[var(--ink)] font-medium">UF: 52</span>
-        </div>
-        <div className="tracking-wider text-[10px] sm:text-[11px] text-[var(--muted)]">
-          15°55′S 50°08′W · 246 MUNICÍPIOS
-        </div>
+    <div className="relative w-full max-w-[720px] mx-auto select-none">
+      {/* ─── Legenda discreta superior com coordenadas reais e contagem ─── */}
+      <div className="flex items-center justify-between font-mono text-[11px] text-[var(--muted)] mb-3 pb-2 border-b border-[var(--line)]">
+        <span className="tracking-wide">Goiás · Brasil</span>
+        <span className="tracking-wide">15°55′S 50°08′W · 246 municípios</span>
       </div>
 
-      {/* ─── SVG da Malha de Goiás flutuando diretamente sobre o ruído de fundo ─── */}
+      {/* ─── SVG da Malha de Goiás ─── */}
       <div className="relative flex justify-center py-2">
         <svg
           ref={svgRef}
           viewBox={`0 0 ${goiasData.width} ${goiasData.height}`}
           preserveAspectRatio="xMidYMid meet"
-          className="w-full h-auto max-h-[520px] text-[var(--ink)] drop-shadow-none"
+          className="w-full h-auto max-h-[500px] text-[var(--ink)]"
           aria-label="Mapa de Goiás com 246 municípios"
           role="img"
         >
@@ -99,10 +92,10 @@ export default function GoiasMap() {
           </g>
         </svg>
 
-        {/* Rótulo Desktop no hover posicionado flutuante */}
+        {/* Rótulo Desktop no hover flutuante */}
         {!isMobile && activeMunicipality && activeMunicipality.x !== undefined && (
           <div
-            className="absolute pointer-events-none font-mono text-[11px] uppercase tracking-[0.08em] font-semibold text-[var(--ink)] bg-[var(--surface)] border border-[var(--line)] px-2.5 py-1 whitespace-nowrap z-20 rounded-card shadow-none"
+            className="absolute pointer-events-none font-body font-medium text-[12px] text-[var(--ink)] bg-[var(--surface)] border border-[var(--line)] px-2.5 py-1 whitespace-nowrap z-20 rounded-card"
             style={{
               left: activeMunicipality.x,
               top: activeMunicipality.y,
@@ -110,30 +103,25 @@ export default function GoiasMap() {
             }}
             aria-hidden="true"
           >
-            <span className="text-[var(--accent)] mr-1.5">●</span>
+            <span className="text-[var(--accent)] mr-1.5 font-bold">●</span>
             {activeMunicipality.name}
           </div>
         )}
       </div>
 
-      {/* ─── Rodapé Técnico com Status de Interação ─── */}
-      <div className="mt-4 pt-2.5 border-t border-[var(--line)] flex flex-col sm:flex-row items-center justify-between gap-2 font-mono text-[10px] sm:text-[11px] text-[var(--muted)] text-center sm:text-left">
+      {/* ─── Dica de Interação em Português Normal ─── */}
+      <div className="mt-3 pt-2.5 border-t border-[var(--line)] flex items-center justify-between font-body text-[12px] text-[var(--muted)]">
         <div className="flex items-center gap-2">
-          <span className="relative flex h-2 w-2 shrink-0">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--accent)] opacity-75" />
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-[var(--accent)]" />
-          </span>
+          <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent)] shrink-0 inline-block" />
           {activeMunicipality?.name ? (
-            <span className="text-[var(--accent)] font-semibold uppercase tracking-wider">
-              MUNICÍPIO: {activeMunicipality.name}
+            <span className="text-[var(--accent)] font-semibold">
+              Município: {activeMunicipality.name}
             </span>
           ) : (
-            <span className="tracking-wider">HOVER OU TOQUE PARA AUDITAR</span>
+            <span>Passe o mouse para ver cada município</span>
           )}
         </div>
-        <div className="text-[9px] sm:text-[10px] tracking-wider uppercase text-[var(--muted)]">
-          MALHA VETORIAL IBGE // ILUSTRAÇÃO CONCEITUAL
-        </div>
+        <span className="font-mono text-[11px] text-[var(--muted)]">Malha IBGE</span>
       </div>
     </div>
   );

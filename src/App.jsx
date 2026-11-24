@@ -12,11 +12,11 @@ import ProjectDetail from './pages/ProjectDetail';
 function Home() {
   return (
     <div className="min-h-screen flex flex-col bg-transparent text-[var(--ink)]">
-      {/* Cabeçalho fixo no topo com links e toggle de tema */}
+      {/* Cabeçalho fixo no topo com links e toggle de tema (h-[56px]) */}
       <Header />
 
       {/* Área de conteúdo centralizada (max-w ~1100px) */}
-      <main className="flex-1 max-w-[1100px] w-full mx-auto px-5 sm:px-8 pt-[88px] pb-16 space-y-28 sm:space-y-36">
+      <main className="flex-1 max-w-[1100px] w-full mx-auto px-5 sm:px-8 pt-[56px] pb-8">
         <Hero />
         <Projects />
         <Experience />

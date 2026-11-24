@@ -1,150 +1,409 @@
 import React from 'react';
 
 /**
- * Pack de ícones Pixel Art 24x24 (Inspirado no pack MIT Pixelarticons)
- * Estilo autêntico com blocos geométricos e shapeRendering="crispEdges"
+ * Ícones vetoriais padronizados com traço limpo e uniforme (estilo 2px stroke / vetor oficial).
+ * Substitui os blocos pesados e pixelados por ícones de marca oficiais e reconhecíveis.
  */
 export default function PixelIcon({ name, size = 18, className = '' }) {
   const renderPath = () => {
     switch (name) {
-      case 'floppy':
-      case 'disk':
+      case 'github':
         return (
-          <>
-            <path d="M4 2h14l4 4v16H4V2zm2 2v6h10V4H6zm0 16h12v-8H6v8zm2-14h2v4H8V4z" />
-          </>
+          <path
+            fill="currentColor"
+            fillRule="evenodd"
+            clipRule="evenodd"
+            d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+          />
         );
 
-      case 'timeline':
-      case 'clock':
+      case 'linkedin':
         return (
           <>
-            <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 2a8 8 0 1 1-8 8 8 8 0 0 1 8-8zm-1 3h2v6h5v2h-7V7z" />
-          </>
-        );
-
-      case 'folder':
-        return (
-          <>
-            <path d="M2 4h8l2 2h10v14H2V4zm2 4v10h16V8H4z" />
-          </>
-        );
-
-      case 'briefcase':
-        return (
-          <>
-            <path d="M8 2h8v4h6v16H2V6h6V2zm2 2v2h4V4h-4zM4 8v4h16V8H4zm16 6H4v6h16v-6z" />
-          </>
-        );
-
-      case 'chart':
-      case 'analytics':
-        return (
-          <>
-            <path d="M2 2h2v18h18v2H2V2zm6 12H6v4h2v-4zm6-6h-2v10h2V8zm6-4h-2v14h2V4z" />
+            <path
+              d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <rect
+              x="2"
+              y="9"
+              width="4"
+              height="12"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <circle
+              cx="4"
+              cy="4"
+              r="2"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
           </>
         );
 
       case 'mail':
         return (
           <>
-            <path d="M2 4h20v16H2V4zm2 2v2l8 5 8-5V6H4zm16 4.38-8 5-8-5V18h16v-7.62z" />
+            <path
+              d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <polyline
+              points="22,6 12,13 2,6"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </>
+        );
+
+      case 'chart':
+      case 'powerbi':
+      case 'analytics':
+        return (
+          <>
+            <line
+              x1="18"
+              y1="20"
+              x2="18"
+              y2="10"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <line
+              x1="12"
+              y1="20"
+              x2="12"
+              y2="4"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <line
+              x1="6"
+              y1="20"
+              x2="6"
+              y2="14"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </>
+        );
+
+      case 'folder':
+        return (
+          <path
+            d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        );
+
+      case 'briefcase':
+        return (
+          <>
+            <rect
+              x="2"
+              y="7"
+              width="20"
+              height="14"
+              rx="2"
+              ry="2"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <path
+              d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
           </>
         );
 
       case 'terminal':
         return (
           <>
-            <path d="M2 3h20v18H2V3zm2 2v14h16V5H4zm3 3h2v2H7V8zm2 2h2v2H9v-2zm-2 2h2v2H7v-2zm6 2h6v2h-6v-2z" />
+            <polyline
+              points="4 17 10 11 4 5"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <line
+              x1="12"
+              y1="19"
+              x2="20"
+              y2="19"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
           </>
         );
 
-      case 'sun':
+      case 'clock':
+      case 'timeline':
         return (
           <>
-            <path d="M11 1h2v3h-2V1zm0 19h2v3h-2v-3zM3.515 4.929l1.414-1.414L7.05 5.636 5.636 7.05 3.515 4.93zM16.95 18.364l1.414-1.414 2.121 2.121-1.414 1.414-2.121-2.121zm0-12.728l2.121-2.121 1.414 1.414-2.121 2.121-1.414-1.414zM4.929 20.485l-1.414-1.414 2.121-2.121 1.414 1.414-2.121 2.121zM1 11h3v2H1v-2zm19 0h3v2h-3v-2zm-8-5a6 6 0 1 0 6 6 6 6 0 0 0-6-6zm0 2a4 4 0 1 1-4 4 4 4 0 0 1 4-4z" />
-          </>
-        );
-
-      case 'moon':
-        return (
-          <>
-            <path d="M12 2h2v2h2v2h2v2h2v4h-2v2h-2v2h-2v2h-2v2h-4v-2H8v-2H6v-2H4v-2H2v-4h2V8h2V6h2V4h2V2h2zm-2 4H8v2H6v2H4v4h2v2h2v2h2v2h2v-2h2v-2h2v-2h2v-2h2v-2h-2v-2h-2V8h-2V6h-2V4h-2v2z" />
-          </>
-        );
-
-      case 'github':
-        return (
-          <>
-            <path d="M9 2h6v2H9V2zm-3 2h3v2H6V4zm12 0h-3v2h3V4zM4 6h2v4H4V6zm16 0h-2v4h2V6zm-3 10h-2v3h-1v-2h-4v2h-1v-3H7v-5h1V9h1V8h6v1h1v1h1v5h-1zm-6-5H9v2h2v-2zm4 0h-2v2h2v-2z" />
-          </>
-        );
-
-      case 'linkedin':
-        return (
-          <>
-            <path d="M2 2h20v20H2V2zm4 7h3v9H6V9zm0-4h3v3H6V5zm5 4h3v1.5h.05c.42-.8 1.45-1.65 3-1.65 3.2 0 3.8 2.1 3.8 4.85V18h-3v-4.15c0-.99-.02-2.27-1.38-2.27-1.38 0-1.6 1.08-1.6 2.2V18h-3.07V9z" />
+            <circle
+              cx="12"
+              cy="12"
+              r="10"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <polyline
+              points="12 6 12 12 16 14"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
           </>
         );
 
       case 'external':
         return (
           <>
-            <path d="M5 3h16v16h-2V6.414l-12.293 12.293-1.414-1.414L17.586 5H5V3z" />
+            <path
+              d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <polyline
+              points="15 3 21 3 21 9"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <line
+              x1="10"
+              y1="14"
+              x2="21"
+              y2="3"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
           </>
         );
 
       case 'menu':
         return (
           <>
-            <path d="M3 5h18v2H3V5zm0 6h18v2H3v-2zm0 6h18v2H3v-2z" />
+            <line
+              x1="3"
+              y1="12"
+              x2="21"
+              y2="12"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <line
+              x1="3"
+              y1="6"
+              x2="21"
+              y2="6"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <line
+              x1="3"
+              y1="18"
+              x2="21"
+              y2="18"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
           </>
         );
 
       case 'close':
         return (
           <>
-            <path d="M5 5h2v2h2v2h2v2h2V9h2V7h2V5h2v2h-2v2h-2v2h-2v2h2v2h2v2h2v2h-2v-2h-2v-2h-2v-2h-2v2H9v2H7v2H5v-2h2v-2h2v-2h2v-2H9V9H7V7H5V5z" />
+            <line
+              x1="18"
+              y1="6"
+              x2="6"
+              y2="18"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <line
+              x1="6"
+              y1="6"
+              x2="18"
+              y2="18"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
           </>
         );
 
       case 'copy':
         return (
           <>
-            <path d="M4 2h11v2H6v11H4V2zm4 4h12v16H8V6zm2 2v12h8V8h-8z" />
+            <rect
+              x="9"
+              y="9"
+              width="13"
+              height="13"
+              rx="2"
+              ry="2"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <path
+              d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
           </>
         );
 
       case 'check':
         return (
+          <polyline
+            points="20 6 9 17 4 12"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        );
+
+      case 'sun':
+        return (
           <>
-            <path d="M19 5l-9 9-4-4-2 2 6 6 11-11-2-2z" />
+            <circle
+              cx="12"
+              cy="12"
+              r="5"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <line x1="12" y1="1" x2="12" y2="3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+            <line x1="12" y1="21" x2="12" y2="23" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+            <line x1="1" y1="12" x2="3" y2="12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+            <line x1="21" y1="12" x2="23" y2="12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
           </>
         );
 
-      case 'code':
+      case 'moon':
         return (
-          <>
-            <path d="M8 5l-6 7 6 7 2-2-4.286-5L10 7 8 5zm8 0l-2 2 4.286 5L14 17l2 2 6-7-6-7z" />
-          </>
-        );
-
-      case 'database':
-        return (
-          <>
-            <path d="M4 3h16v4H4V3zm0 7h16v4H4v-4zm0 7h16v4H4v-4zm2-12v2h12V5H6zm0 7v2h12v-2H6zm0 7v2h12v-2H6z" />
-          </>
+          <path
+            d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
         );
 
       case 'whatsapp':
         return (
-          <>
-            <path d="M12 2a10 10 0 0 0-8.66 15L2 22l5.17-1.34A10 10 0 1 0 12 2zm0 2a8 8 0 0 1 6.93 12l-.4.69.83 3.08-3.15-.82-.67.39A8 8 0 1 1 12 4zm-3 4a1 1 0 0 0-1 1c0 2.5 2 5.5 4.5 7a4.5 4.5 0 0 0 2.5.5 1 1 0 0 0 1-1v-1.5l-2-1-.75.75c-.5-.25-1.5-1.25-1.75-1.75l.75-.75-1-2H9z" />
-          </>
+          <path
+            d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
         );
 
       default:
-        return <rect x="4" y="4" width="16" height="16" />;
+        return (
+          <circle
+            cx="12"
+            cy="12"
+            r="8"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        );
     }
   };
 
@@ -153,8 +412,7 @@ export default function PixelIcon({ name, size = 18, className = '' }) {
       viewBox="0 0 24 24"
       width={size}
       height={size}
-      className={`inline-block shrink-0 fill-current ${className}`}
-      style={{ shapeRendering: 'crispEdges' }}
+      className={`inline-block shrink-0 ${className}`}
       aria-hidden="true"
     >
       {renderPath()}

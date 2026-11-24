@@ -40,7 +40,7 @@
     font-size: 16px;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
+    overflow-x: clip;
   }
 
   body {
@@ -48,7 +48,7 @@
     color: var(--ink);
     margin: 0;
     min-height: 100vh;
-    overflow-x: hidden;
+    overflow-x: clip;
     /* Textura de ruído de película 4K orgânica e nítida (baseFrequency 1.35, 4 oitavas, opacidade 6%, tile 200px) */
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.35' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' opacity='0.06' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
     background-repeat: repeat;
@@ -99,54 +99,43 @@
     width: 100%;
   }
 
-  /* Deslocamento de seta externa */
+  /* Ícone de seta externa com movimento no hover */
   .arrow-ext {
     display: inline-block;
     transition: transform 150ms ease;
   }
-  a:hover .arrow-ext {
+  *:hover > .arrow-ext {
     transform: translate(2px, -2px);
-  }
-
-  /* Revelação de máscara por linha */
-  .hero-mask-line {
-    display: block;
-    clip-path: inset(0 0 100% 0);
-    transition: clip-path 500ms cubic-bezier(0.2, 0.7, 0.2, 1);
-  }
-  .hero-mask-line.revealed {
-    clip-path: inset(0 0 0 0);
-  }
-
-  /* Mapa vetorial wireframe de Goiás com 246 municípios */
-  .mapa-municipio {
-    fill: transparent;
-    stroke: var(--muted);
-    stroke-opacity: 0.35;
-    stroke-width: 0.8;
-    cursor: pointer;
-    transition: fill 150ms ease, stroke 150ms ease, stroke-opacity 150ms ease;
-  }
-  .mapa-municipio:hover,
-  .mapa-municipio:focus {
-    fill: var(--accent);
-    stroke: var(--accent);
-    stroke-opacity: 1;
-    outline: none;
-  }
-  .mapa-municipio.mapa-aceso {
-    fill: var(--accent);
-    stroke: var(--accent);
-    stroke-opacity: 1;
-    opacity: 0.85;
   }
 }
 
+/* ═════════════════════════════════════════════════════════════
+   ANIMAÇÃO DO MAPA DE GOIÁS
+   ═════════════════════════════════════════════════════════════ */
+.mapa-municipio {
+  fill: var(--surface);
+  stroke: var(--line);
+  stroke-width: 0.5px;
+  vector-effect: non-scaling-stroke;
+  transition: fill 140ms ease, stroke 140ms ease;
+  cursor: pointer;
+}
+
+.mapa-municipio:hover {
+  fill: var(--accent);
+  stroke: var(--accent);
+  stroke-width: 1px;
+}
+
+.mapa-aceso {
+  fill: var(--accent) !important;
+  stroke: var(--accent) !important;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .link-underline::after,
-  .arrow-ext,
-  .hero-mask-line {
-    transition: none !important;
-    clip-path: none !important;
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

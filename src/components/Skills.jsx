@@ -26,20 +26,20 @@ const skillsData = [
 
 export default function Skills() {
   return (
-    <section id="competencias" className="py-16 sm:py-24 border-b border-[var(--line)]">
+    <section id="competencias" className="py-8 sm:py-14 border-b border-[var(--line)]">
       <div className="max-w-[1100px] mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14">
-          {/* ─── Colunas 1-4: Título da Seção (Sticky Desktop) ─── */}
+          {/* ─── Colunas 1-4: Título da Seção (Sticky Desktop: 56px + 24px = 80px) ─── */}
           <div className="lg:col-span-4">
-            <div className="lg:sticky lg:top-[88px] space-y-4">
-              <div className="flex items-center gap-2 font-mono text-[12px] uppercase tracking-[0.1em] text-[var(--accent)] font-semibold">
-                <PixelIcon name="terminal" size={14} />
-                <span>03 // Competências</span>
+            <div className="lg:sticky lg:top-[80px] space-y-3">
+              <div className="flex items-center gap-2 font-body font-medium text-[13px] text-[var(--accent)]">
+                <PixelIcon name="terminal" size={15} />
+                <span>Competências</span>
               </div>
-              <h2 className="font-display font-bold text-[clamp(2rem,4vw,3.25rem)] leading-[1.18] text-[var(--ink)]">
+              <h2 className="font-display font-bold text-[clamp(2rem,4vw,3.25rem)] leading-[1.15] text-[var(--ink)]">
                 Habilidades Técnicas
               </h2>
-              <p className="font-mono text-[11px] sm:text-[12px] uppercase tracking-[0.08em] text-[var(--muted)]">
+              <p className="font-body text-[14px] text-[var(--muted)] leading-[1.6]">
                 Stack &amp; Metodologias
               </p>
               <p className="font-body text-[14px] leading-[1.7] text-[var(--muted)] pt-2 hidden lg:block max-w-[32ch]">
@@ -48,35 +48,28 @@ export default function Skills() {
             </div>
           </div>
 
-          {/* ─── Colunas 5-12: Categorias Técnicas e Badges em Mono ─── */}
+          {/* ─── Colunas 5-12: Categorias Técnicas e Ferramentas em Texto Simples ─── */}
           <div className="lg:col-span-8 border-t border-[var(--line)]">
             {skillsData.map((skill, idx) => (
               <div
                 key={idx}
-                className="py-8 sm:py-10 border-b border-[var(--line)] first:pt-6"
+                className="py-7 sm:py-9 border-b border-[var(--line)] first:pt-4"
               >
-                {/* Título da Categoria */}
-                <h3 className="font-mono text-[13px] uppercase tracking-[0.1em] text-[var(--ink)] font-semibold mb-3 flex items-center gap-2">
+                {/* Título da Categoria em Fonte Normal */}
+                <h3 className="font-body font-semibold text-[16px] text-[var(--ink)] mb-2.5 flex items-center gap-2">
                   <span className="text-[var(--accent)] font-bold">—</span>
                   <span>{skill.category}</span>
                 </h3>
 
                 {/* Descrição em Prosa Técnica */}
-                <p className="font-body text-[14px] sm:text-[15px] leading-[1.8] text-[var(--muted)] max-w-[62ch] mb-4">
+                <p className="font-body text-[14px] sm:text-[15px] leading-[1.75] text-[var(--muted)] max-w-[62ch] mb-3.5">
                   {skill.description}
                 </p>
 
-                {/* Badges Mono de Ferramentas */}
-                <div className="flex flex-wrap gap-1.5">
-                  {skill.tags.map((tag, tIdx) => (
-                    <span
-                      key={tIdx}
-                      className="px-2 py-0.5 rounded-card bg-[var(--surface)] border border-[var(--line)] font-mono text-[11px] text-[var(--muted)] uppercase tracking-wider"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
+                {/* Ferramentas em Linha de Texto Simples (sem caixas/chips) */}
+                <p className="font-mono text-[12px] text-[var(--muted)]">
+                  {skill.tags.join(' · ')}
+                </p>
               </div>
             ))}
           </div>

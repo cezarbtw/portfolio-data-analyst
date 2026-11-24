@@ -25,12 +25,10 @@ export default function Header() {
     const sections = ['projetos', 'experiencia', 'competencias', 'contato'];
 
     const handleScroll = () => {
-      // 1. Barra de leitura (2px no topo)
       const totalScroll = document.documentElement.scrollHeight - window.innerHeight;
       const progress = totalScroll > 0 ? (window.scrollY / totalScroll) * 100 : 0;
       setScrollProgress(Math.min(100, Math.max(0, progress)));
 
-      // 2. Scroll-spy
       const scrollPos = window.scrollY + 160;
       let current = '';
       for (let i = sections.length - 1; i >= 0; i--) {
@@ -82,10 +80,10 @@ export default function Header() {
             </span>
           </a>
 
-          {/* Navegação Desktop: links de âncora + tema */}
+          {/* Navegação Desktop: fonte do corpo em caixa normal (peso 500) */}
           <div className="hidden md:flex items-center gap-6">
             <nav aria-label="Navegação principal">
-              <ul className="flex items-center gap-6 font-mono text-[12px] uppercase tracking-[0.08em] text-[var(--muted)]">
+              <ul className="flex items-center gap-7 font-body font-medium text-[14px] text-[var(--muted)]">
                 {navLinks.map((link) => {
                   const isActive = activeSection === link.id;
                   return (
@@ -106,16 +104,16 @@ export default function Header() {
               </ul>
             </nav>
 
-            {/* Toggle de Tema Desktop */}
+            {/* Toggle de Tema Desktop: caixa normal peso 500 */}
             <div className="pl-4 border-l border-[var(--line)]">
               <button
                 type="button"
                 onClick={toggleTheme}
                 aria-label={`Alternar para modo ${theme === 'dark' ? 'claro' : 'escuro'}`}
-                className="flex items-center gap-2 px-2.5 py-1.5 border border-[var(--line)] rounded-card font-mono text-[11px] uppercase tracking-wider text-[var(--ink)] hover:border-[var(--accent)] transition-colors focus-visible:outline-none"
+                className="flex items-center gap-2 px-3 py-1.5 border border-[var(--line)] rounded-card font-body font-medium text-[13px] text-[var(--ink)] hover:border-[var(--accent)] transition-colors focus-visible:outline-none cursor-pointer"
               >
-                <PixelIcon name={theme === 'dark' ? 'sun' : 'moon'} size={13} className="text-[var(--accent)]" />
-                <span>{theme === 'dark' ? 'Light' : 'Dark'}</span>
+                <PixelIcon name={theme === 'dark' ? 'sun' : 'moon'} size={14} className="text-[var(--accent)]" />
+                <span>{theme === 'dark' ? 'Modo claro' : 'Modo escuro'}</span>
               </button>
             </div>
           </div>
@@ -128,16 +126,16 @@ export default function Header() {
               aria-label="Alternar modo de cor"
               className="p-2 border border-[var(--line)] rounded-card text-[var(--ink)] hover:border-[var(--accent)] transition-colors focus-visible:outline-none"
             >
-              <PixelIcon name={theme === 'dark' ? 'sun' : 'moon'} size={14} className="text-[var(--accent)]" />
+              <PixelIcon name={theme === 'dark' ? 'sun' : 'moon'} size={15} className="text-[var(--accent)]" />
             </button>
 
             <button
               type="button"
               onClick={() => setMobileMenuOpen(true)}
               aria-label="Abrir menu"
-              className="flex items-center gap-1.5 px-3 py-1.5 border border-[var(--line)] rounded-card font-mono text-[12px] uppercase tracking-wider text-[var(--ink)] hover:border-[var(--accent)] transition-colors focus-visible:outline-none"
+              className="flex items-center gap-1.5 px-3 py-1.5 border border-[var(--line)] rounded-card font-body font-medium text-[13px] text-[var(--ink)] hover:border-[var(--accent)] transition-colors focus-visible:outline-none"
             >
-              <PixelIcon name="menu" size={13} />
+              <PixelIcon name="menu" size={14} />
               <span>Menu</span>
             </button>
           </div>
@@ -170,7 +168,7 @@ export default function Header() {
             </button>
           </div>
 
-          {/* Links do menu mobile com ícones pixel-art */}
+          {/* Links do menu mobile */}
           <nav aria-label="Navegação móvel" className="py-6">
             <ul className="space-y-3">
               {navLinks.map((link) => {
@@ -180,7 +178,7 @@ export default function Header() {
                     <a
                       href={link.href}
                       onClick={() => setMobileMenuOpen(false)}
-                      className={`flex items-center gap-3 p-3 rounded-card font-body text-[16px] transition-colors ${
+                      className={`flex items-center gap-3 p-3 rounded-card font-body font-medium text-[16px] transition-colors ${
                         isActive
                           ? 'bg-[var(--accent-subtle)] text-[var(--accent)] font-semibold border-l-2 border-[var(--accent)]'
                           : 'text-[var(--ink)] hover:bg-[var(--surface)]'
@@ -200,14 +198,26 @@ export default function Header() {
           </nav>
 
           {/* Rodapé do modal */}
-          <div className="pt-4 border-t border-[var(--line)] flex items-center justify-between font-mono text-[11px] text-[var(--muted)]">
+          <div className="pt-4 border-t border-[var(--line)] flex items-center justify-between font-body text-[12px] text-[var(--muted)]">
             <span>Goiás, Brasil · TCM-GO</span>
             <div className="flex items-center gap-4">
-              <a href="https://github.com/cezarbtw" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--accent)]">
-                <PixelIcon name="github" size={16} />
+              <a
+                href="https://github.com/cezarbtw"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-[var(--accent)]"
+                aria-label="GitHub"
+              >
+                <PixelIcon name="github" size={18} />
               </a>
-              <a href="https://www.linkedin.com/in/cezarinaciol/" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--accent)]">
-                <PixelIcon name="linkedin" size={16} />
+              <a
+                href="https://www.linkedin.com/in/cezarinaciol/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-[var(--accent)]"
+                aria-label="LinkedIn"
+              >
+                <PixelIcon name="linkedin" size={18} />
               </a>
             </div>
           </div>

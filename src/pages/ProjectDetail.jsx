@@ -110,7 +110,7 @@ export default function ProjectDetail() {
                     <img
                       src={displayImage.url}
                       alt={displayImage.title}
-                      className="w-full h-auto object-cover max-h-[650px] block"
+                      className="w-full h-auto object-contain max-h-[720px] block mx-auto"
                     />
                   </div>
                   <div className="mt-3 flex items-center justify-between font-mono text-[11px] uppercase tracking-[0.08em] text-[var(--muted)]">
@@ -133,7 +133,7 @@ export default function ProjectDetail() {
                     <img
                       src={project.image}
                       alt={project.title}
-                      className="w-full h-auto object-cover max-h-[650px] block"
+                      className="w-full h-auto object-contain max-h-[720px] block mx-auto"
                     />
                   </div>
                   <div className="mt-3 flex items-center justify-between font-mono text-[11px] uppercase tracking-[0.08em] text-[var(--muted)]">
