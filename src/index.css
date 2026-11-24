@@ -18,6 +18,9 @@
     --muted: #9393A0;
     --accent: #FF5C42;
     --accent-subtle: rgba(255, 92, 66, 0.12);
+    --map-stroke: rgba(244, 241, 234, 0.38);
+    --map-fill: transparent;
+    --map-hover-fill: rgba(255, 92, 66, 0.25);
     --header-height: 56px;
   }
 
@@ -30,6 +33,9 @@
     --muted: #5C5C66;
     --accent: #D9381E;
     --accent-subtle: rgba(217, 56, 30, 0.10);
+    --map-stroke: rgba(18, 18, 18, 0.38);
+    --map-fill: transparent;
+    --map-hover-fill: rgba(217, 56, 30, 0.25);
   }
 
   html {
@@ -99,6 +105,29 @@
     width: 100%;
   }
 
+  /* Sublinhado na cor de destaque para o e-mail principal */
+  .link-email-underline {
+    position: relative;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .link-email-underline::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--accent);
+    transform: scaleX(0.75);
+    transform-origin: left;
+    transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1), height 180ms ease;
+  }
+  .link-email-underline:hover::after {
+    transform: scaleX(1);
+    height: 3px;
+  }
+
   /* Ícone de seta externa com movimento no hover */
   .arrow-ext {
     display: inline-block;
@@ -110,25 +139,28 @@
 }
 
 /* ═════════════════════════════════════════════════════════════
-   ANIMAÇÃO DO MAPA DE GOIÁS
+   MAPA DE GOIÁS — CONVENSÃO DE CONTRASTE EXATO
+   Contorno: Dark = rgba(244,241,234,0.38) | Light = rgba(18,18,18,0.38)
+   Fill: transparente (sem branco no modo claro)
+   Hover: fill 25% coral, contorno 100% coral
    ═════════════════════════════════════════════════════════════ */
 .mapa-municipio {
-  fill: var(--surface);
-  stroke: var(--line);
-  stroke-width: 0.5px;
+  fill: var(--map-fill, transparent);
+  stroke: var(--map-stroke);
+  stroke-width: 1px;
   vector-effect: non-scaling-stroke;
   transition: fill 140ms ease, stroke 140ms ease;
   cursor: pointer;
 }
 
 .mapa-municipio:hover {
-  fill: var(--accent);
+  fill: var(--map-hover-fill);
   stroke: var(--accent);
-  stroke-width: 1px;
+  stroke-width: 1.5px;
 }
 
 .mapa-aceso {
-  fill: var(--accent) !important;
+  fill: var(--map-hover-fill) !important;
   stroke: var(--accent) !important;
 }
 

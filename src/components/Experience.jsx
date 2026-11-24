@@ -1,5 +1,4 @@
 import React from 'react';
-import PixelIcon from './PixelIcon';
 
 const experiencesData = [
   {
@@ -32,9 +31,8 @@ export default function Experience() {
           {/* ─── Colunas 1-4: Título da Seção (Sticky Desktop: 56px + 24px = 80px) ─── */}
           <div className="lg:col-span-4">
             <div className="lg:sticky lg:top-[80px] space-y-3">
-              <div className="flex items-center gap-2 font-body font-medium text-[13px] text-[var(--accent)]">
-                <PixelIcon name="briefcase" size={15} />
-                <span>Experiência</span>
+              <div className="font-body font-medium text-[13px] text-[var(--muted)]">
+                Experiência
               </div>
               <h2 className="font-display font-bold text-[clamp(2rem,4vw,3.25rem)] leading-[1.15] text-[var(--ink)]">
                 Trajetória Profissional
@@ -55,9 +53,9 @@ export default function Experience() {
                 key={idx}
                 className="py-8 sm:py-10 border-b border-[var(--line)] first:pt-4"
               >
-                {/* Período em Mono MAIÚSCULAS e Organização em Fonte Normal */}
+                {/* Período em Mono MAIÚSCULAS e Organização em cor secundária */}
                 <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mb-3 font-body text-[13px]">
-                  <span className="font-mono font-bold text-[12px] uppercase tracking-wider text-[var(--accent)]">
+                  <span className="font-mono font-medium text-[12px] uppercase tracking-wider text-[var(--muted)]">
                     {exp.period}
                   </span>
                   <span aria-hidden="true" className="text-[var(--line)]">·</span>
@@ -69,11 +67,11 @@ export default function Experience() {
                   {exp.role}
                 </h3>
 
-                {/* Entregas em Bullets com Travessão Coral */}
+                {/* Entregas em Bullets com Travessão em cor secundária */}
                 <ul className="space-y-3 font-body text-[14px] sm:text-[15px] leading-[1.75] text-[var(--ink)] max-w-[62ch]">
                   {exp.deliverables.map((item, dIdx) => (
                     <li key={dIdx} className="flex items-start gap-3">
-                      <span aria-hidden="true" className="font-mono text-[var(--accent)] shrink-0 select-none pt-0.5 font-bold">
+                      <span aria-hidden="true" className="font-mono text-[var(--muted)] shrink-0 select-none pt-0.5 font-bold">
                         —
                       </span>
                       <span>{item}</span>

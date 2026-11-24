@@ -1,5 +1,4 @@
 import React from 'react';
-import PixelIcon from './PixelIcon';
 
 const skillsData = [
   {
@@ -26,15 +25,14 @@ const skillsData = [
 
 export default function Skills() {
   return (
-    <section id="competencias" className="py-8 sm:py-14 border-b border-[var(--line)]">
+    <section id="competencias" className="py-8 sm:py-14">
       <div className="max-w-[1100px] mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14">
           {/* ─── Colunas 1-4: Título da Seção (Sticky Desktop: 56px + 24px = 80px) ─── */}
           <div className="lg:col-span-4">
             <div className="lg:sticky lg:top-[80px] space-y-3">
-              <div className="flex items-center gap-2 font-body font-medium text-[13px] text-[var(--accent)]">
-                <PixelIcon name="terminal" size={15} />
-                <span>Competências</span>
+              <div className="font-body font-medium text-[13px] text-[var(--muted)]">
+                Competências
               </div>
               <h2 className="font-display font-bold text-[clamp(2rem,4vw,3.25rem)] leading-[1.15] text-[var(--ink)]">
                 Habilidades Técnicas
@@ -55,9 +53,9 @@ export default function Skills() {
                 key={idx}
                 className="py-7 sm:py-9 border-b border-[var(--line)] first:pt-4"
               >
-                {/* Título da Categoria em Fonte Normal */}
+                {/* Título da Categoria em Fonte Normal com travessão em cor secundária */}
                 <h3 className="font-body font-semibold text-[16px] text-[var(--ink)] mb-2.5 flex items-center gap-2">
-                  <span className="text-[var(--accent)] font-bold">—</span>
+                  <span className="text-[var(--muted)] font-bold">—</span>
                   <span>{skill.category}</span>
                 </h3>
 

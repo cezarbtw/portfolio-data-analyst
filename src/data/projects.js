@@ -72,6 +72,7 @@ export const projects = [
     demoUrl: null,
     demoLabel: null,
     githubUrl: null,
+    shortSummary: "Automação concorrente em Python para validação da API de NER contra consultas SQL em bases orçamentárias do tribunal.",
     summary: "Automação em Python com processamento concorrente para validação da API de Reconhecimento de Entidades Nomeadas (NER) aplicada a extratos bancários e documentos contábeis públicos. Reconciliação de payloads JSON contra consultas SQL em bases orçamentárias.",
     caseStudy: {
       problem: "A conferência manual das entidades extraídas por inteligência artificial (nomes, bancos, agências, contas, CPFs e valores) demandava centenas de horas da equipe de auditoria frente ao volume contínuo de envios municipais.",
@@ -94,6 +95,7 @@ export const projects = [
     demoUrl: null,
     demoLabel: null,
     githubUrl: null,
+    shortSummary: "Relatório executivo no Power BI com modelagem dimensional para análise de funil de vendas, cálculo de CAC e ticket médio.",
     summary: "Relatório executivo no Power BI para acompanhamento do ciclo de vendas e retorno por canal de aquisição. Apresenta cálculo de CAC, ticket médio, taxa de conversão e faturamento por canal de mídia.",
     caseStudy: {
       problem: "Dificuldade na visualização clara das etapas do funil de vendas (lead até fechamento) e na identificação de quais canais de aquisição geravam maior retorno sobre investimento.",
@@ -116,6 +118,7 @@ export const projects = [
     demoUrl: null,
     demoLabel: null,
     githubUrl: "https://github.com/cezarbtw/Cripto_EmotionLens",
+    shortSummary: "Processamento de séries temporais de sinais biométricos com filtros estatísticos de média móvel centrada e análise de dispersão.",
     summary: "Processamento analítico de dados temporais de sinais biométricos coletados em tempo real. Implementação de filtros estatísticos de suavização por média móvel centrada e análise de dispersão.",
     caseStudy: {
       problem: "Sinais biométricos captados em vídeo apresentam alta variabilidade segundo a segundo, gerando ruído de transição que prejudica a interpretação estatística contínua.",
@@ -138,6 +141,7 @@ export const projects = [
     demoUrl: null,
     demoLabel: null,
     githubUrl: "https://github.com/cezarbtw/Detector-de-Rachaduras",
+    shortSummary: "Treinamento de modelo YOLOv8 para inspeção estrutural com extração de métricas de precisão, sensibilidade e estimativa dimensional.",
     summary: "Treinamento e validação de modelo YOLOv8 para identificação de patologias em imagens de inspeção civil, com extração de métricas de precisão (mAP), sensibilidade e estimativa dimensional.",
     caseStudy: {
       problem: "A avaliação puramente qualitativa de imagens de inspeção estrutural dificulta o acompanhamento histórico de danos e o cálculo de índices de criticidade.",
@@ -160,6 +164,7 @@ export const projects = [
     demoUrl: null,
     demoLabel: null,
     githubUrl: "https://github.com/cezarbtw/Projeto-Medicos",
+    shortSummary: "Modelagem relacional normalizada (3FN) e consultas analíticas avançadas em SQL para acompanhamento de indicadores clínicos.",
     summary: "Modelagem relacional de banco de dados na terceira forma normal (3FN) e criação de consultas analíticas para acompanhamento de taxas operacionais de atendimento e produtividade médica.",
     caseStudy: {
       problem: "Bases relacionais operacionais não otimizadas apresentavam lentidão ao gerar relatórios gerenciais de consultas, faltas e tempo médio de espera.",

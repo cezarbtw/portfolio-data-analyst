@@ -17,9 +17,8 @@ export default function Projects() {
           {/* ─── Coluna 1-4: Título da Seção (Sticky Desktop: 56px header + 24px = 80px) ─── */}
           <div className="lg:col-span-4">
             <div className="lg:sticky lg:top-[80px] space-y-3">
-              <div className="flex items-center gap-2 font-body font-medium text-[13px] text-[var(--accent)]">
-                <PixelIcon name="folder" size={15} />
-                <span>Projetos</span>
+              <div className="font-body font-medium text-[13px] text-[var(--muted)]">
+                Projetos
               </div>
               <h2 className="font-display font-bold text-[clamp(2rem,4vw,3.25rem)] leading-[1.15] text-[var(--ink)]">
                 Projetos de Dados
@@ -27,12 +26,6 @@ export default function Projects() {
               <p className="font-body text-[14px] text-[var(--muted)] leading-[1.6]">
                 Power BI · Pipelines ETL · Auditoria SQL
               </p>
-              <div className="pt-2">
-                <span className="inline-flex items-center gap-2 px-2.5 py-1 rounded-card bg-[var(--surface)] border border-[var(--line)] font-body text-[12px] text-[var(--muted)]">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent)] inline-block" />
-                  6 Projetos Catalogados
-                </span>
-              </div>
               <p className="font-body text-[14px] leading-[1.7] text-[var(--muted)] pt-2 hidden lg:block max-w-[32ch]">
                 Casos práticos de saneamento orçamentário, modelagem dimensional e relatórios executivos.
               </p>
@@ -44,14 +37,14 @@ export default function Projects() {
             {/* ═══ 1. PROJETO DESTAQUE: TCM-GO (Card Maior com Imagem em Largura Total) ═══ */}
             {featuredProject && (
               <article className="rounded-card border border-[var(--line)] bg-[var(--surface)] hover:border-[var(--accent)] transition-all p-6 sm:p-8 flex flex-col justify-between group">
-                {/* Linha superior: Metadados */}
+                {/* Linha superior: Metadados em cor secundária */}
                 <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
-                  <div className="flex items-center gap-2 font-mono text-[12px]">
-                    <span className="text-[var(--accent)] font-bold">{featuredProject.number}</span>
+                  <div className="flex items-center gap-2 font-mono text-[12px] text-[var(--muted)]">
+                    <span className="font-medium">{featuredProject.number}</span>
                     <span aria-hidden="true" className="text-[var(--line)]">/</span>
-                    <span className="text-[var(--ink)] font-semibold">{featuredProject.year}</span>
+                    <span className="font-medium">{featuredProject.year}</span>
                   </div>
-                  <span className="font-mono text-[11px] uppercase tracking-wider text-[var(--accent)] bg-[var(--accent-subtle)] px-2.5 py-0.5 rounded-card border border-[var(--accent)]/20 font-semibold">
+                  <span className="font-mono text-[11px] uppercase tracking-wider text-[var(--muted)]">
                     SETOR PÚBLICO · TCM-GO
                   </span>
                 </div>
@@ -107,11 +100,11 @@ export default function Projects() {
                   {featuredProject.tools.split('·').map((t) => t.trim()).join(' · ')}
                 </p>
 
-                {/* Ações e Links Diretos */}
+                {/* Ações: Texto principal com sublinhado; coral só no hover */}
                 <div className="pt-4 border-t border-[var(--line)] flex flex-wrap items-center justify-between gap-4 font-body font-medium text-[13px]">
                   <Link
                     to={`/projetos/${featuredProject.slug}`}
-                    className="link-underline text-[var(--accent)] hover:text-[var(--ink)] font-semibold inline-flex items-center gap-1.5 transition-colors"
+                    className="link-underline text-[var(--ink)] hover:text-[var(--accent)] font-semibold inline-flex items-center gap-1.5 transition-colors"
                   >
                     <span>Ver Estudo de Caso</span>
                     <span aria-hidden="true">→</span>
@@ -123,9 +116,9 @@ export default function Projects() {
                         href={featuredProject.demoUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="link-underline hover:text-[var(--accent)] transition-colors inline-flex items-center gap-1.5 text-[13px]"
+                        className="link-underline text-[var(--muted)] hover:text-[var(--accent)] transition-colors inline-flex items-center gap-1.5 text-[13px]"
                       >
-                        <PixelIcon name="external" size={14} className="text-[var(--accent)]" />
+                        <PixelIcon name="external" size={14} />
                         <span>Portal do Cidadão</span>
                       </a>
                     )}
@@ -134,9 +127,9 @@ export default function Projects() {
               </article>
             )}
 
-            {/* ═══ 2. OUTROS 5 PROJETOS: FORMATO COMPACTO E UNIFORME ═══ */}
+            {/* ═══ 2. OUTROS 5 PROJETOS: FORMATO COMPACTO E UNIFORME (Alinhado à esquerda) ═══ */}
             <div className="space-y-4 pt-2">
-              <div className="font-body font-medium text-[13px] text-[var(--muted)] px-1">
+              <div className="font-body font-medium text-[13px] text-[var(--muted)]">
                 Outros Projetos Técnicos
               </div>
 
@@ -145,12 +138,12 @@ export default function Projects() {
                   key={project.id}
                   className="rounded-card border border-[var(--line)] bg-[var(--surface)] hover:border-[var(--accent)] transition-all p-5 sm:p-6 group"
                 >
-                  {/* Linha superior: Categoria em MAIÚSCULAS mono + Ano */}
-                  <div className="flex flex-wrap items-center justify-between gap-2 mb-2 font-mono text-[11px]">
-                    <span className="uppercase tracking-wider text-[var(--accent)] font-semibold">
+                  {/* Linha superior: Categoria em MAIÚSCULAS mono + Ano em cor secundária */}
+                  <div className="flex flex-wrap items-center justify-between gap-2 mb-2 font-mono text-[11px] text-[var(--muted)]">
+                    <span className="uppercase tracking-wider font-medium">
                       {project.context.split('·')[0].trim().toUpperCase()}
                     </span>
-                    <span className="text-[var(--muted)]">{project.year}</span>
+                    <span>{project.year}</span>
                   </div>
 
                   {/* Título do Projeto */}
@@ -160,9 +153,9 @@ export default function Projects() {
                     </Link>
                   </h4>
 
-                  {/* 2 Linhas de Resumo Conciso */}
-                  <p className="font-body text-[14px] leading-[1.65] text-[var(--muted)] line-clamp-2 mb-3.5">
-                    {project.summary}
+                  {/* 2 Linhas de Resumo Escrito Completo (sem truncamento com reticências) */}
+                  <p className="font-body text-[14px] leading-[1.65] text-[var(--muted)] mb-3.5">
+                    {project.shortSummary || project.summary}
                   </p>
 
                   {/* Ferramentas em Linha de Texto Simples (sem chips) */}
@@ -170,11 +163,11 @@ export default function Projects() {
                     {project.tools.split('·').map((t) => t.trim()).join(' · ')}
                   </p>
 
-                  {/* Links Compactos */}
+                  {/* Links: Cor do texto principal; coral só no hover */}
                   <div className="pt-3 border-t border-[var(--line)] flex items-center justify-between font-body font-medium text-[13px]">
                     <Link
                       to={`/projetos/${project.slug}`}
-                      className="link-underline text-[var(--accent)] hover:text-[var(--ink)] inline-flex items-center gap-1"
+                      className="link-underline text-[var(--ink)] hover:text-[var(--accent)] inline-flex items-center gap-1 transition-colors"
                     >
                       <span>Estudo de caso</span>
                       <span aria-hidden="true">→</span>
@@ -185,7 +178,7 @@ export default function Projects() {
                         href={project.githubUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="link-underline text-[var(--muted)] hover:text-[var(--accent)] inline-flex items-center gap-1"
+                        className="link-underline text-[var(--muted)] hover:text-[var(--accent)] inline-flex items-center gap-1 transition-colors"
                       >
                         <PixelIcon name="github" size={13} />
                         <span>Código</span>
