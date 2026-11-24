@@ -41,9 +41,9 @@ export default function Contact() {
           Contato
         </div>
 
-        {/* Título grande na fonte de caráter (Bricolage Grotesque) */}
-        <h2 className="font-display font-bold text-[clamp(2rem,4.5vw,3.1rem)] tracking-[-0.025em] leading-[1.08] text-[var(--ink)] mb-4">
-          Disponível para projetos em dados e BI
+        {/* Título grande na fonte de caráter (Fraunces) */}
+        <h2 className="font-display font-semibold text-[clamp(2rem,4.5vw,3.15rem)] tracking-[-0.025em] leading-[1.06] text-[var(--ink)] mb-4">
+          Disponível para projetos em <em className="italic font-medium">dados e BI</em>
         </h2>
 
         {/* Frase curta */}
@@ -55,7 +55,7 @@ export default function Contact() {
         <div className="flex flex-col sm:flex-row sm:items-baseline gap-4 sm:gap-6 mb-10 pb-8 border-b border-[var(--line)]">
           <a
             href="mailto:abraaocezarIL@outlook.com"
-            className="font-display font-semibold text-[clamp(1.7rem,4.2vw,3rem)] tracking-[-0.025em] text-[var(--ink)] leading-none link-email-underline focus-visible:outline-none"
+            className="font-display font-medium text-[clamp(1.55rem,4vw,2.85rem)] tracking-[-0.025em] text-[var(--ink)] leading-none link-email-underline focus-visible:outline-none"
           >
             abraaocezarIL@outlook.com
           </a>

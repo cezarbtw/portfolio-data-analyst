@@ -34,8 +34,8 @@ export default function Experience() {
               <div className="font-body font-medium text-[13px] text-[var(--muted)]">
                 Experiência
               </div>
-              <h2 className="font-display font-bold text-[clamp(2rem,4vw,3.1rem)] tracking-[-0.025em] leading-[1.08] text-[var(--ink)]">
-                Trajetória Profissional
+              <h2 className="font-display font-semibold text-[clamp(2rem,4vw,3.15rem)] tracking-[-0.025em] leading-[1.06] text-[var(--ink)]">
+                Trajetória <em className="italic font-medium">Profissional</em>
               </h2>
               <p className="font-body text-[14px] text-[var(--muted)] leading-[1.6]">
                 Setor público · Auditoria · BI
@@ -63,7 +63,7 @@ export default function Experience() {
                 </div>
 
                 {/* Cargo */}
-                <h3 className="font-display font-semibold text-[clamp(1.25rem,2.2vw,1.8rem)] tracking-[-0.02em] leading-[1.25] text-[var(--ink)] mb-5">
+                <h3 className="font-sans font-semibold text-[clamp(1.25rem,2.2vw,1.8rem)] tracking-[-0.02em] leading-[1.25] text-[var(--ink)] mb-5">
                   {exp.role}
                 </h3>
 

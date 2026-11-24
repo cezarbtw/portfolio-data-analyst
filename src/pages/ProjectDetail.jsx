@@ -56,8 +56,8 @@ export default function ProjectDetail() {
               <span>{project.context}</span>
             </div>
 
-            {/* Título em Bricolage Grotesque */}
-            <h1 className="font-display font-bold tracking-[-0.025em] text-[clamp(2.25rem,5.5vw,4rem)] leading-[1.06] text-[var(--ink)] max-w-[900px]">
+            {/* Título em Fraunces */}
+            <h1 className="font-display font-semibold tracking-[-0.025em] text-[clamp(2.25rem,5.5vw,4rem)] leading-[1.04] text-[var(--ink)] max-w-[900px]">
               {project.title}
             </h1>
 

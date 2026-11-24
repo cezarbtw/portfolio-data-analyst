@@ -20,8 +20,8 @@ export default function Projects() {
               <div className="font-body font-medium text-[13px] text-[var(--muted)]">
                 Projetos
               </div>
-              <h2 className="font-display font-bold text-[clamp(2rem,4vw,3.1rem)] tracking-[-0.025em] leading-[1.08] text-[var(--ink)]">
-                Projetos de Dados
+              <h2 className="font-display font-semibold text-[clamp(2rem,4vw,3.15rem)] tracking-[-0.025em] leading-[1.06] text-[var(--ink)]">
+                Projetos <em className="italic font-medium">de Dados</em>
               </h2>
               <p className="font-body text-[14px] text-[var(--muted)] leading-[1.6]">
                 Power BI · Pipelines ETL · Auditoria SQL
@@ -50,7 +50,7 @@ export default function Projects() {
                 </div>
 
                 {/* Título Principal */}
-                <h3 className="font-display font-semibold text-[clamp(1.45rem,2.6vw,2rem)] tracking-[-0.02em] text-[var(--ink)] group-hover:text-[var(--accent)] transition-colors leading-[1.18] mb-3">
+                <h3 className="font-sans font-semibold text-[clamp(1.45rem,2.6vw,2rem)] tracking-[-0.02em] text-[var(--ink)] group-hover:text-[var(--accent)] transition-colors leading-[1.18] mb-3">
                   <Link to={`/projetos/${featuredProject.slug}`} className="hover:underline focus-visible:outline-none">
                     {featuredProject.title}
                   </Link>
@@ -147,7 +147,7 @@ export default function Projects() {
                   </div>
 
                   {/* Título do Projeto */}
-                  <h4 className="font-display font-semibold text-[18px] sm:text-[20px] tracking-[-0.015em] text-[var(--ink)] group-hover:text-[var(--accent)] transition-colors leading-[1.28] mb-2">
+                  <h4 className="font-sans font-semibold text-[18px] sm:text-[20px] tracking-[-0.015em] text-[var(--ink)] group-hover:text-[var(--accent)] transition-colors leading-[1.28] mb-2">
                     <Link to={`/projetos/${project.slug}`} className="hover:underline focus-visible:outline-none">
                       {project.title}
                     </Link>

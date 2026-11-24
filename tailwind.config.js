@@ -18,7 +18,8 @@ export default {
         'accent-subtle': 'var(--accent-subtle)',
       },
       fontFamily: {
-        display: ['"Bricolage Grotesque"', 'system-ui', 'sans-serif'],
+        display: ['"Fraunces"', 'Georgia', 'serif'],
+        sans: ['"Bricolage Grotesque"', 'system-ui', 'sans-serif'],
         body: ['"Schibsted Grotesk"', 'system-ui', '-apple-system', 'sans-serif'],
         mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
       },

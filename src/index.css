@@ -78,6 +78,12 @@
    UTILITÁRIOS E COMPONENTES
    ═════════════════════════════════════════════════════════════ */
 @layer utilities {
+  /* Ajuste óptico e expressividade para Fraunces */
+  .font-display {
+    font-optical-sizing: auto;
+    font-variation-settings: "SOFT" 50, "WONK" 1;
+  }
+
   /* Textura de ruído de película 4K para elementos fixos como Header e Mobile Menu */
   .bg-noise {
     background-color: var(--bg);
@@ -119,13 +125,12 @@
     width: 100%;
     height: 2px;
     background-color: var(--accent);
-    transform: scaleX(0.75);
-    transform-origin: left;
-    transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1), height 180ms ease;
+    opacity: 0.75;
+    transition: opacity 200ms ease, height 200ms ease, transform 200ms ease;
   }
   .link-email-underline:hover::after {
-    transform: scaleX(1);
-    height: 3px;
+    opacity: 1;
+    height: 4px;
   }
 
   /* Ícone de seta externa com movimento no hover */
