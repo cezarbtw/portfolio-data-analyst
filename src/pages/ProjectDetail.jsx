@@ -56,8 +56,8 @@ export default function ProjectDetail() {
               <span>{project.context}</span>
             </div>
 
-            {/* Título em Instrument Serif */}
-            <h1 className="font-display text-[clamp(2.5rem,6vw,4.5rem)] leading-[1.02] text-[var(--ink)] max-w-[900px]">
+            {/* Título em Bricolage Grotesque */}
+            <h1 className="font-display font-bold tracking-[-0.025em] text-[clamp(2.25rem,5.5vw,4rem)] leading-[1.06] text-[var(--ink)] max-w-[900px]">
               {project.title}
             </h1>
 
@@ -167,7 +167,7 @@ export default function ProjectDetail() {
                 <p className="font-mono text-[12px] uppercase tracking-[0.08em] text-[var(--accent)] mb-2">
                   01 / Problema
                 </p>
-                <h2 className="font-display text-[clamp(1.75rem,3.5vw,2.5rem)] leading-[1.05] text-[var(--ink)] mb-4">
+                <h2 className="font-display font-semibold tracking-[-0.02em] text-[clamp(1.65rem,3.2vw,2.25rem)] leading-[1.1] text-[var(--ink)] mb-4">
                   O Cenário e o Desafio Técnico
                 </h2>
                 <p className="font-body text-[18px] leading-[1.6] text-[var(--ink)]">
@@ -180,7 +180,7 @@ export default function ProjectDetail() {
                 <p className="font-mono text-[12px] uppercase tracking-[0.08em] text-[var(--accent)] mb-2">
                   02 / Solução
                 </p>
-                <h2 className="font-display text-[clamp(1.75rem,3.5vw,2.5rem)] leading-[1.05] text-[var(--ink)] mb-4">
+                <h2 className="font-display font-semibold tracking-[-0.02em] text-[clamp(1.65rem,3.2vw,2.25rem)] leading-[1.1] text-[var(--ink)] mb-4">
                   Abordagem e Implementação
                 </h2>
                 <p className="font-body text-[18px] leading-[1.6] text-[var(--ink)]">
@@ -193,7 +193,7 @@ export default function ProjectDetail() {
                 <p className="font-mono text-[12px] uppercase tracking-[0.08em] text-[var(--accent)] mb-2">
                   03 / Arquitetura
                 </p>
-                <h2 className="font-display text-[clamp(1.75rem,3.5vw,2.5rem)] leading-[1.05] text-[var(--ink)] mb-4">
+                <h2 className="font-display font-semibold tracking-[-0.02em] text-[clamp(1.65rem,3.2vw,2.25rem)] leading-[1.1] text-[var(--ink)] mb-4">
                   Estrutura Técnica e Fluxo
                 </h2>
                 <p className="font-body text-[18px] leading-[1.6] text-[var(--ink)]">
@@ -206,7 +206,7 @@ export default function ProjectDetail() {
                 <p className="font-mono text-[12px] uppercase tracking-[0.08em] text-[var(--accent)] mb-2">
                   04 / Resultados
                 </p>
-                <h2 className="font-display text-[clamp(1.75rem,3.5vw,2.5rem)] leading-[1.05] text-[var(--ink)] mb-4">
+                <h2 className="font-display font-semibold tracking-[-0.02em] text-[clamp(1.65rem,3.2vw,2.25rem)] leading-[1.1] text-[var(--ink)] mb-4">
                   Impacto e Indicadores
                 </h2>
                 <p className="font-body text-[18px] leading-[1.6] text-[var(--ink)]">

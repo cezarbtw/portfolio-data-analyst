@@ -34,7 +34,7 @@ export default function Skills() {
               <div className="font-body font-medium text-[13px] text-[var(--muted)]">
                 Competências
               </div>
-              <h2 className="font-display font-bold text-[clamp(2rem,4vw,3.25rem)] leading-[1.15] text-[var(--ink)]">
+              <h2 className="font-display font-bold text-[clamp(2rem,4vw,3.1rem)] tracking-[-0.025em] leading-[1.08] text-[var(--ink)]">
                 Habilidades Técnicas
               </h2>
               <p className="font-body text-[14px] text-[var(--muted)] leading-[1.6]">

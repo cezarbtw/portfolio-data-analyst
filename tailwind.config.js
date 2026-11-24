@@ -18,7 +18,7 @@ export default {
         'accent-subtle': 'var(--accent-subtle)',
       },
       fontFamily: {
-        display: ['"Chakra Petch"', 'system-ui', 'sans-serif'],
+        display: ['"Bricolage Grotesque"', 'system-ui', 'sans-serif'],
         body: ['"Schibsted Grotesk"', 'system-ui', '-apple-system', 'sans-serif'],
         mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
       },

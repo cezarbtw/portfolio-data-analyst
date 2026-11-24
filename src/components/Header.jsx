@@ -68,13 +68,13 @@ export default function Header() {
           {/* Logo / Monograma à esquerda */}
           <a
             href="/"
-            className="flex items-center gap-2.5 text-[var(--ink)] hover:text-[var(--accent)] transition-colors focus-visible:outline-none"
+            className="flex items-center gap-2.5 text-[var(--ink)] hover:text-[var(--accent)] transition-colors focus-visible:outline-none group"
             aria-label="Ir para o topo"
           >
-            <span className="w-7 h-7 rounded-card bg-[var(--surface)] border border-[var(--line)] flex items-center justify-center font-display font-bold text-[12px] text-[var(--accent)]">
+            <span className="w-7 h-7 rounded-full bg-[var(--surface)] border border-[var(--line)] group-hover:border-[var(--accent)] flex items-center justify-center font-display font-bold text-[12px] tracking-[-0.04em] text-[var(--accent)] transition-colors">
               AL
             </span>
-            <span className="font-display font-bold text-[16px] sm:text-[18px] tracking-wide text-[var(--ink)]">
+            <span className="font-display font-semibold text-[16px] sm:text-[17px] tracking-[-0.02em] text-[var(--ink)]">
               <span className="hidden sm:inline">Abraão Leopoldino</span>
               <span className="sm:hidden">Abraão L.</span>
             </span>
@@ -153,10 +153,10 @@ export default function Header() {
           {/* Topo do modal */}
           <div className="flex items-center justify-between pb-4 border-b border-[var(--line)]">
             <div className="flex items-center gap-2.5">
-              <span className="w-7 h-7 rounded-card bg-[var(--surface)] border border-[var(--line)] flex items-center justify-center font-display font-bold text-[12px] text-[var(--accent)]">
+              <span className="w-7 h-7 rounded-full bg-[var(--surface)] border border-[var(--line)] flex items-center justify-center font-display font-bold text-[12px] tracking-[-0.04em] text-[var(--accent)]">
                 AL
               </span>
-              <span className="font-display font-bold text-[18px]">Abraão Leopoldino</span>
+              <span className="font-display font-semibold text-[17px] tracking-[-0.02em]">Abraão Leopoldino</span>
             </div>
             <button
               type="button"

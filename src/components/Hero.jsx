@@ -7,8 +7,8 @@ export default function Hero() {
     <section id="sobre" className="pt-8 sm:pt-12 pb-6 sm:pb-10 border-b border-[var(--line)]">
       {/* ─── 1ª DOBRA: IDENTIDADE TIPOGRÁFICA CENTRALIZADA ─── */}
       <div className="flex flex-col items-center text-center">
-        {/* 1. Nome em Chakra Petch */}
-        <h1 className="font-display font-bold text-[clamp(2.5rem,7.5vw,6rem)] tracking-tight leading-[1.08] text-[var(--ink)] max-w-[18ch] mx-auto break-words">
+        {/* 1. Nome em Bricolage Grotesque */}
+        <h1 className="font-display font-bold text-[clamp(2.5rem,7.2vw,5.75rem)] tracking-[-0.03em] leading-[1.03] text-[var(--ink)] max-w-[18ch] mx-auto break-words">
           Abraão Leopoldino
         </h1>
 

@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
   <rect width="64" height="64" rx="14" fill="#131316" stroke="#26262D" stroke-width="2"/>
   <rect x="12" y="8" width="40" height="3" rx="1.5" fill="#FF5C42"/>
-  <text x="32" y="44" font-family="'Chakra Petch', system-ui, sans-serif" font-size="30" font-weight="700" fill="#EEEEF0" text-anchor="middle" letter-spacing="-1">AL</text>
+  <text x="32" y="44" font-family="'Bricolage Grotesque', system-ui, sans-serif" font-size="30" font-weight="700" fill="#EEEEF0" text-anchor="middle" letter-spacing="-1">AL</text>
   <circle cx="48" cy="48" r="3" fill="#FF5C42"/>
 </svg>
