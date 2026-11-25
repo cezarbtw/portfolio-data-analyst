@@ -7,9 +7,9 @@ export default function Hero() {
     <section id="sobre" className="pt-8 sm:pt-12 pb-6 sm:pb-10 border-b border-[var(--line)]">
       {/* ─── 1ª DOBRA: IDENTIDADE TIPOGRÁFICA CENTRALIZADA ─── */}
       <div className="flex flex-col items-center text-center">
-        {/* 1. Nome em Fraunces com itálico editorial */}
-        <h1 className="font-display font-semibold text-[clamp(2.75rem,7.8vw,6rem)] tracking-[-0.03em] leading-[1.02] text-[var(--ink)] max-w-[18ch] mx-auto break-words">
-          Abraão <em className="italic font-medium">Leopoldino</em>
+        {/* 1. Nome em Newsreader Regular (editorial fino e preciso) */}
+        <h1 className="font-display font-normal text-[clamp(2.75rem,7.5vw,5.75rem)] tracking-[-0.022em] leading-[1.04] text-[var(--ink)] max-w-[18ch] mx-auto break-words">
+          Abraão Leopoldino
         </h1>
 
         {/* 2. Subtítulo em coral (único destaque colorido do cabeçalho hero) */}

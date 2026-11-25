@@ -78,10 +78,9 @@
    UTILITÁRIOS E COMPONENTES
    ═════════════════════════════════════════════════════════════ */
 @layer utilities {
-  /* Ajuste óptico e expressividade para Fraunces */
+  /* Ajuste óptico para Newsreader (editorial preciso) */
   .font-display {
     font-optical-sizing: auto;
-    font-variation-settings: "SOFT" 50, "WONK" 1;
   }
 
   /* Textura de ruído de película 4K para elementos fixos como Header e Mobile Menu */

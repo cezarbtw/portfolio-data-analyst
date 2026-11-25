@@ -20,8 +20,8 @@ export default function Projects() {
               <div className="font-body font-medium text-[13px] text-[var(--muted)]">
                 Projetos
               </div>
-              <h2 className="font-display font-semibold text-[clamp(2rem,4vw,3.15rem)] tracking-[-0.025em] leading-[1.06] text-[var(--ink)]">
-                Projetos <em className="italic font-medium">de Dados</em>
+              <h2 className="font-display font-normal text-[clamp(2rem,4vw,3.15rem)] tracking-[-0.02em] leading-[1.06] text-[var(--ink)]">
+                Projetos de Dados
               </h2>
               <p className="font-body text-[14px] text-[var(--muted)] leading-[1.6]">
                 Power BI · Pipelines ETL · Auditoria SQL

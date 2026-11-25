@@ -71,7 +71,7 @@ export default function Header() {
             className="flex items-center gap-2.5 text-[var(--ink)] hover:text-[var(--accent)] transition-colors focus-visible:outline-none group"
             aria-label="Ir para o topo"
           >
-            <span className="w-7 h-7 rounded-full bg-[var(--surface)] border border-[var(--line)] group-hover:border-[var(--accent)] flex items-center justify-center font-display font-semibold text-[12px] tracking-[-0.03em] text-[var(--accent)] transition-colors">
+            <span className="w-7 h-7 rounded-full bg-[var(--surface)] border border-[var(--line)] group-hover:border-[var(--accent)] flex items-center justify-center font-display font-medium text-[12px] tracking-[-0.02em] text-[var(--accent)] transition-colors">
               AL
             </span>
             <span className="font-body font-semibold text-[15px] sm:text-[16px] tracking-[-0.015em] text-[var(--ink)]">
@@ -153,7 +153,7 @@ export default function Header() {
           {/* Topo do modal */}
           <div className="flex items-center justify-between pb-4 border-b border-[var(--line)]">
             <div className="flex items-center gap-2.5">
-              <span className="w-7 h-7 rounded-full bg-[var(--surface)] border border-[var(--line)] flex items-center justify-center font-display font-semibold text-[12px] tracking-[-0.03em] text-[var(--accent)]">
+              <span className="w-7 h-7 rounded-full bg-[var(--surface)] border border-[var(--line)] flex items-center justify-center font-display font-medium text-[12px] tracking-[-0.02em] text-[var(--accent)]">
                 AL
               </span>
               <span className="font-body font-semibold text-[16px] tracking-[-0.015em]">Abraão Leopoldino</span>
