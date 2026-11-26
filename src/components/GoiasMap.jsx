@@ -113,7 +113,7 @@ export default function GoiasMap() {
       </div>
 
       {/* ─── Dica de Interação em Português Normal ─── */}
-      <div className="mt-2 pt-2 border-t border-[var(--line)] flex items-center justify-between font-body text-[12px] text-[var(--muted)]">
+      <div className="mt-2 pt-2 border-t border-[var(--line)] flex flex-wrap items-center justify-between gap-2 font-body text-[13px] text-[var(--muted)]">
         <div className="flex items-center gap-2">
           <span className="w-1.5 h-1.5 rounded-full bg-[var(--muted)] shrink-0 inline-block" />
           {activeMunicipality?.name ? (

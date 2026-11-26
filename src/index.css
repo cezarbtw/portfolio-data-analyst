@@ -10,12 +10,13 @@
 
 @layer base {
   :root {
+    color-scheme: dark;
     --bg: #131316;
     --surface: #18181D;
     --surface-hover: #222229;
-    --line: #26262D;
-    --ink: #EEEEF0;
-    --muted: #9393A0;
+    --line: #282830;
+    --ink: #F1F1F4;
+    --muted: #B0B0BC;
     --accent: #FF5C42;
     --accent-subtle: rgba(255, 92, 66, 0.12);
     --map-stroke: rgba(244, 241, 234, 0.38);
@@ -25,12 +26,13 @@
   }
 
   [data-theme="light"] {
+    color-scheme: light;
     --bg: #F8F8FA;
     --surface: #FFFFFF;
     --surface-hover: #F0F0F4;
-    --line: #E2E2E8;
+    --line: #DFDFE7;
     --ink: #121215;
-    --muted: #5C5C66;
+    --muted: #4A4A54;
     --accent: #D9381E;
     --accent-subtle: rgba(217, 56, 30, 0.10);
     --map-stroke: rgba(18, 18, 18, 0.38);
@@ -78,11 +80,6 @@
    UTILITÁRIOS E COMPONENTES
    ═════════════════════════════════════════════════════════════ */
 @layer utilities {
-  /* Ajuste óptico para Newsreader (editorial preciso) */
-  .font-display {
-    font-optical-sizing: auto;
-  }
-
   /* Textura de ruído de película 4K para elementos fixos como Header e Mobile Menu */
   .bg-noise {
     background-color: var(--bg);

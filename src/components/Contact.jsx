@@ -37,12 +37,12 @@ export default function Contact() {
     <section id="contato" className="py-12 sm:py-16 border-t border-[var(--line)] bg-transparent text-[var(--ink)]">
       <div className="max-w-[1100px] mx-auto">
         {/* Rótulo pequeno */}
-        <div className="font-body font-medium text-[13px] text-[var(--muted)] mb-3">
+        <div className="font-body font-medium text-[15px] text-[var(--muted)] mb-3">
           Contato
         </div>
 
-        {/* Título grande na fonte de caráter (Newsreader) */}
-        <h2 className="font-display font-normal text-[clamp(2rem,4.5vw,3.15rem)] tracking-[-0.02em] leading-[1.06] text-[var(--ink)] mb-4">
+        {/* Título grande em Chakra Petch */}
+        <h2 className="font-display font-bold text-[clamp(2rem,4.5vw,3.25rem)] tracking-tight leading-[1.12] text-[var(--ink)] mb-4">
           Disponível para projetos em dados e BI
         </h2>
 
@@ -55,7 +55,7 @@ export default function Contact() {
         <div className="flex flex-col sm:flex-row sm:items-baseline gap-4 sm:gap-6 mb-10 pb-8 border-b border-[var(--line)]">
           <a
             href="mailto:abraaocezarIL@outlook.com"
-            className="font-display font-normal text-[clamp(1.55rem,4vw,2.85rem)] tracking-[-0.02em] text-[var(--ink)] leading-none link-email-underline focus-visible:outline-none"
+            className="font-display font-bold text-[clamp(1.35rem,4vw,3rem)] tracking-tight text-[var(--ink)] leading-none link-email-underline focus-visible:outline-none break-all sm:break-normal"
           >
             abraaocezarIL@outlook.com
           </a>
@@ -63,7 +63,7 @@ export default function Contact() {
           <button
             onClick={handleCopy}
             type="button"
-            className="self-start sm:self-auto px-3.5 py-1.5 rounded-card border border-[var(--line)] bg-transparent text-[var(--ink)] hover:border-[var(--accent)] hover:text-[var(--accent)] font-body font-medium text-[13px] transition-colors cursor-pointer inline-flex items-center gap-2 shrink-0 focus-visible:outline-none"
+            className="self-start sm:self-auto px-3.5 py-1.5 rounded-card border border-[var(--line)] bg-transparent text-[var(--ink)] hover:border-[var(--accent)] hover:text-[var(--accent)] font-body font-medium text-[14px] transition-colors cursor-pointer inline-flex items-center gap-2 shrink-0 focus-visible:outline-none"
             aria-label="Copiar e-mail para a área de transferência"
           >
             <PixelIcon name={copied ? 'check' : 'copy'} size={14} className={copied ? 'text-[var(--accent)]' : ''} />
@@ -72,7 +72,7 @@ export default function Contact() {
         </div>
 
         {/* Linha de links em texto simples sem caixas */}
-        <div className="flex flex-wrap items-center gap-x-6 sm:gap-x-8 gap-y-3 font-body font-medium text-[14px]">
+        <div className="flex flex-wrap items-center gap-x-6 sm:gap-x-8 gap-y-3 font-body font-medium text-[15px]">
           {contactLinks.map((item) => (
             <a
               key={item.label}

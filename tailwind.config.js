@@ -18,8 +18,8 @@ export default {
         'accent-subtle': 'var(--accent-subtle)',
       },
       fontFamily: {
-        display: ['"Newsreader"', 'Georgia', 'serif'],
-        sans: ['"Bricolage Grotesque"', 'system-ui', 'sans-serif'],
+        display: ['"Chakra Petch"', 'system-ui', 'sans-serif'],
+        sans: ['"Schibsted Grotesk"', 'system-ui', '-apple-system', 'sans-serif'],
         body: ['"Schibsted Grotesk"', 'system-ui', '-apple-system', 'sans-serif'],
         mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
       },

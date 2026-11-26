@@ -4,11 +4,11 @@ import PixelIcon from './PixelIcon';
 
 export default function Hero() {
   return (
-    <section id="sobre" className="pt-8 sm:pt-12 pb-6 sm:pb-10 border-b border-[var(--line)]">
+    <section id="sobre" className="pt-8 sm:pt-12 pb-6 sm:pb-8 border-b border-[var(--line)]">
       {/* ─── 1ª DOBRA: IDENTIDADE TIPOGRÁFICA CENTRALIZADA ─── */}
       <div className="flex flex-col items-center text-center">
-        {/* 1. Nome em Newsreader Regular (editorial fino e preciso) */}
-        <h1 className="font-display font-normal text-[clamp(2.75rem,7.5vw,5.75rem)] tracking-[-0.022em] leading-[1.04] text-[var(--ink)] max-w-[18ch] mx-auto break-words">
+        {/* 1. Nome em Chakra Petch */}
+        <h1 className="font-display font-bold text-[clamp(2.5rem,7.5vw,6rem)] tracking-tight leading-[1.08] text-[var(--ink)] max-w-[18ch] mx-auto break-words">
           Abraão Leopoldino
         </h1>
 
@@ -23,7 +23,7 @@ export default function Hero() {
         </p>
 
         {/* 4. Links em Linha Centralizados com Ícones na Cor do Texto (coral só no hover) */}
-        <div className="mt-7 sm:mt-8 flex flex-wrap items-center justify-center gap-6 sm:gap-8 font-body font-medium text-[14px]">
+        <div className="mt-7 sm:mt-8 flex flex-wrap items-center justify-center gap-6 sm:gap-8 font-body font-medium text-[15px]">
           <a
             href="mailto:abraaocezarIL@outlook.com"
             className="link-underline text-[var(--ink)] hover:text-[var(--accent)] transition-colors inline-flex items-center gap-2 group"
@@ -40,7 +40,7 @@ export default function Hero() {
           >
             <PixelIcon name="linkedin" size={16} className="text-[var(--ink)] group-hover:text-[var(--accent)] transition-colors" />
             <span>LinkedIn</span>
-            <span className="arrow-ext text-[var(--muted)] text-[12px]">↗</span>
+            <span className="arrow-ext text-current text-[13px]">↗</span>
           </a>
 
           <a
@@ -51,7 +51,7 @@ export default function Hero() {
           >
             <PixelIcon name="github" size={16} className="text-[var(--ink)] group-hover:text-[var(--accent)] transition-colors" />
             <span>GitHub</span>
-            <span className="arrow-ext text-[var(--muted)] text-[12px]">↗</span>
+            <span className="arrow-ext text-current text-[13px]">↗</span>
           </a>
 
           <a
@@ -60,21 +60,14 @@ export default function Hero() {
           >
             <PixelIcon name="chart" size={16} className="text-[var(--ink)] group-hover:text-[var(--accent)] transition-colors" />
             <span>Power BI</span>
-            <span className="text-[var(--muted)] text-[12px]">↓</span>
+            <span className="text-current text-[13px]">↓</span>
           </a>
         </div>
       </div>
 
       {/* ─── 5. O MAPA CENTRALIZADO GRANDE (Protagonista com contraste corrigido) ─── */}
-      <div className="mt-10 sm:mt-12">
+      <div className="mt-8 sm:mt-10">
         <GoiasMap />
-      </div>
-
-      {/* ─── 6. MINI LINHA DO TEMPO EM TEXTO SIMPLES (Sem cards duplicados e sem coral no ano) ─── */}
-      <div className="mt-6 sm:mt-8 text-center font-body text-[13px] sm:text-[14px] text-[var(--muted)]">
-        <span className="font-mono text-[var(--muted)] font-medium">2024</span> Atuação no TCM-GO (Portal do Cidadão)
-        <span className="text-[var(--line)] mx-2.5">·</span>
-        <span className="font-mono text-[var(--muted)] font-medium">2023</span> Projetos em Power BI & Modelagem
       </div>
     </section>
   );

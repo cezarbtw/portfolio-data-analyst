@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import PixelIcon from './PixelIcon';
 import { useTheme } from '../context/ThemeContext';
 
 export default function Header() {
   const { theme, toggleTheme } = useTheme();
+  const { pathname } = useLocation();
+  const isHome = pathname === '/';
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [activeSection, setActiveSection] = useState('');
@@ -20,7 +23,7 @@ export default function Header() {
     };
   }, [mobileMenuOpen]);
 
-  // Barra de leitura fina de 2px e Scroll-spy
+  // Barra de leitura fina de 2px e Scroll-spy na página inicial
   useEffect(() => {
     const sections = ['projetos', 'experiencia', 'competencias', 'contato'];
 
@@ -28,6 +31,11 @@ export default function Header() {
       const totalScroll = document.documentElement.scrollHeight - window.innerHeight;
       const progress = totalScroll > 0 ? (window.scrollY / totalScroll) * 100 : 0;
       setScrollProgress(Math.min(100, Math.max(0, progress)));
+
+      if (!isHome) {
+        setActiveSection(pathname.startsWith('/projetos') ? 'projetos' : '');
+        return;
+      }
 
       const scrollPos = window.scrollY + 160;
       let current = '';
@@ -44,13 +52,13 @@ export default function Header() {
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [isHome, pathname]);
 
   const navLinks = [
-    { id: 'projetos', href: '#projetos', label: 'Projetos', icon: 'folder' },
-    { id: 'experiencia', href: '#experiencia', label: 'Experiência', icon: 'briefcase' },
-    { id: 'competencias', href: '#competencias', label: 'Competências', icon: 'chart' },
-    { id: 'contato', href: '#contato', label: 'Contato', icon: 'mail' },
+    { id: 'projetos', href: '/#projetos', label: 'Projetos', icon: 'folder' },
+    { id: 'experiencia', href: '/#experiencia', label: 'Experiência', icon: 'briefcase' },
+    { id: 'competencias', href: '/#competencias', label: 'Competências', icon: 'chart' },
+    { id: 'contato', href: '/#contato', label: 'Contato', icon: 'mail' },
   ];
 
   return (
@@ -66,30 +74,30 @@ export default function Header() {
       <header className="fixed top-0 left-0 right-0 z-40 h-[56px] bg-noise border-b border-[var(--line)]">
         <div className="max-w-[1100px] mx-auto px-5 sm:px-8 h-full flex items-center justify-between">
           {/* Logo / Monograma à esquerda */}
-          <a
-            href="/"
+          <Link
+            to="/"
             className="flex items-center gap-2.5 text-[var(--ink)] hover:text-[var(--accent)] transition-colors focus-visible:outline-none group"
-            aria-label="Ir para o topo"
+            aria-label="Ir para o início"
           >
-            <span className="w-7 h-7 rounded-full bg-[var(--surface)] border border-[var(--line)] group-hover:border-[var(--accent)] flex items-center justify-center font-display font-medium text-[12px] tracking-[-0.02em] text-[var(--accent)] transition-colors">
+            <span className="w-7 h-7 rounded-card bg-[var(--surface)] border border-[var(--line)] group-hover:border-[var(--accent)] flex items-center justify-center font-display font-bold text-[12px] text-[var(--accent)] transition-colors">
               AL
             </span>
-            <span className="font-body font-semibold text-[15px] sm:text-[16px] tracking-[-0.015em] text-[var(--ink)]">
+            <span className="font-display font-bold text-[16px] sm:text-[18px] tracking-wide text-[var(--ink)]">
               <span className="hidden sm:inline">Abraão Leopoldino</span>
               <span className="sm:hidden">Abraão L.</span>
             </span>
-          </a>
+          </Link>
 
           {/* Navegação Desktop: fonte do corpo em caixa normal (peso 500) */}
           <div className="hidden md:flex items-center gap-6">
             <nav aria-label="Navegação principal">
-              <ul className="flex items-center gap-7 font-body font-medium text-[14px] text-[var(--muted)]">
+              <ul className="flex items-center gap-7 font-body font-medium text-[15px] text-[var(--muted)]">
                 {navLinks.map((link) => {
                   const isActive = activeSection === link.id;
                   return (
                     <li key={link.id}>
-                      <a
-                        href={link.href}
+                      <Link
+                        to={link.href}
                         className={`py-1 transition-colors relative ${
                           isActive
                             ? 'text-[var(--accent)] font-semibold border-b border-[var(--accent)]'
@@ -97,7 +105,7 @@ export default function Header() {
                         }`}
                       >
                         {link.label}
-                      </a>
+                      </Link>
                     </li>
                   );
                 })}
@@ -153,10 +161,10 @@ export default function Header() {
           {/* Topo do modal */}
           <div className="flex items-center justify-between pb-4 border-b border-[var(--line)]">
             <div className="flex items-center gap-2.5">
-              <span className="w-7 h-7 rounded-full bg-[var(--surface)] border border-[var(--line)] flex items-center justify-center font-display font-medium text-[12px] tracking-[-0.02em] text-[var(--accent)]">
+              <span className="w-7 h-7 rounded-card bg-[var(--surface)] border border-[var(--line)] flex items-center justify-center font-display font-bold text-[12px] text-[var(--accent)]">
                 AL
               </span>
-              <span className="font-body font-semibold text-[16px] tracking-[-0.015em]">Abraão Leopoldino</span>
+              <span className="font-display font-bold text-[18px]">Abraão Leopoldino</span>
             </div>
             <button
               type="button"
@@ -175,8 +183,8 @@ export default function Header() {
                 const isActive = activeSection === link.id;
                 return (
                   <li key={link.id}>
-                    <a
-                      href={link.href}
+                    <Link
+                      to={link.href}
                       onClick={() => setMobileMenuOpen(false)}
                       className={`flex items-center gap-3 p-3 rounded-card font-body font-medium text-[16px] transition-colors ${
                         isActive
@@ -190,7 +198,7 @@ export default function Header() {
                         className={isActive ? 'text-[var(--accent)]' : 'text-[var(--muted)]'}
                       />
                       <span>{link.label}</span>
-                    </a>
+                    </Link>
                   </li>
                 );
               })}

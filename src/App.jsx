@@ -1,5 +1,5 @@
-import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import Projects from './components/Projects';
@@ -8,6 +8,32 @@ import Skills from './components/Skills';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import ProjectDetail from './pages/ProjectDetail';
+
+function ScrollManager() {
+  const { pathname, hash } = useLocation();
+
+  useEffect(() => {
+    if (hash) {
+      const targetId = hash.replace('#', '');
+      const attemptScroll = () => {
+        const el = document.getElementById(targetId);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' });
+          return true;
+        }
+        return false;
+      };
+      if (!attemptScroll()) {
+        setTimeout(attemptScroll, 80);
+      }
+      return;
+    }
+
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }, [pathname, hash]);
+
+  return null;
+}
 
 function Home() {
   return (
@@ -31,10 +57,13 @@ function Home() {
 
 export default function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/projetos/:slug" element={<ProjectDetail />} />
-      <Route path="*" element={<Home />} />
-    </Routes>
+    <>
+      <ScrollManager />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/projetos/:slug" element={<ProjectDetail />} />
+        <Route path="*" element={<Home />} />
+      </Routes>
+    </>
   );
 }
